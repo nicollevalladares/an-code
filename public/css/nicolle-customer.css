@@ -32,9 +32,9 @@ body {
   font-size: 80%;
   border-radius: 5rem;
   letter-spacing: .1rem;
-  font-weight: bold;
   padding: 1rem;
   transition: all 0.2s;
+  border: 0px;
 }
 
 .form-label-group {
@@ -42,9 +42,24 @@ body {
   margin-bottom: 1rem;
 }
 
+.placeholder{
+  position: relative;
+  margin-bottom: 1rem;
+  height: auto;
+  border-radius: 2rem;
+  border: 0px;
+  line-height: 3;
+  font-size: 12px;
+  text-align: center;
+  width: 80%;
+}
+
 .form-label-group input {
   height: auto;
   border-radius: 2rem;
+  border: 0px;
+  width: 100%;
+  
 }
 
 .form-label-group>input,
@@ -62,7 +77,6 @@ body {
   /* Override default `<label>` margin */
   line-height: 1.5;
   color: #495057;
-  border: 1px solid transparent;
   border-radius: .25rem;
   transition: all .1s ease-in-out;
 }
@@ -102,9 +116,17 @@ body {
 .btn-google {
   color: white;
   background-color: #ea4335;
+  margin-bottom: 1rem;
 }
 
 .btn-facebook {
   color: white;
   background-color: #3b5998;
+  margin-bottom: 1rem;
+}
+
+.btn-twitter {
+  color: white;
+  background-color: #3887d1;
+  margin-bottom: 1rem;
 }
