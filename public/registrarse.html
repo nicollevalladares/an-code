@@ -5,28 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Registrarse - nombre de página</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/nicolle-customer.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/nicolle-custom.css">
     <script src="main.js"></script>
 </head>
-<body style="background-color:rgb(0, 0, 0);background-image: url(img/fondo-login.jpg);background-repeat: no-repeat;background-position: center center;background-attachment: fixed;background-size:cover">
+<body style="background-color:rgb(231, 226, 226);background-image: url(img/fondo-login.jpg);background-repeat: no-repeat;background-position: center center;background-attachment: fixed;background-size:cover">
 
         <!--<div style=" width:500px; height: 500px; background-color: rgba(63, 7, 46, 0.5); margin:auto">-->
         
             
         <!--<div class="col-sm-9 col-md-7 col-lg-5 mx-auto" style=" width:500px; height: 500px; background-color: rgba(63, 7, 46, 0.5); margin:auto; text-align: center">-->
-        <div class="card card-signin my-5" style=" width:500px; height: 600px; background-color: rgba(8, 0, 0, 0.18); margin:auto; margin-top:50px; text-align: center; font-family: sans-serif">
+        <div class="card card-signin my-5" style=" width:50%; height: 80%; background-color: rgba(8, 0, 0, 0.18); margin:auto; text-align: center; font-family: sans-serif">
             <div class="card-body">
             <h5 class="card-title ">Crea tu cuenta</h5>
             <form class="form-signin">
                 <div class="">
                     <input type="text" class="form-control placeholder" placeholder="Cree su nombre de usuario" required>
                 </div>
+
+                <div class="">
+                    <input type="text" class="form-control placeholder" placeholder="Ingrese su nombre" required>
+                </div>
+
+                <div class="">
+                    <input type="text" class="form-control placeholder" placeholder="Ingrese su apellido" required>
+                </div>
+
                 <div class="">
                     <input type="email" class="form-control placeholder" placeholder="Ingrese su correo electrónico" required>
                 </div>
 
                 <div class="">
-                    <input type="password" class="form-control placeholder" placeholder="Ingrese su contraseña" required>
+                    <input type="password" class="form-control placeholder" placeholder="Cree su contraseña" required>
                 </div>
 
                 <button class="btn btn-lg btn-primary" type="submit">Crear cuenta</button>
@@ -38,6 +47,8 @@
                 <button class="btn btn-lg btn-facebook" type="submit"><i class="fab fa-facebook-f mr-2"></i>Registrarse con Facebook</button><br>
 
                 <button class="btn btn-lg btn-twitter" type="submit"><i class="fab fa-facebook-f mr-2"></i>Registrarse con Twitter</button><br>
+
+                <a href="log-in.html" style="text-decoration:none; color: black; font-family:initial">¿Ya tienes cuenta? Inicia Sesión</a>
             
             </form>
             </div>
