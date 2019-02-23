@@ -147,3 +147,40 @@ body {
   padding-left: 0px;
   padding-right: 0px;
 }
+
+.bg-gradient-primary{
+  background-color: #15223d !important;
+}
+
+.bg-white{
+  background-color: #15223d !important;
+}
+
+.btn-info{
+  margin-left: 28%;
+}
+
+.btn-danger{
+  margin: none;
+}
+
+.container, .container-fluid {
+  padding-left: 9%;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #15223d;
+  border-color: #15223d;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #264485;
+  border-color: #264485;
+}
+
+.py-3-proyecto{
+  padding-bottom: 50%!important;
+  background-color: rgb(37, 36, 36)
+}
