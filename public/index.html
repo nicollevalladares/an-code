@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>proyecto expertos</title>
+  <title>Inicio - nombre proyecto</title>
 
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -69,7 +69,7 @@
               <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span></li>
               <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span></li>
             </ul>
-            <a href="#" class="btn btn-block btn-primary text-uppercase">Conseguir</a>
+            <a href="registrarse.html" class="btn btn-block btn-primary text-uppercase">Conseguir</a>
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@
               <li><span class="fa-li"><i class="fas fa-check"></i></span></li>
               <li><span class="fa-li"><i class="fas fa-check"></i></span></li>
             </ul>
-            <a href="#" class="btn btn-block btn-primary text-uppercase">Comprar</a>
+            <a style="color:white" data-toggle="modal" data-target="#modalFormulario" class="btn btn-block btn-primary text-uppercase">Comprar</a>
           </div>
         </div>
       </div>
@@ -107,7 +107,7 @@
               <li><span class="fa-li"><i class="fas fa-check"></i></span></li>
               <li><span class="fa-li"><i class="fas fa-check"></i></span></li>
             </ul>
-            <a href="#" class="btn btn-block btn-primary text-uppercase">Comprar</a>
+            <a style="color:white"  data-toggle="modal" data-target="#modalFormulario" class="btn btn-block btn-primary text-uppercase">Comprar</a>
           </div>
         </div>
       </div>
@@ -121,6 +121,45 @@
       <p class="m-0 text-center text-white small">Copyright &copy; Your Website 2019</p>
     </div>
   </footer>
+
+  <!-- Modal -->
+<div class="modal fade" id="modalFormulario" tabindex="-1" role="dialog" aria-labelledby="modalFormularioTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          Agregar Método de Pago
+          <form>
+            <div class="mb-3">
+              <label for="nombre">Nombre Completo</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre completo" required>
+                  <div class="invalid-feedback" style="width: 100%;">
+                    Se requiere un dato válido.
+                  </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="number">Número de Tarjeta</label>
+                <input type="text" class="form-control" id="credito" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+                  <div class="invalid-feedback" style="width: 100%;">
+                    Se requiere un dato válido.
+                  </div>
+            </div>
+              
+            <div class="mb-3">
+              <label for="email">CCV</label>
+                <input type="text" class="form-control" id="ccv" placeholder="XXX" required>
+                  <div class="invalid-feedback">
+                    Se requiere un dato válido.
+                  </div>
+            </div>
+            <a href="registrarse.html"style="color:white" class="btn btn-block btn-primary text-uppercase">
+                Guardar
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

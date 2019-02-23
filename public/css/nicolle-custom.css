@@ -184,3 +184,16 @@ body {
   padding-bottom: 50%!important;
   background-color: rgb(37, 36, 36)
 }
+
+.n-p{
+  font-size: 1rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .05rem;
+  width: 100px;
+}
+
+.icono{
+  color: white;
+}
