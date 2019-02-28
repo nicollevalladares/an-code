@@ -3,10 +3,6 @@
   --input-padding-y: .75rem;
 }
 
-body {
-  background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF);
-}
 
 .card-signin {
   border: 0;
@@ -156,17 +152,6 @@ body {
   background-color: #15223d !important;
 }
 
-.btn-info{
-  margin-left: 28%;
-}
-
-.btn-danger{
-  margin: none;
-}
-
-.container, .container-fluid {
-  padding-left: 9%;
-}
 
 .btn-primary {
   color: #fff;
@@ -196,4 +181,9 @@ body {
 
 .icono{
   color: white;
+}
+
+.btn-info{
+  margin-left: auto;
+  margin-right: 1%;
 }
