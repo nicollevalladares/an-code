@@ -9,6 +9,13 @@
   <meta name="author" content="">
 
   <title>Inicio - AnCode</title>
+
+  <style>
+    .input-error{
+      border: 1px solid red;
+    }
+  </style>
+  
   <link rel="shortcut icon" type="image/png" href="img/icono-logo.png">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -124,35 +131,28 @@
 <div class="modal fade" id="modalFormulario" tabindex="-1" role="dialog" aria-labelledby="modalFormularioTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-body">
+        <div class="modal-body " id="comentarios">
           Agregar Método de Pago
           <form>
             <div class="mb-3">
-              <label for="nombre">Nombre Completo</label>
-                <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre completo" required>
-                  <div class="invalid-feedback" style="width: 100%;">
-                    Se requiere un dato válido.
-                  </div>
+              <label for="nombre-completo">Nombre Completo</label>
+                <input id="nombre-completo" type="text" class="form-control" placeholder="Ingrese su nombre completo" required>
             </div>
 
             <div class="mb-3">
-              <label for="number">Número de Tarjeta</label>
-                <input type="text" class="form-control" id="credito" placeholder="XXXX-XXXX-XXXX-XXXX" required>
-                  <div class="invalid-feedback" style="width: 100%;">
-                    Se requiere un dato válido.
-                  </div>
+              <label for="num-tarjeta">Número de Tarjeta</label>
+                <input id="num-tarjeta" type="text" class="form-control" placeholder="XXXX-XXXX-XXXX-XXXX" required>
             </div>
               
             <div class="mb-3">
-              <label for="email">CCV</label>
-                <input type="text" class="form-control" id="ccv" placeholder="XXX" required>
-                  <div class="invalid-feedback">
-                    Se requiere un dato válido.
-                  </div>
+              <label for="ccv">CCV</label>
+                <input id="ccv" type="text" class="form-control" placeholder="XXX" required>
             </div>
-            <a href="registrarse.html"style="color:white" class="btn btn-block btn-primary text-uppercase">
+            
+              <button style="color:white" class="btn btn-block btn-primary text-uppercase" type="button" onclick="registrarTarjeta()">
                 Guardar
-            </a>
+              </button>
+
           </form>
         </div>
       </div>
@@ -161,7 +161,7 @@
 
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  <script src="js/controlador.js"></script>
 </body>
 
 </html>
