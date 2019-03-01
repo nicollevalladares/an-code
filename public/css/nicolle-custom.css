@@ -200,6 +200,9 @@
 
 .input-error{
   border: 1px solid red;
-  display:none;
+  
+}
 
+.input-error ::placeholder {
+  color:red !important;
 }

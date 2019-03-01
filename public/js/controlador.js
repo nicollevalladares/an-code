@@ -7,21 +7,47 @@ function registrarTarjeta(){
     
 
     
-    if (nombreCompleto == "") {  //COMPRUEBA CAMPOS VACIOS
-        document.getElementById(nombreCompleto).classList.add('input-error');
-        return true;
+    if ((nombreCompleto == "") & (numTarjeta == "") & (codigo == "")) {  //COMPRUEBA CAMPOS VACIOS
+        document.getElementById('nombre-completo').classList.add('input-error');
+        document.getElementById('num-tarjeta').classList.add('input-error');
+        document.getElementById('ccv').classList.add('input-error');
     } 
-
-    if (numTarjeta == ""){  //COMPRUEBA CAMPOS VACIOS
-        document.getElementById(numTarjeta).classList.add('input-error');
-        return true;
-    } 
-
-    if (codigo == ""){  //COMPRUEBA CAMPOS VACIOS
-        document.getElementById(codigo).classList.add('input-error');
-        return true;
+    else if ((nombreCompleto != "") & (numTarjeta == "") & (codigo == "")) {
+        document.getElementById('nombre-completo').classList.remove('input-error');
+        document.getElementById('num-tarjeta').classList.add('input-error');
+        document.getElementById('ccv').classList.add('input-error');
     }
-    
+    else if ((nombreCompleto == "") & (numTarjeta != "") & (codigo == "")) {
+        document.getElementById('nombre-completo').classList.add('input-error');
+        document.getElementById('num-tarjeta').classList.remove('input-error');
+        document.getElementById('ccv').classList.add('input-error');
+    }
+    else if ((nombreCompleto == "") & (numTarjeta == "") & (codigo != "")) {
+        document.getElementById('nombre-completo').classList.add('input-error');
+        document.getElementById('num-tarjeta').classList.add('input-error');
+        document.getElementById('ccv').classList.remove('input-error');
+    }
+    else if ((nombreCompleto == "") & (numTarjeta != "") & (codigo != "")) {
+        document.getElementById('nombre-completo').classList.add('input-error');
+        document.getElementById('num-tarjeta').classList.remove('input-error');
+        document.getElementById('ccv').classList.remove('input-error');
+    }
+    else if ((nombreCompleto != "") & (numTarjeta == "") & (codigo != "")) {
+        document.getElementById('nombre-completo').classList.remove('input-error');
+        document.getElementById('num-tarjeta').classList.add('input-error');
+        document.getElementById('ccv').classList.remove('input-error');
+    }
+    else if ((nombreCompleto != "") & (numTarjeta != "") & (codigo == "")) {
+        document.getElementById('nombre-completo').classList.remove('input-error');
+        document.getElementById('num-tarjeta').classList.remove('input-error');
+        document.getElementById('ccv').classList.add('input-error');
+    }
+    else {
+        document.getElementById('nombre-completo').classList.remove('input-error');
+        document.getElementById('num-tarjeta').classList.remove('input-error');
+        document.getElementById('ccv').classList.remove('input-error');
+    }
+
 }
 
 
