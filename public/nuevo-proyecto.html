@@ -9,8 +9,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Proyectos - Nombre proyecto</title>
-
+  <title>Proyectos - AnCode</title>
+  <link rel="shortcut icon" type="image/png" href="img/icono-logo.png">
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -18,6 +18,7 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/nicolle-custom.css" rel="stylesheet">
+  
 
 </head>
 
@@ -43,12 +44,12 @@
             <i class="fa fa-bars"></i>
           </button>
           
-          <a style="text-decoration:none" class="sidebar-brand d-flex align-items-center justify-content-center" href="menu.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                  <i class="fas fa-laugh-wink icono"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3 n-p" style="color:white; ">Nombre Proyecto <sup></sup></div>
-              </a>
+          <a class="sidebar-brand d-flex align-items-center justify-content-center" href="menu.html" style="text-decoration:none; color:white">
+            <div style="margin-left:10px">
+              <img style=" width: 70px; height: 70px;" src="img/icono-logo.png"  >
+            </div>
+            <div class="sidebar-brand-text mx-3">AnCode <sup></sup></div>
+          </a>
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto" >
       
@@ -153,26 +154,26 @@
             <!-- Border Left Utilities -->
             <div class="col-lg-6">
 
-              <div class="card py-3-proyecto codigo" >
+              <div id="html" class="card py-3-proyecto" >
                 HTML
-                
+
               </div>
 
-              <div class="card py-3-proyecto codigo">
+              <div id="js" class="card py-3-proyecto">
                 JS
                 
               </div>
 
             </div>
 
-            <div class="col-lg-6 codigo">
+            <div class="col-lg-6">
 
-                <div class="card card py-3-proyecto">
+                <div id="css" class="card card py-3-proyecto">
                   CSS
                   
                 </div>
   
-                <div class="card py-3-proyecto codigo">
+                <div class="card py-3-proyecto" style="padding-bottom:41%">
                   RESULTADO
                   
                 </div>
@@ -238,6 +239,38 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
+
+
+  <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+  <script src="codemirror/lib/codemirror.js"></script>
+  <script src="codemirror/mode/xml/xml.js"></script>
+  <script src="codemirror/mode/css/css.js"></script>
+  <script src="codemirror/mode/javascript/javascript.js"></script>
+  <link rel="stylesheet" href="codemirror/theme/bespin.css">
+
+
+  <script>
+    var editor = CodeMirror(document.getElementById('html'), {
+      lineNumbers: true,
+      mode:'xml',
+      theme:'bespin'
+    });
+
+    var editor = CodeMirror(document.getElementById('css'), {
+      lineNumbers: true,
+      mode:'css',
+      theme:'bespin'
+    });
+
+    var editor = CodeMirror(document.getElementById('js'), {
+      lineNumbers: true,
+      mode:'javascript',
+      theme:'bespin'
+    });
+  </script>
+
+  
+
 
 </body>
 
