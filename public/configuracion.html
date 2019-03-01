@@ -9,10 +9,9 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Menú - AnCode</title>
-
-  <!-- Custom fonts for this template-->
+  <title>Perfil - AnCode</title>
   <link rel="shortcut icon" type="image/png" href="img/icono-logo.png">
+  <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
@@ -58,6 +57,7 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider">
+
  
       <!-- Nav Item - Charts -->
       <li class="nav-item">
@@ -175,65 +175,115 @@
         </nav>
         <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-          <!-- Content Row -->
-          <div class="row">
-
-            <section>
-              <div class="container">
-                <div class="row align-items-center">
-                  <div class="col-lg-6 order-lg-2">
-                    <div class="p-5">
-                      <img class="img-fluid rounded-circle" src="img/carpeta.jpg" alt="">
-                    </div>
+                <div class="container" style="color:black">
+                  <div class="py-5"  style="text-align:center">
+                    <img class="d-block mx-auto mb-4" src="" alt="" width="72" height="72">
+                    <img style=" width: 80px; height: 70px; fill: #15223d" src="svg/img-perfil.svg" ><br><br>
+                    <h2>Perfil de "Nombre de Usuario" 
+                    </h2>
                   </div>
-                  <div class="col-lg-6 order-lg-1">
-                    <div class="p-5">
-                      <h2 class="display-4">Crea una nueva carpeta</h2>
-                      <p></p>
-                      <button class="btn btn-primary" data-toggle="modal" data-target="#modalCarpeta">Crear</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          
-            <section>
-              <div class="container">
-                <div class="row align-items-center">
-                  <div class="col-lg-6">
-                    <div class="p-5">
-                      <img class="img-fluid rounded-circle" src="img/proyecto.jpg" alt="">
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="p-5">
-                      <h2 class="display-4">Crea un nuevo proyecto</h2>
-                      <button class="btn btn-primary" data-toggle="modal" data-target="#modalProyecto">Crear</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
             
+                    <div class="order-md-1">
+                      <h4 class="mb-3">Configuración de información</h4>
+                      <form class="needs-validation" novalidate>
+                        <div class="row">
+                          <div style="display: none" class="form-group">
+                            <label for="idcliente">Id</label>
+                            <input type="text" class="form-control" id="idcliente">
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label for="primerNombre">Primer Nombre</label>
+                            <input type="text" class="form-control" id="primerNombre" placeholder="Ingrese su primer nombre" value=""  required>
+                            <div class="invalid-feedback">
+                              Se requiere un dato válido.
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label for="segundoNombre">Segundo Nombre</label>
+                            <input type="text" class="form-control" id="segundoNombre" placeholder="Ingrese su segundo nombre" value="" required>
+                            <div class="invalid-feedback">
+                              Se requiere un dato válido.
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label for="primerApellido">Primer Apellido</label>
+                            <input type="text" class="form-control" id="primerApellido" placeholder="Ingrese su primer apellido" value=""  required>
+                            <div class="invalid-feedback">
+                              Se requiere un dato válido.
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label for="segundoApellido">Segundo Apellido</label>
+                            <input type="text" class="form-control" id="segundoApellido" placeholder="Ingrese su segundo apellido" value="" required>
+                            <div class="invalid-feedback">
+                              Se requiere un dato válido.
+                            </div>
+                          </div>
+                        </div>
+            
+                        <div class="mb-3">
+                        <label for="email">Usuario</label>
+                            <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario" required>
+                            <div class="invalid-feedback" style="width: 100%;">
+                            Se requiere un dato válido.
+                            </div>
+                        </div>
 
-        </div>
-        <!-- /.container-fluid -->
+                        <div class="mb-3">
+                          <label for="email">Email</label>
+                            <input type="text" class="form-control" id="email" placeholder="Ingrese su correo eléctronico" required>
+                            <div class="invalid-feedback" style="width: 100%;">
+                              Se requiere un dato válido.
+                            </div>
+                        </div>
 
-      </div>
-      <!-- End of Main Content -->
-      
-       <!-- Footer -->
-       <footer class="sticky-footer bg-white">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Your Website 2019</span>
+                        <div class="mb-3">
+                        <label >Plan</label>
+                            <select class="form-control">
+                                <option>Plan Gratuito</option>
+                                <option>Plan $10</option>
+                                <option>Plan $20</option>
+                            </select>
+                            <div class="invalid-feedback" style="width: 100%;">
+                            Se requiere un dato válido.
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                          <label for="email">Fecha de Nacimiento</label>
+                          <input type="date" class="form-control" id="fechaNacimiento" placeholder="">
+                          <div class="invalid-feedback">
+                            Se requiere un dato válido.
+                          </div>
+                        </div>
+            
+                        <hr class="mb-4">
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Guardar</button>
+                      </form>
+                    </div>
+                  </div>
+                  <br><br><br>
+                  </footer>
+                </div>
+            
+                <!-- Bootstrap core JavaScript
+                ================================================== -->
+                <!-- Placed at the end of the document so the pages load faster -->
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+            
+                </script>
+  
+         <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+              <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Your Website 2019</span>
+              </div>
             </div>
-          </div>
-        </footer>
-        <!-- End of Footer -->
+          </footer>
+          <!-- End of Footer -->
+
     </div>
     <!-- End of Content Wrapper -->
 
@@ -259,60 +309,6 @@
     </div>
   </div>
 
-  <!--Modal Carpeta-->
-  <div class="modal fade" id="modalCarpeta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Crea una carpeta</h4>
-          
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <input class="form-control" type="text" placeholder="Nombre de la carpeta">
-        </div>
-        <div class="modal-footer">
-          <a class="btn btn-primary" href="carpetas.html">Crear</a>
-        </div>
-    </div>
-  </div>
-  </div>
-
-   <!--Modal Proyecto-->
-   <div class="modal fade" id="modalProyecto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Crea un proyecto</h4>
-          
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <select class="form-control">
-            <option value="0">--Seleccione su carpeta--</option>
-            <option value="1">Carpeta 1 </option>
-            <option value="2">Carpeta 2 </option>
-            <option value="3">Carpeta 3 </option>
-            <option value="4">Carpeta 4 </option>
-            <option value="5">Carpeta 5 </option>
-            <option value="6">Carpeta 6 </option>
-            <option value="...">Carpeta ... </option>
-
-          </select>
-        </div>
-        <div class="modal-body">
-          <input class="form-control" type="text" placeholder="Nombre del proyecto">
-        </div>
-        <div class="modal-footer">
-          <a class="btn btn-primary" href="nuevo-proyecto.html">Crear</a>
-        </div>
-    </div>
-  </div>
-  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
