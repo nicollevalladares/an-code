@@ -122,41 +122,48 @@
     </div>
   </footer>
 
-  <!-- Modal -->
-<div class="modal fade" id="modalFormulario" tabindex="-1" role="dialog" aria-labelledby="modalFormularioTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-body " id="comentarios">
-          Agregar Método de Pago
-          <form>
+     <!--Modal Formulario-->
+     <div class="modal fade" id="modalFormulario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Agregar Método de Pago</h4>
+            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
             <div class="mb-3">
               <label for="nombre-completo">Nombre Completo</label>
-                <input id="nombre-completo" type="text" class="form-control" placeholder="Ingrese su nombre completo" required>
+                <input id="nombre-completo" type="text" class="form-control" placeholder="Ingrese su nombre completo">
+                 <div id="div-error-nombre-completo" class="mensaje-error">*Campo obligatorio</div>
             </div>
 
             <div class="mb-3">
               <label for="num-tarjeta">Número de Tarjeta</label>
-                <input id="num-tarjeta" type="text" class="form-control" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+                <input id="num-tarjeta" type="text" class="form-control" placeholder="XXXX-XXXX-XXXX-XXXX">
+                 <div id="div-error-num-tarjeta" class="mensaje-error">*Campo obligatorio</div>
             </div>
               
             <div class="mb-3">
               <label for="ccv">CCV</label>
-                <input id="ccv" type="text" class="form-control" placeholder="XXX" required>
+                <input id="ccv" type="text" class="form-control" placeholder="XXX">
+                 <div id="div-error-ccv" class="mensaje-error">*Campo obligatorio</div>
             </div>
-            
+
+            <div class="modal-footer">
               <button style="color:white" class="btn btn-block btn-primary text-uppercase" type="button" onclick="registrarTarjeta()">
                 Guardar
               </button>
-
-          </form>
+            </div>
         </div>
       </div>
     </div>
-  </div>
 
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="js/controlador.js"></script>
+  <script src="js/controlador-index.js"></script>
 </body>
 
 </html>

@@ -165,9 +165,6 @@
   border-color: #264485;
 }
 
-.py-3-proyecto{
-  background-color:#28211c;
-}
 
 .n-p{
   font-size: 1rem;
@@ -203,6 +200,78 @@
   
 }
 
-.input-error ::placeholder {
-  color:red !important;
+.mensaje-error{
+  color: red;
+  font-size: 10px;
+  text-align: left;
+  margin: 3px 0px 10px 100px;
+  display:none;
+}
+
+.card{
+  background-color: #f8f9fc;
+  padding: 0px;
+
+}
+
+.fa-play, .fa-save{
+  color: #15223d;
+  font-size: 34px;
+  margin-right: 10px;
+  outline-style: none;
+}
+
+.botones {
+  display: inherit;
+  margin-right: 50px;
+}
+
+@media only screen and (max-width: 571px){
+  .temas{
+    display: none;
+  }
+
+  .botones{
+    margin-bottom: 5%;
+  }
+
+  .nombre-proyecto{
+    font-size: larger;
+    margin: 2%;
+  }
+}
+
+.fa-file{
+  font-size: 70px;
+  color: #15223d;
+}
+
+.fa-folder-open, .fa-file-alt{
+  font-size: 70px;
+  color: #15223d;
+}
+
+.fa-html5{
+  font-size: 70px;
+  color: #c74900;
+}
+
+.fa-css3-alt{
+  font-size: 70px;
+  color: #005dc7;
+}
+
+.fa-js-square{
+  font-size: 70px;
+  color: #ecdd00;
+}
+
+.creacion {
+  width: auto;
+}
+
+.btn:focus{
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0rem rgba(0,0,0,0);
+  box-shadow: 0 0 0 0rem rgba(0,0,0,0) !important;
 }

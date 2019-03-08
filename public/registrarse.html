@@ -19,27 +19,22 @@
             <div class="card-body">
             <h5 class="card-title ">Crea tu cuenta</h5>
             <form class="form-signin">
-                <div class="">
-                    <input type="text" class="form-control placeholder" placeholder="Cree su nombre de usuario" required>
-                </div>
+                <input type="text" id="usuario" class="form-control placeholder" placeholder="Cree su nombre de usuario">
+                <div id="div-error-usuario" class="mensaje-error">*Campo obligatorio</div>
 
-                <div class="">
-                    <input type="text" class="form-control placeholder" placeholder="Ingrese su nombre" required>
-                </div>
+                <input type="text" id="nombre" class="form-control placeholder" placeholder="Ingrese su nombre">
+                <div id="div-error-nombre" class="mensaje-error">*Campo obligatorio</div>
 
-                <div class="">
-                    <input type="text" class="form-control placeholder" placeholder="Ingrese su apellido" required>
-                </div>
+                <input type="text" id="apellido" class="form-control placeholder" placeholder="Ingrese su apellido">
+                <div id="div-error-apellido" class="mensaje-error">*Campo obligatorio</div>
 
-                <div class="">
-                    <input type="email" class="form-control placeholder" placeholder="Ingrese su correo electrónico" required>
-                </div>
+                <input type="email" id="correo" class="form-control placeholder" placeholder="Ingrese su correo electrónico">
+                <div id="div-error-correo" class="mensaje-error">*Campo obligatorio</div>
 
-                <div class="">
-                    <input type="password" class="form-control placeholder" placeholder="Cree su contraseña" required>
-                </div>
-
-                <button class="btn btn-lg btn-primary" type="submit">Crear cuenta</button>
+                <input type="password" id="password" class="form-control placeholder" placeholder="Cree su contraseña">
+                <div id="div-error-password" class="mensaje-error">*Campo obligatorio</div>
+                <br><br>
+                <button class="btn btn-lg btn-primary" type="button" onclick="registrarse()">Crear cuenta</button>
                 
                 <hr class="my-4">
                 
@@ -55,10 +50,9 @@
             </div>
         </div>
         </div>
-            
         
-
-
     <footer></footer>
+
+    <script src="js/controlador-registrarse.js" ></script>
 </body>
 </html>

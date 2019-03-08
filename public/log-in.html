@@ -10,26 +10,24 @@
     <script src="main.js"></script>
 </head>
 
-<body style="background-color:rgb(231, 226, 226);background-image: url(img/fondo-login.jpg);background-repeat: no-repeat;background-position: center center;background-attachment: fixed;background-size:cover">
+<body style="background-color:rgb(231, 226, 226);">
     <div class="container-fluid">
         <div class="card card-signin log-in" style="background-color: rgba(8, 0, 0, 0.18); margin:auto; text-align: center; font-family: sans-serif">
             <div class="card-body">
             <h5 class="card-title ">Iniciar Sesión</h5>
             <form class="form-signin">
-                <div>
-                    <input type="email" class="form-control placeholder" placeholder="Ingrese su correo electrónico" required>
-                </div>
+                <input type="email" id="correo" class="form-control placeholder" placeholder="Ingrese su correo electrónico"><br>
+                <div id="div-error-correo" class="mensaje-error">*Campo obligatorio</div>
 
-                <div>
-                    <input type="password" class="form-control placeholder" placeholder="Ingrese su contraseña" required>
-                </div>
+                <input type="password" id="password" class="form-control placeholder" placeholder="Ingrese su contraseña">
+                <div id="div-error-password" class="mensaje-error">*Campo obligatorio</div>
 
                 <div class="custom-control custom-checkbox mb-3">
                     <input type="checkbox" class="custom-control-input" id="customCheck1">
                     <label class="custom-control-label" for="customCheck1">Recordar contraseña</label> <br><br><br>
                 </div>
 
-                <a href="menu.html" style="margin-top: 5%;text-decoration:none " class="btn btn-lg btn-primary">Iniciar Sesión</a><br><br>
+                <button type="button" class="btn btn-lg btn-primary" onclick="logIn()">Iniciar Sesión</button><br><br>
                 
                 <hr class="my-4">
                 
@@ -46,7 +44,7 @@
         </div>
 
     </div>
-    
+    <script src="js/controlador-login.js"></script>
         
 </body>
 </html>
