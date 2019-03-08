@@ -48,8 +48,7 @@ function editarCarpetas(indice){
 
 function eliminarCarpetas(indice){
     seleccionado = indice;
-    console.log(indice);
-    informacion.shift(indice);
+    informacion.splice(seleccionado, 1);
     generarCarpetas();
 }
 
