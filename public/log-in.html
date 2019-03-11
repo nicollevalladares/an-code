@@ -16,10 +16,10 @@
             <div class="card-body">
             <h5 class="card-title ">Iniciar Sesión</h5>
             <form class="form-signin">
-                <input type="email" id="correo" class="form-control placeholder" placeholder="Ingrese su correo electrónico"><br>
+                <input type="text" id="correo" class="form-control placeholder" placeholder="Ingrese su correo electrónico"  onkeyup="validarCorreo(this);"><br>
                 <div id="div-error-correo" class="mensaje-error">*Campo obligatorio</div>
 
-                <input type="password" id="password" class="form-control placeholder" placeholder="Ingrese su contraseña">
+                <input type="password" id="password" class="form-control placeholder" placeholder="Ingrese su contraseña" onkeyup="validarPassword(this);">
                 <div id="div-error-password" class="mensaje-error">*Campo obligatorio</div>
 
                 <div class="custom-control custom-checkbox mb-3">

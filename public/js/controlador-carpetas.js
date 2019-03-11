@@ -4,12 +4,7 @@ var informacion = [
     {nombreCarpeta:'Carpeta 2'},
     {nombreCarpeta:'Carpeta 3'},
     {nombreCarpeta:'Carpeta 4'},
-    {nombreCarpeta:'Carpeta 5'},
-    {nombreCarpeta:'Carpeta 6'},
-    {nombreCarpeta:'Carpeta 7'},
-    {nombreCarpeta:'Carpeta 8'},
-    {nombreCarpeta:'Carpeta 9'},
-    {nombreCarpeta:'Carpeta 10'}
+    {nombreCarpeta:'Carpeta 5'}
 ];
 
 var seleccionado;
@@ -18,12 +13,14 @@ function generarCarpetas(){
     document.getElementById('carpetas').innerHTML = '';
     for(var i=0;i<informacion.length;i++){
         document.getElementById('carpetas').innerHTML += 
-        `<div class="py-3 col-lg-4">
+        `<div class="py-3 col-lg-4 col-md-6 col-sm-12">
             <div class="card-body">
             
             <div class="d-flex justify-content-between align-items-center"> 
-                <i class="fas fa-folder-open"></i>
-                ${informacion[i].nombreCarpeta}
+                <button type="button" class="btn btn-proyecto" onclick="contenidoCarpeta(${i})">
+                    <i class="fas fa-folder-open"></i><br>
+                    ${informacion[i].nombreCarpeta}
+                </button>
                 <button class="btn btn-info btn-circle btn-sm" 
                 data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarCarpetas(${i})">
                     <i class="fas fa-edit"></i>
@@ -40,7 +37,6 @@ function generarCarpetas(){
 
 function editarCarpetas(indice){
     seleccionado = indice;
-    document.getElementById('modalContenidoCarpeta').style.display = "block";
     $("#btn-crear-carpeta").hide();
     $("#btn-editar-carpeta").show();
     document.getElementById('nombreCarpeta').value = informacion[indice].nombreCarpeta;
@@ -93,4 +89,6 @@ function validarCampoVacio(campo){
     }
 }
 
-
+function contenidoCarpeta(){
+        location.href="contenido-carpeta.html";
+}

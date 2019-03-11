@@ -4,12 +4,7 @@ var informacion = [
     {nombreProyecto:'Proyecto 2'},
     {nombreProyecto:'Proyecto 3'},
     {nombreProyecto:'Proyecto 4'},
-    {nombreProyecto:'Proyecto 5'},
-    {nombreProyecto:'Proyecto 6'},
-    {nombreProyecto:'Proyecto 7'},
-    {nombreProyecto:'Proyecto 8'},
-    {nombreProyecto:'Proyecto 9'},
-    {nombreProyecto:'Proyecto 10'}
+    {nombreProyecto:'Proyecto 5'}
 ];
 
 var seleccionado;
@@ -18,12 +13,14 @@ function generarProyectos(){
     document.getElementById('proyectos').innerHTML = '';
     for(var i=0;i<informacion.length;i++){
         document.getElementById('proyectos').innerHTML += 
-        `<div class="py-3 col-lg-4">
+        `<div class="py-3 col-lg-4 col-md-6 col-sm-12">
             <div class="card-body">
             
             <div class="d-flex justify-content-between align-items-center"> 
-                <i class="far fa-file-alt"></i>
-                ${informacion[i].nombreProyecto}
+                <button type="button" class="btn btn-proyecto" onclick="">
+                    <i class="far fa-file-alt"></i><br>
+                    ${informacion[i].nombreProyecto}
+                </button>
                 <button class="btn btn-info btn-circle btn-sm" 
                 data-toggle="modal" data-target="#modalContenidoProyecto" onclick="editarProyectos(${i})">
                     <i class="fas fa-edit"></i>
@@ -40,7 +37,6 @@ function generarProyectos(){
 
 function editarProyectos(indice){
     seleccionado = indice;
-    document.getElementById('modalContenidoProyecto').style.display = "block";
     $("#btn-crear-proyecto").hide();
     $("#btn-editar-proyecto").show();
     document.getElementById('nombreProyecto').value = informacion[indice].nombreProyecto;

@@ -17,6 +17,7 @@ function logIn(){
 
 }
 
+
 function validarCampo(campo){
     if (document.getElementById(campo).value ==''){   
         document.getElementById(campo).classList.add('input-error');
@@ -29,4 +30,23 @@ function validarCampo(campo){
     }
 }
 
-    
+function validarCorreo(etiquetaCorreo){
+   // alert(etiquetaCorreo);
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(etiquetaCorreo))
+        etiquetaCorreo.classList.remove('input-error');
+    else
+        etiquetaCorreo.classList.add('input-error');
+
+}
+
+function validarPassword(etiquetaPassword){
+   // alert(etiquetaPassword)
+    var re = /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$/;
+    if (re.test(etiquetaPassword))
+        etiquetaPassword.classList.remove('input-error');
+    else
+        etiquetaPassword.classList.add('input-error');
+
+}
+

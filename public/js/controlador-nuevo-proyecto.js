@@ -35,6 +35,10 @@ var editor = CodeMirror(document.getElementById('html'), {
     if (theme) { input.value = theme; selectTheme(); }
   });
 
-  function ejecutar(){
+  function ejecutarProyecto(){
       
+  }
+
+  function guardarProyecto(){
+    location.href = "proyectos.html";
   }
