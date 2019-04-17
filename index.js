@@ -1,8 +1,18 @@
-var express = require("express");
+var express = require('express');
+//var UserModel = require('./models/user');
+//var testModule = require('./test-module');
+var database = require('./database');
+var bodyParser = require('body-parser');
 var app = express();
+var mongoose = require("mongoose");
 
-app.use(express.static("public"));
+mongoose.connect("mongodb://localhost/ancode");
 
-app.listen("3333" , function(){
-		console.log("servidor levantado en el puerto 3333");
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+
+app.listen(3333, function(){
+    database.test();
+    console.log("Servidor levantado");
 });
