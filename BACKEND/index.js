@@ -3,6 +3,7 @@ var session = require("express-session");
 var database = require('./modules/database');
 var usuario = require("./models/usuario");
 var usuariosRouter = require('./routers/usuarios-router');
+var carpetasRouter = require('./routers/carpetas-router');
 var cors = require('cors'); //Cross-Origin Resource Sharing (CORS), Intercambio de recursos de origen cruzado (CORS)
 var bodyParser = require('body-parser');
 var app = express();
@@ -11,6 +12,7 @@ app.use(cors());
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use("/usuarios",usuariosRouter);
+app.use("/carpetas",carpetasRouter);
 
 app.use(express.static("public"));
 app.use(session({secret:"ASDFE$%#%",resave:true, saveUninitialized:true}));

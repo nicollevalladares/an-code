@@ -1,16 +1,51 @@
-var informacion = [
-    {nombreCarpeta:'Carpeta HOME'},
-    {nombreCarpeta:'Carpeta 1'},
-    {nombreCarpeta:'Carpeta 2'},
-    {nombreCarpeta:'Carpeta 3'},
-    {nombreCarpeta:'Carpeta 4'},
-    {nombreCarpeta:'Carpeta 5'}
-];
+function generarItems(informacion){
+    //console.log('GENERAR ITEMS');
+    
+    for(var i=0; i<informacion.length;i++){
+        console.log(informacion[i]);
 
-var seleccionado;
+      document.getElementById('carpetas').innerHTML = '';
+                for(var i=0;i<informacion.length;i++){
+                    document.getElementById('carpetas').innerHTML += 
+                    `<div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="card-body">
+                        
+                        <div class="d-flex justify-content-between align-items-center"> 
+                            <button type="button" class="btn btn-proyecto" onclick="contenidoCarpeta(${i})">
+                                <i class="fas fa-folder-open"></i><br>
+                                ${informacion[i].nombreCarpeta}
+                            </button>
+                            <button class="btn btn-info btn-circle btn-sm" 
+                            data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarCarpetas(${i})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarCarpetas(${i})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        </div>
+                    </div>`;
+    }
+}
+}
 
-function generarCarpetas(){
-    document.getElementById('carpetas').innerHTML = '';
+$(document).ready(function(){
+    console.log("El DOM ha sido cargado");
+
+    $.ajax({
+        url:"http://localhost:3333/carpetas",
+        method:"GET",
+        dataType:"json",
+        success:function(res){
+            console.log("Respuesta");
+            console.log(res);
+            generarItems(res);
+        },
+        error:function(error){
+            console.log(error);
+        }
+    });
+   /* document.getElementById('carpetas').innerHTML = '';
     for(var i=0;i<informacion.length;i++){
         document.getElementById('carpetas').innerHTML += 
         `<div class="py-3 col-lg-4 col-md-6 col-sm-12">
@@ -31,8 +66,9 @@ function generarCarpetas(){
             </div>
             </div>
         </div>`;
-    }
-} generarCarpetas();
+    }*/
+});
+//generarCarpetas();
 
 
 function editarCarpetas(indice){
