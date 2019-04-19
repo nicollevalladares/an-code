@@ -1,10 +1,10 @@
 var mongoose = require("mongoose");
 
-var esquema = new mongoose.Schema(
+var carpetaSchema = new mongoose.Schema(
     {
-        nombre : String,
+        nombreCarpeta : String,
         usuario : mongoose.Schema.Types.Mixed
     }
 );
 
-module.exports = mongoose.model('carpetas',esquema);
+module.exports = mongoose.model('carpetas',carpetaSchema);

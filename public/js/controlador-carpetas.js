@@ -33,7 +33,7 @@ $(document).ready(function(){
     console.log("El DOM ha sido cargado");
 
     $.ajax({
-        url:"http://localhost:3333/carpetas",
+        url:"/carpetas",
         method:"GET",
         dataType:"json",
         success:function(res){

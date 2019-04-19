@@ -1,20 +1,19 @@
-var express = require("express");
-var router = express.Router();
-var carpeta = require("../models/carpeta");
+module.exports = (app, carpeta) => {
 
-//Obtener el listado de todas las carpetas
-router.get("/",function(req,res){
-    carpeta.find()
-    .then(data=>{
-        res.send(data);
-    })
-    .catch(error=>{
-        res.send(error);
-    });
+app.get('/carpetas', (req, res) => {
+    res.render('carpetas.ejs', 
+        carpeta.find().sort({orden:1})
+        .then(data=>{
+            res.send(data);
+        })
+        .catch(error=>{
+            res.send(error);
+        }))
 });
 
+
 //Obtener una carpeta en particular
-router.get("/:id",function(req,res){
+/*router.get("/:id",function(req,res){
     carpeta.find({_id:req.params.id})
     .then(data=>{
         res.send(data);
@@ -81,7 +80,6 @@ router.delete("/:id",function(req, res){
     .catch(error=>{
         res.send(error);
     });
-});
+});*/
 
-
-module.exports = router;
+}
