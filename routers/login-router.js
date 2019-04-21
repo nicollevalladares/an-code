@@ -1,5 +1,8 @@
 module.exports = (app, passport) => {
 
+	app.get('/', (req, res) => {
+		res.render('index');
+	});
 
 	//login view
 	app.get('/login', (req, res) => {
@@ -14,18 +17,6 @@ module.exports = (app, passport) => {
 		failureFlash: true
 	}));
 
-	// signup view
-	app.get('/registrarse', (req, res) => {
-		res.render('registrarse', {
-			message: req.flash('signupMessage')
-		});
-	});
-
-	app.post('/registrarse', passport.authenticate('local-registrarse', {
-		successRedirect: '/menu',
-		failureRedirect: '/registrarse',
-		failureFlash: true // allow flash messages
-	}));
 
 	//profile view
 	app.get('/menu', isLoggedIn, (req, res) => {
