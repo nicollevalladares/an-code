@@ -21,7 +21,7 @@ module.exports = (app, passport) => {
 	//profile view
 	app.get('/menu', isLoggedIn, (req, res) => {
 		res.render('menu', {
-			usuarios: req.usuario
+			user: req.user
 		});
 	});
 

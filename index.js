@@ -48,7 +48,7 @@ require('./routers/index-router')(app);
 require('./routers/configuracion-router')(app);
 require('./routers/perfil-router')(app);
 require('./routers/landing-page-router')(app);
-require('./routers/carpetas-router')(app,carpeta);
+require('./routers/carpetas-router')(app,passport);
 require('./routers/proyectos-router')(app, proyecto);
 
 app.use(express.static(path.join(__dirname, 'public')));
