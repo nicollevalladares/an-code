@@ -45,6 +45,8 @@ app.use(flash());
 require('./routers/login-router')(app, passport);
 require('./routers/registrarse-router')(app, passport);
 require('./routers/index-router')(app);
+require('./routers/configuracion-router')(app);
+require('./routers/perfil-router')(app);
 require('./routers/landing-page-router')(app);
 require('./routers/carpetas-router')(app,carpeta);
 require('./routers/proyectos-router')(app, proyecto);
