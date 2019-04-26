@@ -1,14 +1,9 @@
 module.exports = (app, carpeta) => {
 
 app.get('/carpetas', (req, res) => {
-    res.render('carpetas.ejs', 
-        carpeta.find().sort({orden:1})
-        .then(data=>{
-            res.send(data);
-        })
-        .catch(error=>{
-            res.send(error);
-        }))
+    res.render('carpetas.html', {
+        user: req.user
+    });
 });
 
 

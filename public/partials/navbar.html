@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+<nav style="width:100%" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -30,15 +30,15 @@
       <!-- Nav Item - User Information -->
       <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="mr-2 d-none d-lg-inline text-gray-600 small">  <%= user.local.email %> </span>
+          <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="nombre-usuario">Nombre usuario</span>
         </a>
         <!-- Dropdown - User Information -->
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="/perfil">
+          <a class="dropdown-item" href="/perfil.html">
             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
             Perfil
           </a>
-          <a class="dropdown-item" href="/configuracion">
+          <a class="dropdown-item" href="/configuracion.html">
             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
             Configuración
           </a>
@@ -69,8 +69,16 @@
         <div class="modal-body">¿Estás seguro que deseas cerrar sesión?</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="/login">Cerrar Sesión</a>
+          <a class="btn btn-primary" href="/login.html">Cerrar Sesión</a>
         </div>
       </div>
     </div>
   </div>
+
+  <script src="../js/controlador-menu.js"></script>
+  <script>
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover();  
+        nombreUsuario(); 
+    });
+    </script>

@@ -3,8 +3,11 @@ var mongoose = require("mongoose");
 var proyectoSchema = new mongoose.Schema(
     {
         nombreProyecto : String,
-        usuario : mongoose.Schema.Types.Mixed,
-        nombreCarpeta : mongoose.Schema.Types.Mixed
+        html : String,
+        css : String,
+        javascript : String,
+        usuarioCreador : mongoose.Schema.Types.ObjectId,
+        nombreCarpeta : mongoose.Schema.Types.ObjectId
     }
 );
 

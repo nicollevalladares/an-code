@@ -10,7 +10,8 @@
   <meta name="author" content="">
 
   <title>Menú - AnCode</title>
-  <% include partials/head %>
+  
+
   <!-- Custom fonts for this template-->
   <link rel="shortcut icon" type="image/png" href="img/icono-logo.png">
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -26,7 +27,7 @@
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-    <% include partials/slidebar %>
+    <div class="slidebar"></div>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -35,7 +36,7 @@
       <div id="content">
 
         <!-- Topbar -->
-        <% include partials/navbar %>
+        <div style="padding:0px" class="navbar"></div>
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -171,6 +172,12 @@
   <script src="js/sb-admin-2.min.js"></script>
   <script src="js/controlador-menu.js" ></script>
 
+  <script>
+    $(document).ready(function () {
+      $('.navbar').load('partials/navbar.html');
+      $('.slidebar').load('partials/slidebar.html');
+  });
+</script>
 </body>
 
 </html>

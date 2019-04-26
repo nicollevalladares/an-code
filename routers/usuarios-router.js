@@ -1,21 +1,23 @@
 var express = require("express");
 var router = express.Router();
 var usuario = require("../models/usuario");
-var mongoose = require("mongoose");
+//var mongoose = require("mongoose");
 
 
-//Obtener el listado de las usuarios
-router.get("/",function(req,res){
-    usuario.find().sort({orden:1})
+//Obtener los datos del usuario loggeado
+
+router.get("/",function(req, res){
+    usuario.find({_id:req.session.codigoUsuario})
     .then(data=>{
         res.send(data);
     })
     .catch(error=>{
         res.send(error);
     });
+   
 });
 
-//Obtener una usuario en particular
+/*//Obtener una usuario en particular
 router.get("/:id",function(req,res){
     res.send("Enviar detalle del usuario: " + req.params.id);
 });
@@ -33,6 +35,6 @@ router.put("/:id",function(req,res){
 //eliminar una usuario
 router.delete("/:id",function(req,res){
     res.send("Eliminar la usuario con código: " + req.params.id);
-});
+});*/
 
 module.exports = router;

@@ -1,3 +1,17 @@
+function nombreUsuario(){
+    $.ajax({
+        url:"/user",
+        method:"get",
+        dataType:"json",
+        success:function(res){
+            document.getElementById('nombre-usuario').innerHTML=res[0].usuario;	
+        },
+        error: function (e) {
+            console.log(e);
+        },
+    }); 
+}
+
 function crearCarpeta(){
     var campos = [{campo:'nombreCarpeta',valido:false}];
 
@@ -41,6 +55,9 @@ function crearProyecto(){
     location.href="nuevo-proyecto.html";
 
 }
+
+
+
 
     
     

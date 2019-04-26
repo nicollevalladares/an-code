@@ -14,16 +14,16 @@ function logIn(){
     }*/
 
     //location.href="menu.html";
-    
+    var parametros = "email="+$("#email").val()+"&password="+$("#password").val();
     $.ajax({
-        url:"http://localhost:3333/login",
+        url:"/login",
         method:"POST",
-        data:$("#formulario").serialize(),
+        data:parametros,
         dataType:"json",
         success:function(res){
             console.log(res);
             if (res.status == 1)
-                window.location.href = "/menu.html";
+                location.href = "menu.html";
             else 
                 alert(res.mensaje);
         },
