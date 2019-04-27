@@ -15,7 +15,7 @@ router.get("/", function(req,res){
 
 //Obtener una carpeta en particular
 router.get("/:id",function(req,res){
-    carpeta.find({_id:req.params.id})
+    carpeta.find({_id:req.params.id, archivos:req.params.archivos})
     .then(data=>{
         res.send(data);
     })
@@ -27,8 +27,8 @@ router.get("/:id",function(req,res){
 //Peticion para guardar una carpeta
 router.post("/", function(req, res){
     var carp = new carpeta({
-        nombreCarpeta : req.body.nombreCarpeta,
-        usuarioCreador :req.session.codigoUsuario
+        nombreCarpeta: req.body.nombreCarpeta,
+        usuarioCreador: req.session.codigoUsuario
     });
 
     carp.save()

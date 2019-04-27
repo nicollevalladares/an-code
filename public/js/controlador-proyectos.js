@@ -1,4 +1,4 @@
-var informacion = [
+/*var informacion = [
     {nombreProyecto:'Proyecto HOME'},
     {nombreProyecto:'Proyecto 1'},
     {nombreProyecto:'Proyecto 2'},
@@ -7,11 +7,30 @@ var informacion = [
     {nombreProyecto:'Proyecto 5'}
 ];
 
-var seleccionado;
+var seleccionado;*/
+$(document).ready(function(){
+    console.log("El DOM ha sido cargado");
+
+    $.ajax({
+        url:"/carpetas",
+        method:"GET",
+        dataType:"JSON",
+        success:function(res){
+            for (var i = 0; i < res.length; i++) {
+            document.getElementById('select-carpeta').innerHTML+=`
+            <option value="${res[i]._id}">${res[i].nombreCarpeta}</option>`;	
+            }
+        },
+        error: function (e) {
+            console.log(e);
+        },
+    }); 
+});
+generarProyectos();
 
 function generarProyectos(){
     document.getElementById('proyectos').innerHTML = '';
-    for(var i=0;i<informacion.length;i++){
+    /*for(var i=0;i<informacion.length;i++){
         document.getElementById('proyectos').innerHTML += 
         `<div class="py-3 col-lg-4 col-md-6 col-sm-12">
             <div class="card-body">
@@ -31,8 +50,8 @@ function generarProyectos(){
             </div>
             </div>
         </div>`;
-    }
-} generarProyectos();
+    }*/
+}
 
 
 function editarProyectos(indice){
@@ -64,10 +83,25 @@ function crearProyectos(){
             return;
     }
 
-    informacion.push({
+   /* informacion.push({
         nombreProyecto:document.getElementById('nombreProyecto').value
     });
-    generarProyectos();
+    generarProyectos();*/
+    var parametro = "nombreCarpeta=" + $('#nombreCarpeta').val();
+    // alert(parametro);
+     $.ajax({
+         url:"/carpetas",
+         data:parametro,
+         method:"POST",
+         dataType:"JSON",
+         success:function(respuesta){
+            // alert(respuesta);
+             window.location = "carpetas.html"
+         },
+         error: function () {
+             alert('error');
+         },
+     });
     
 }
 
