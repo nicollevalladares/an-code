@@ -1,6 +1,10 @@
+$(document).ready(function(){
+    $('#div-datos-incorrectos').hide();
+});
+
 function logIn(){
-  /*  var campos = [
-        {campo:'correo',valido:false},
+ var campos = [
+        {campo:'email',valido:false},
         {campo:'password',valido:false}
     ];
 
@@ -11,7 +15,7 @@ function logIn(){
     for(var i=0;i<campos.length;i++){
         if (!campos[i].valido)
             return;
-    }*/
+    }
 
     //location.href="menu.html";
     var parametros = "email="+$("#email").val()+"&password="+$("#password").val();
@@ -25,14 +29,16 @@ function logIn(){
             if (res.status == 1)
                 location.href = "menu.html";
             else 
-                alert(res.mensaje);
+                //alert(res.mensaje);
+                
+                $('#div-datos-incorrectos').show();
+                $('#div-datos-incorrectos').fadeOut(3000);
         },
         error:function(error){
             console.error(error);
         }
     });
 }
-
 
 function validarCampo(campo){
     if (document.getElementById(campo).value ==''){   

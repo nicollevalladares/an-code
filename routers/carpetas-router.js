@@ -1,14 +1,20 @@
-module.exports = (app, carpeta) => {
+var express = require("express");
+var router = express.Router();
+var carpeta = require("../models/carpeta");
 
-app.get('/carpetas', (req, res) => {
-    res.render('carpetas.html', {
-        user: req.user
+//Obtener el listado de todas las carpetas de dicho usuario
+router.get("/", function(req,res){
+    carpeta.find({usuarioCreador:req.session.codigoUsuario})
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
     });
 });
 
-
 //Obtener una carpeta en particular
-/*router.get("/:id",function(req,res){
+router.get("/:id",function(req,res){
     carpeta.find({_id:req.params.id})
     .then(data=>{
         res.send(data);
@@ -20,23 +26,12 @@ app.get('/carpetas', (req, res) => {
 
 //Peticion para guardar una carpeta
 router.post("/", function(req, res){
-    var p = new carpeta({
-            nombre: req.body.nombre,
-            usuario: {
-                    _id: req.body.usuario,
-                    nombre: req.body.nombreUsuario
-            }
+    var carp = new carpeta({
+        nombreCarpeta : req.body.nombreCarpeta,
+        usuarioCreador :req.session.codigoUsuario
     });
 
-    console.log(JSON.stringify({
-        nombre: req.body.nombre,
-        usuario: {
-            _id: req.body.usuario,
-            nombre: req.body.nombreUsuario
-    }
-}));
-
-    p.save()
+    carp.save()
     .then(obj=>{
         res.send(obj);
     })
@@ -46,16 +41,15 @@ router.post("/", function(req, res){
 
 });
 
-//Peticion para actualizar un registro
-router.put("/:id",function(req,res){
+
+
+//Peticion para actualizar un carpeta
+router.put("/",function(req,res){
     carpeta.update(
-        {_id:req.params.id},
+        {_id:req.body.id},
         {
-            nombre : req.body.nombre,
-            usuario : {
-                    nombre : req.body.nombreUsuario,
-                    usuario : req.body.Usuario
-            }
+            nombreCarpeta : req.body.nombreCarpeta
+            
         }
     ).then(result=>{
         res.send(result);
@@ -66,7 +60,7 @@ router.put("/:id",function(req,res){
 });
 
 
-//Peticion para eliminar un registro
+//Peticion para eliminar un carpeta
 router.delete("/:id",function(req, res){
     carpeta.remove({_id:req.params.id})
     .then(data=>{
@@ -75,6 +69,8 @@ router.delete("/:id",function(req, res){
     .catch(error=>{
         res.send(error);
     });
-});*/
+});
 
-}
+
+
+module.exports = router;
