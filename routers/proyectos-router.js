@@ -2,9 +2,9 @@ var express = require("express");
 var router = express.Router();
 var proyecto = require("../models/proyecto");
 
-//Obtener el listado de todas las proyectos
+//Obtener el listado de todos los proyectos
 router.get("/", function(req,res){
-    proyecto.find({idCreador:req.session.codigoUsuario})
+    proyecto.find({usuarioCreador:req.session.codigoUsuario})
     .then(data=>{
         res.send(data);
     })
@@ -26,18 +26,16 @@ router.get("/:id",function(req,res){
 
 //Peticion para guardar una proyecto
 router.post("/", function(req, res){
-    var p = new proyecto({
-            nombre : req.body.nombre,
-            idCreador :req.session.codigoUsuario,
-            css:req.body.css,
-            javascript : req.body.javascript,
-            html:req.body.html,
-            fechaCreacion:req.body.fecha,
-            ultimaModificacion:req.body.ultimaModificacion
-            
+    var proy = new proyecto({
+        nombreProyecto: req.body.nombreProyecto,
+        html: 'archivo.html',
+        css: 'archivo.css',
+        js: 'archivo.js',
+        usuarioCreador: req.session.codigoUsuario,
+        carpetaRaiz: req.body.idCarpeta
     });
 
-    p.save()
+    proy.save()
     .then(obj=>{
         res.send(obj);
     })

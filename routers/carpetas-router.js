@@ -15,7 +15,7 @@ router.get("/", function(req,res){
 
 //Obtener una carpeta en particular
 router.get("/:id",function(req,res){
-    carpeta.find({_id:req.params.id, archivos:req.params.archivos})
+    carpeta.find({_id:req.params.id})
     .then(data=>{
         res.send(data);
     })

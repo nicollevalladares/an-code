@@ -29,7 +29,7 @@ app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-app.use("/proyectos",proyectosRouter);
+
 
 app.use(session({
 	secret: 'ancode',
@@ -50,6 +50,7 @@ require('./routers/proyectos-router')(app, proyecto);*/
 app.use("/usuarios",usuario);
 app.use("/user",usuariosRouter);
 app.use("/carpetas",carpetasRouter);
+app.use("/proyectos",proyectosRouter);
 
 app.get('/', (req, res) => {
 	res.redirect('index.html');

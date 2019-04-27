@@ -5,9 +5,9 @@ var proyectoSchema = new mongoose.Schema(
         nombreProyecto : String,
         html : String,
         css : String,
-        javascript : String,
+        js : String,
         usuarioCreador : mongoose.Schema.Types.ObjectId,
-        nombreCarpeta : mongoose.Schema.Types.ObjectId
+        carpetaRaiz : mongoose.Schema.Types.ObjectId
     }
 );
 
