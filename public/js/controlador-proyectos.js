@@ -16,6 +16,7 @@ $(document).ready(function(){
         method:"GET",
         dataType:"JSON",
         success:function(res){
+            document.getElementById('select-carpeta').innerHTML = '';
             for (var i = 0; i < res.length; i++) {
             document.getElementById('select-carpeta').innerHTML += `
             <option value="${res[i]._id}">${res[i].nombreCarpeta}</option>`;	
