@@ -152,7 +152,7 @@ function validarCampoVacio(campo){
 function eliminarProyectos(i){
     seleccionado = i;
     console.log(i);
-    informacion.splice(seleccionado, 1);
+    
     generarProyectos();
 }
 

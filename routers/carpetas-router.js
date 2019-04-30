@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var carpeta = require("../models/carpeta");
+var mongoose = require("mongoose");
 
 //Obtener el listado de todas las carpetas de dicho usuario
 router.get("/", function(req,res){
@@ -24,11 +25,43 @@ router.get("/:id",function(req,res){
     });
 });
 
+//Obtener el contenido de una carpeta en particular
+router.get("/:id/contenido",function(req,res){
+    carpeta.aggregate([
+        {
+            $lookup:{
+                from:"carpetas",
+                localField:"archivos", 
+                foreignField:"_id",
+                as:"archivos"
+            }
+        },
+        {
+            $match:{
+                _id:mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        { 
+            $project:{archivos:1}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+
 //Peticion para guardar una carpeta
 router.post("/", function(req, res){
     var carp = new carpeta({
         nombreCarpeta: req.body.nombreCarpeta,
-        usuarioCreador: req.session.codigoUsuario
+        usuarioCreador: req.session.codigoUsuario,
+        archivos: [],
+        subcarpetas:[],
+        proyectos: []
     });
 
     carp.save()
@@ -44,9 +77,9 @@ router.post("/", function(req, res){
 
 
 //Peticion para actualizar un carpeta
-router.put("/",function(req,res){
+router.put("/:id",function(req,res){
     carpeta.update(
-        {_id:req.body.id},
+        {_id:req.body.id}, 
         {
             nombreCarpeta : req.body.nombreCarpeta
             

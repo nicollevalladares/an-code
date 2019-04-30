@@ -77,6 +77,6 @@ app.post("/login",function(req, res){
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.listen(3334, function(){
+app.listen(process.env.PORT || 3334, function(){
     console.log("Servidor levantado");
 });

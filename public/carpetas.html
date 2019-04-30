@@ -19,6 +19,7 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/nicolle-custom.css" rel="stylesheet">
+  <link href="css/animate.css" rel="stylesheet">
 
 </head>
 
@@ -43,13 +44,13 @@
         <div class="container-fluid">
 
           <div>
-            <h1>CARPETAS</h1>
-              <button class="btn btn-primary" data-toggle="modal" data-target="#modalCarpeta">Nueva Carpeta</button>
-
-        
-          <div class="row" id="carpetas">
-              
-          </div>
+            <div id="nombre-pagina">
+                <h1>CARPETAS</h1>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalCarpeta">Nueva Carpeta</button>
+            </div>
+            <div class="row" id="carpetas">
+                
+            </div>
 
         </div>
 
@@ -90,6 +91,65 @@
     </div>
   </div>
   </div>
+    <!--Modal Sub Carpeta-->
+    <div class="modal fade" id="modalSubCarpeta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Crea una sub-carpeta</h4>
+            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input class="form-control" type="text" placeholder="Nombre de la sub-carpeta">
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-primary" href="contenido-carpeta.html">Crear</a>
+          </div>
+      </div>
+    </div>
+    </div>
+
+     <!--Modal Contenido Carpeta-->
+<div class="modal fade" id="modalContenidoCarpeta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">Carpeta</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input class="form-control" type="text" placeholder="Nombre" id="nombre">
+    <div id="div-error-nombre" class="mensaje-error">*Campo obligatorio</div>
+    </div>
+    <div class="modal-footer"id="footer">
+      
+  </div>
+</div>
+</div>
+</div>
+
+     <!--Modal Confirmacion-->
+     <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Carpeta</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label>Seguro que desea realizar cambios?</label>
+          <div class="modal-footer"id="botones">
+        </div>
+      </div>
+      </div>
+      </div>
 
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
@@ -106,7 +166,9 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
-
+  <script src="js/bootbox.min.js"></script>
+  <script src="js/bootbox.all.min.js"></script>
+  <script src="js/bootbox.locales.min.js"></script>
   <script src="js/controlador-carpetas.js"></script>
 
   <script>

@@ -8,10 +8,7 @@ var esquema = new mongoose.Schema(
         usuario : String,
         email : String,
         password : String,
-        plan: {
-                _id: mongoose.Schema.Types.ObjectId,
-                nombre: String
-        }
+        plan: Array
 }
 
 );

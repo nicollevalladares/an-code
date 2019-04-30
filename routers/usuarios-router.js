@@ -17,15 +17,33 @@ router.get("/",function(req, res){
    
 });
 
+//Agregar una usuario
+router.post("/",function(req,res){
+    var user = new usuario({
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        usuario: req.body.usuario,
+        email: req.body.correo,
+        password: req.body.password,
+        plan: []
+    });
+
+    user.save()
+    .then(obj=>{
+        res.send(obj);
+    })
+    .catch(error=>{
+        res.send(obj);
+    });
+
+    res.send("Guardar un nuevo usuario");
+});
+
 /*//Obtener una usuario en particular
 router.get("/:id",function(req,res){
     res.send("Enviar detalle del usuario: " + req.params.id);
 });
 
-//Agregar una usuario
-router.post("/",function(req,res){
-    res.send("Guardar un nuevo usuario");
-});
 
 //Para actualizar una usuario
 router.put("/:id",function(req,res){

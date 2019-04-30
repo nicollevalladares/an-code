@@ -16,7 +16,33 @@ function registrarse(){
             return;
     }
 
-    location.href="menu.html";
+    //location.href="menu.html";
+    var parametro = {
+        usuario: $('#usuario').val(),
+        nombre: $('#nombre').val(),
+        apellido: $('#apellido').val(),
+        correo: $('#correo').val(),
+        password: $('#password').val(),
+        //plan: ObjectId("5cc7993eb56d781460c5cddf")
+    };
+  // alert(parametro);
+   console.log(parametro);
+    $.ajax({
+        url:"/user",
+        data:parametro,
+        method:"POST",
+        dataType:"JSON",
+        success:function(res){
+           // alert(respuesta);
+           console.log(res);
+            window.location = "login.html"
+        },
+        error: function () {
+           // alert('error');
+           window.location = "login.html"
+        },
+    });
+
 
 }
 

@@ -133,48 +133,127 @@ function crearCarpetas(){
 
 }
 
-function editarCarpetas(indice){
-    seleccionado = indice;
+function editarCarpetas(idCarpeta){
+    /*seleccionado = indice;
     $("#btn-crear-carpeta").hide();
     $("#btn-editar-carpeta").show();
-    document.getElementById('nombreCarpeta').value = informacion[indice].nombreCarpeta;
-}
-
-function eliminarCarpetas(indice){
-    seleccionado = indice;
-    informacion.splice(seleccionado, 1);
-    generarCarpetas();
-}
-
-function guardarCambios(){
-    informacion[seleccionado].nombreCarpeta = document.getElementById('nombreCarpeta').value;
-    generarCarpetas();
-}
-
-
-
-function contenidoCarpeta(idCarpeta){
+    document.getElementById('nombreCarpeta').value = informacion[indice].nombreCarpeta;*/
+    
     $.ajax({
         url:`/carpetas/${idCarpeta}`,
+        //data:idCarpeta,
         method:"GET",
         dataType:"JSON",
         success:function(res){
-                window.location = "contenido-carpeta.html"
-                for(var i=0;i<res.length;i++){
-                    document.getElementById('contenido-carpeta').innerHTML += 
+           // alert(respuesta);
+            //window.location = "carpetas.html"
+            $("#btn-crear-carpeta").hide();
+            $("#btn-editar-carpeta").show();
+            document.getElementById('nombre').value = res[0].nombreCarpeta;
+            document.getElementById('footer').innerHTML = `<button class="btn btn-primary" id="btn-editar" onclick=guardarCambios('${res[0]._id}')>Editar</button>`;
+        },
+        error: function () {
+            alert('error');
+        },
+    });
+}
+
+function eliminarCarpetas(idCarpeta){
+    /*seleccionado = indice;
+    informacion.splice(seleccionado, 1);
+    generarCarpetas();*/
+    $.ajax({
+        url:`/carpetas/${idCarpeta}`,
+        //data:idCarpeta,
+        method:"DELETE",
+        dataType:"JSON",
+        success:function(respuesta){
+           // alert(respuesta);
+            window.location = "carpetas.html"
+        },
+        error: function () {
+            alert('error');
+        },
+    });
+}
+
+function guardarCambios(idCarpeta){
+    var campos = [{campo:'nombre',valido:false}];
+    for (var i=0;i<campos.length;i++){
+        campos[i].valido = validarCampo(campos[i].campo);
+    }
+
+    for(var i=0;i<campos.length;i++){
+        if (!campos[i].valido)
+            return;
+    }
+
+    $('#modalContenidoCarpeta').modal('hide');
+    $('#modalConfirmacion').modal('show');
+    document.getElementById('botones').innerHTML = `
+            <button class="btn btn-danger" onclick="cancelarEdicion()"><i class="fa fa-times"></i> No</button>
+            <button class="btn btn-primary" onclick="confirmarEdicion('${idCarpeta}')"><i class="fa fa-check"></i> Si</button>`;
+
+    
+    
+            
+    /*informacion[seleccionado].nombreCarpeta = document.getElementById('nombreCarpeta').value;
+    generarCarpetas();*/
+    
+}
+
+function cancelarEdicion(){
+    window.location = "carpetas.html"
+}
+
+function confirmarEdicion(idCarpeta){
+    var parametros = {
+        id: idCarpeta,
+        nombreCarpeta: $('#nombre').val()
+    }; 
+
+    $.ajax({
+        url:`/carpetas/${idCarpeta}`,
+        data: parametros,
+        method:"PUT",
+        dataType:"JSON",
+        success:function(respuesta){
+            // alert(respuesta);
+            window.location = "carpetas.html"
+        },
+        error: function () {
+            alert('error');
+        },
+    });
+}
+
+function contenidoCarpeta(idCarpeta){
+    $.ajax({
+        url:`/carpetas/${idCarpeta}/contenido`,
+        method:"GET",
+        dataType:"JSON",
+        success:function(res){
+                //window.location = "contenido-carpeta.html"
+                console.log(res);
+                document.getElementById('nombre-pagina').innerHTML =`
+                <h1>CARPETA:  nombreCarpeta</h1>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalCarpeta">Nueva SubCarpeta</button>`;
+                document.getElementById('carpetas').innerHTML = '';
+                for(var i=0;i<res[0].length;i++){
+                    document.getElementById('carpetas').innerHTML += 
                     `<div class="py-3 col-lg-4 col-md-6 col-sm-12">
                         <div class="card-body">
                         
                         <div class="d-flex justify-content-between align-items-center"> 
                             <button type="button" class="btn btn-proyecto" onclick="">
-                                ${res[i].icono}<br>
-                                ${res[i].nombre}
+                                prueba<br>
+                                ${res[0].archivos[i].nombreArchivo}
                             </button>
                             <button class="btn btn-info btn-circle btn-sm" 
-                            data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarContenidoCarpetas('${res[i]._id}')">
+                            data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarContenidoCarpetas('${res[0].archivos[i]._id}')">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarContenidoCarpetas('${res[i]._id}')">
+                            <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarContenidoCarpetas('${res[0].archivos[i]._id}')">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
