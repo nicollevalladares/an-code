@@ -11,21 +11,6 @@ var seleccionado;*/
 $(document).ready(function(){
     console.log("El DOM ha sido cargado");
 
-    $.ajax({
-        url:"/carpetas",
-        method:"GET",
-        dataType:"JSON",
-        success:function(res){
-            document.getElementById('select-carpeta').innerHTML = '';
-            for (var i = 0; i < res.length; i++) {
-            document.getElementById('select-carpeta').innerHTML += `
-            <option value="${res[i]._id}">${res[i].nombreCarpeta}</option>`;	
-            }
-        },
-        error: function (e) {
-            console.log(e);
-        },
-    }); 
 });
 generarProyectos();
 
