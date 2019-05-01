@@ -1,11 +1,13 @@
 var express = require('express');
 var session = require("express-session");
 var usuario = require("./models/usuario");
-var carpeta = require("./models/carpeta");
-var proyecto = require("./models/proyecto");
+/*var carpeta = require("./models/carpeta");
+var proyecto = require("./models/proyecto");*/
 var usuariosRouter = require('./routers/usuarios-router');
 var proyectosRouter = require('./routers/proyectos-router');
 var carpetasRouter = require('./routers/carpetas-router');
+var archivosRouter = require('./routers/archivos-router');
+var subCarpetasRouter = require('./routers/subcarpetas-router');
 var cors = require('cors'); //Cross-Origin Resource Sharing (CORS), Intercambio de recursos de origen cruzado (CORS)
 var bodyParser = require('body-parser');
 var app = express();
@@ -50,7 +52,9 @@ require('./routers/proyectos-router')(app, proyecto);*/
 app.use("/usuarios",usuario);
 app.use("/user",usuariosRouter);
 app.use("/carpetas",carpetasRouter);
+app.use("/subcarpetas",subCarpetasRouter);
 app.use("/proyectos",proyectosRouter);
+app.use("/archivos",archivosRouter);
 
 app.get('/', (req, res) => {
 	res.redirect('index.html');

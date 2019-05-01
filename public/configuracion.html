@@ -39,96 +39,20 @@
         <div style="padding:0px" class="navbar"></div>
         <!-- End of Topbar -->
 
-                <div class="container" style="color:black">
-                  <div class="py-5"  style="text-align:center">
-                    <img class="d-block mx-auto mb-4" src="" alt="" width="72" height="72">
-                    <img style=" width: 80px; height: 70px; fill: #15223d" src="svg/img-perfil.svg" ><br><br>
-                    <h2>Perfil de "Nombre de Usuario" 
-                    </h2>
-                  </div>
-            
-                    <div class="order-md-1">
-                      <h4 class="mb-3">Configuración de información</h4>
-                      <form class="needs-validation" novalidate>
-                        <div class="row">
-                          <div style="display: none" class="form-group">
-                            <label for="idcliente">Id</label>
-                            <input type="text" class="form-control" id="idcliente">
-                          </div>
-                          <div class="col-md-6 mb-3">
-                            <label for="primerNombre">Primer Nombre</label>
-                            <input type="text" class="form-control" id="primerNombre" placeholder="Ingrese su primer nombre" value=""  required>
-                            <div class="invalid-feedback">
-                              Se requiere un dato válido.
-                            </div>
-                          </div>
-                          <div class="col-md-6 mb-3">
-                            <label for="segundoNombre">Segundo Nombre</label>
-                            <input type="text" class="form-control" id="segundoNombre" placeholder="Ingrese su segundo nombre" value="" required>
-                            <div class="invalid-feedback">
-                              Se requiere un dato válido.
-                            </div>
-                          </div>
-                          <div class="col-md-6 mb-3">
-                            <label for="primerApellido">Primer Apellido</label>
-                            <input type="text" class="form-control" id="primerApellido" placeholder="Ingrese su primer apellido" value=""  required>
-                            <div class="invalid-feedback">
-                              Se requiere un dato válido.
-                            </div>
-                          </div>
-                          <div class="col-md-6 mb-3">
-                            <label for="segundoApellido">Segundo Apellido</label>
-                            <input type="text" class="form-control" id="segundoApellido" placeholder="Ingrese su segundo apellido" value="" required>
-                            <div class="invalid-feedback">
-                              Se requiere un dato válido.
-                            </div>
-                          </div>
-                        </div>
-            
-                        <div class="mb-3">
-                        <label for="email">Usuario</label>
-                            <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario" required>
-                            <div class="invalid-feedback" style="width: 100%;">
-                            Se requiere un dato válido.
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                          <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" placeholder="Ingrese su correo eléctronico" required>
-                            <div class="invalid-feedback" style="width: 100%;">
-                              Se requiere un dato válido.
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                        <label >Plan</label>
-                            <select class="form-control">
-                                <option>Plan Gratuito</option>
-                                <option>Plan $10</option>
-                                <option>Plan $20</option>
-                            </select>
-                            <div class="invalid-feedback" style="width: 100%;">
-                            Se requiere un dato válido.
-                            </div>
-                        </div>
-                        
-                        <div class="mb-3">
-                          <label for="email">Fecha de Nacimiento</label>
-                          <input type="date" class="form-control" id="fechaNacimiento" placeholder="">
-                          <div class="invalid-feedback">
-                            Se requiere un dato válido.
-                          </div>
-                        </div>
-            
-                        <hr class="mb-4">
-                        <button class="btn btn-primary btn-lg btn-block" type="submit">Guardar</button>
-                      </form>
-                    </div>
-                  </div>
-                  <br><br><br>
-                  </footer>
-                </div>
+          <div class="container" style="color:black">
+            <div class="py-5"  style="text-align:center">
+              <img class="d-block mx-auto mb-4" src="" alt="" width="72" height="72">
+              <img style=" width: 80px; height: 70px; fill: #15223d" src="svg/img-perfil.svg" ><br><br>
+              <h2 id="perfil">
+              </h2> 
+            </div>
+      
+              <div id="info-config" class="order-md-1">
+                
+              </div>
+          </div>
+          <br><br><br>
+      </div>
             
                 <!-- Bootstrap core JavaScript
                 ================================================== -->
@@ -190,6 +114,8 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
+
+  <script src="js/controlador-configuracion.js"></script>
 
   <script>
     $(document).ready(function () {

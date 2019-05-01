@@ -36,8 +36,9 @@ function generarProyectos(){
             </div>
         </div>`;
     }*/
+
     $.ajax({
-        url:"/proyectos",
+        url:`/proyectos`,
         method:"get",
         dataType:"json",
         success:function(res){
@@ -108,13 +109,16 @@ function crearProyectos(){
     var parametros = "nombreProyecto=" + $('#nombreProyecto').val() + "&idCarpeta=" + $('#select-carpeta').val();
        // alert(parametros);
      $.ajax({
-         url:"/proyectos",
+         url:'/proyectos',
          data:parametros,
          method:"POST",
          dataType:"JSON",
          success:function(respuesta){
             // alert(respuesta);
-             window.location = "proyectos.html"
+            localStorage.setItem("idHTML", respuesta.html);
+            localStorage.setItem("idCSS", respuesta.css);
+            localStorage.setItem("idJS", respuesta.js);
+             window.location = "proyectos.html";
          },
          error: function () {
              alert('error');
@@ -135,15 +139,186 @@ function validarCampoVacio(campo){
     }
 }
 
-function eliminarProyectos(i){
-    seleccionado = i;
-    console.log(i);
-    
-    generarProyectos();
+function eliminarProyectos(idProyecto){
+    //seleccionado = i;
+    //console.log(i);
+    $.ajax({
+        url:`/proyectos/${idProyecto}`,
+        method:"DELETE",
+        dataType:"JSON",
+        success:function(respuesta){
+           // alert(respuesta);
+            window.location = "proyectos.html"
+        },
+        error: function () {
+            alert('error');
+        },
+    });
 }
 
-function cargarProyecto(){
-    window.location = "nuevo-proyecto.html"
+function cargarProyecto(idProyecto){
+    //window.location = "nuevo-proyecto.html"
+    $.ajax({
+        url:`/proyectos/${idProyecto}`,
+        method:"GET",
+        dataType:"JSON",
+        success:function(res){
+           // alert(respuesta);
+            console.log(res);
+            //window.location = "nuevo-proyecto.html"
+            document.getElementById('proyectos').innerHTML = '';
+            document.getElementById('nombre-pagina').innerHTML = '';
+            document.getElementById('editor').style = "display: block";
+            document.getElementById('botones-proyecto').innerHTML = `
+            <button type="button" class="btn btn-proyecto" onclick="ejecutarProyecto()"><i class="fas fa-play"></i></button>
+            <button type="button" class="btn btn-proyecto" onclick="guardarProyecto('${res[0]._id}')"><i class="fas fa-save"></i></button>
+            <br>`;
+
+        },
+        error: function () {
+            alert('error');
+        },
+    });
 }
 
 
+    var HTML = CodeMirror(document.getElementById('html'), {
+        lineNumbers: true,
+        mode:'xml'
+    });
+
+    var CSS = CodeMirror(document.getElementById('css'), {
+        lineNumbers: true,
+        mode:'css'
+    });
+
+    var JS = CodeMirror(document.getElementById('js'), {
+        lineNumbers: true,
+        mode:'javascript'
+    });
+
+    var input = document.getElementById("select");
+    function selectTheme() {
+        var theme = input.options[input.selectedIndex].textContent;
+        HTML.setOption("theme", theme);
+        CSS.setOption("theme", theme);
+        JS.setOption("theme", theme);
+        location.hash = "#" + theme;
+    }
+
+    var choice = (location.hash && location.hash.slice(1)) ||
+                (document.location.search &&
+                decodeURIComponent(document.location.search.slice(1)));
+    if (choice) {
+        input.value = choice;
+        HTML.setOption("theme", choice);
+        CSS.setOption("theme", choice);
+        JS.setOption("theme", choice);
+    }
+    CodeMirror.on(window, "hashchange", function() {
+        var theme = location.hash.slice(1);
+        if (theme) { input.value = theme; selectTheme(); }
+    });
+
+  function ejecutarProyecto(){
+    var html = HTML.getValue();
+    var css = CSS.getValue();
+    var js = JS.getValue();
+
+    var estructura = `<!DOCTYPE html>
+                      <html>
+                      <head>
+                        <meta charset="utf-8">
+                        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+                        <style>
+                              body{
+                                background-color: #f8f9fc !important;
+                              }
+
+                              ${css}  
+                        </style>  
+                      </head>
+                      <body>
+                            ${html} 
+
+                      <script src="vendor/jquery/jquery.min.js"></script>
+                      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                      <script>${js}</script>
+                      </body>
+
+                      </html>`;
+
+    var res = document.getElementById("resultado").contentWindow.document;
+    res.body.innerHTML=estructura;
+  }
+
+  function guardarProyecto(idProyecto){
+      var html = {
+        id: `${localStorage.getItem("idHTML")}`,
+        contenido: HTML.getValue(),
+        extension: 'html',
+        nombreArchivo: 'archivo1',
+        proyectoRaiz: idProyecto
+      }
+     
+      console.log(html);
+        $.ajax({
+            url:"/archivos/proyecto",
+            data:html,
+            method:"POST",
+            dataType:"JSON",
+            success:function(respuesta){
+            // alert(respuesta);
+                //window.location = "proyectos.html"
+            },
+            error: function () {
+                alert('error');
+            },
+        });
+
+        var css = {
+            id: `${localStorage.getItem("idCSS")}`,
+            contenido: CSS.getValue(),
+            extension: 'css',
+            nombreArchivo: 'archivo2',
+            proyectoRaiz: idProyecto
+        }
+        
+        $.ajax({
+            url:"/archivos/proyecto",
+            data:css,
+            method:"POST",
+            dataType:"JSON",
+            success:function(respuesta){
+            // alert(respuesta);
+            //window.location = "proyectos.html"
+            },
+            error: function () {
+                alert('error');
+            },
+        });
+
+        var js = {
+            id: `${localStorage.getItem("idJS")}`,
+            contenido: JS.getValue(),
+            extension: 'css',
+            nombreArchivo: 'archivo2',
+            proyectoRaiz: idProyecto
+        }
+        
+        $.ajax({
+            url:"/archivos/proyecto",
+            data:js,
+            method:"POST",
+            dataType:"JSON",
+            success:function(respuesta){
+            // alert(respuesta);
+            //window.location = "proyectos.html"
+            },
+            error: function () {
+                alert('error');
+            },
+        });
+
+    window.location = "proyectos.html";
+  }

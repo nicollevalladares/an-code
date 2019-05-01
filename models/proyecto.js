@@ -3,9 +3,7 @@ var mongoose = require("mongoose");
 var proyectoSchema = new mongoose.Schema(
     {
         nombreProyecto : String,
-        html : String,
-        css : String,
-        js : String,
+        archivos: Array,
         usuarioCreador : mongoose.Schema.Types.ObjectId,
         carpetaRaiz : mongoose.Schema.Types.ObjectId
     }

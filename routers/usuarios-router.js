@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var usuario = require("../models/usuario");
-//var mongoose = require("mongoose");
+var mongoose = require("mongoose");
 
 
 //Obtener los datos del usuario loggeado
@@ -16,6 +16,34 @@ router.get("/",function(req, res){
     });
    
 });
+
+/*router.get("/:id/proyectos",function(req,res){
+    usuario.aggregate([
+        {
+            $lookup:{
+                from:"usuarios",
+                localField:"carpetas", 
+                foreignField:"_id",
+                as:"carpetas"
+            }
+        },
+        {
+            $match:{
+                _id:mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        { //Obtener solo el atributo de carpetas
+            $project:{carpetas:{nombreProyecto:1}}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    })
+});*/
+
 
 //Agregar una usuario
 router.post("/",function(req,res){

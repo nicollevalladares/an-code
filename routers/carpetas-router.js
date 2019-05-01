@@ -30,19 +30,14 @@ router.get("/:id/contenido",function(req,res){
     carpeta.aggregate([
         {
             $lookup:{
-                from:"carpetas",
-                localField:"archivos", 
+                from:"proyectos",
+                localField:"proyectos-carpeta", 
                 foreignField:"_id",
-                as:"archivos"
-            }
-        },
-        {
-            $match:{
-                _id:mongoose.Types.ObjectId(req.params.id)
+                as:"proyectos"
             }
         },
         { 
-            $project:{archivos:1}
+            $project:{proyectos:{nombreProyecto:1}}
         }
     ])
     .then(data=>{
@@ -52,6 +47,26 @@ router.get("/:id/contenido",function(req,res){
         res.send(error);
     });
 });
+
+
+/*router.post("/nuevoProyecto",function(req,res){
+    carpeta.update(
+        {
+            _id:mongoose.Types.ObjectId(req.body.idCarpeta)
+        },
+        {
+            $push:{
+                proyectos: mongoose.Types.ObjectId()
+        }
+        }
+    )
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});*/
 
 
 //Peticion para guardar una carpeta
@@ -103,7 +118,6 @@ router.delete("/:id",function(req, res){
         res.send(error);
     });
 });
-
 
 
 module.exports = router;

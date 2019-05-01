@@ -49,18 +49,6 @@ $(document).ready(function(){
                 </div>
             </div>
 
-            <div class="mb-3">
-            <label >Plan</label>
-                <select id="plan-persona" class="form-control">
-                    <option value="Plan Gratuito">Plan Gratuito</option>
-                    <option value="Plan $10">Plan $10</option>
-                    <option value="Plan $20">Plan $20</option>
-                </select>
-                <div class="invalid-feedback" style="width: 100%;">
-                Se requiere un dato válido.
-                </div>
-            </div>
-
             <hr class="mb-4">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Guardar</button>
             </form>`;	

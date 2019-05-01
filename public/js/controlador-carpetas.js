@@ -34,7 +34,7 @@ function generarCarpetas(){
         method:"get",
         dataType:"json",
         success:function(res){
-            document.getElementById('carpetas').innerHTML="";
+            document.getElementById('carpetas').innerHTML="";       
                 for (var i = 0; i < res.length; i++) {
                     document.getElementById('carpetas').innerHTML+=`
                     <div class="py-3 col-lg-4 col-md-6 col-sm-12">
@@ -237,9 +237,10 @@ function contenidoCarpeta(idCarpeta){
                 console.log(res);
                 document.getElementById('nombre-pagina').innerHTML =`
                 <h1>CARPETA:  nombreCarpeta</h1>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modalCarpeta">Nueva SubCarpeta</button>`;
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalNuevosDocs"><i class="fas fa-plus"></i>Nuevo</button>`;
+                document.getElementById('footer-contenido').innerHTML = `<button class="btn btn-primary" onclick=nuevoContenido('${idCarpeta}')>Crear</button>`;
                 document.getElementById('carpetas').innerHTML = '';
-                for(var i=0;i<res[0].length;i++){
+                for(var i=0;i<res[0].proyectos[i].length;i++){
                     document.getElementById('carpetas').innerHTML += 
                     `<div class="py-3 col-lg-4 col-md-6 col-sm-12">
                         <div class="card-body">
@@ -247,13 +248,13 @@ function contenidoCarpeta(idCarpeta){
                         <div class="d-flex justify-content-between align-items-center"> 
                             <button type="button" class="btn btn-proyecto" onclick="">
                                 prueba<br>
-                                ${res[0].archivos[i].nombreArchivo}
+                                ${res[0].proyectos[i].nombreProyecto}
                             </button>
                             <button class="btn btn-info btn-circle btn-sm" 
-                            data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarContenidoCarpetas('${res[0].archivos[i]._id}')">
+                            data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarContenidoCarpetas('${res[0].proyectos[i]._id}')">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarContenidoCarpetas('${res[0].archivos[i]._id}')">
+                            <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarContenidoCarpetas('${res[0].proyectos[i]._id}')">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -266,3 +267,136 @@ function contenidoCarpeta(idCarpeta){
         },
     });
 } 
+
+function nuevoContenido(idCarpeta){
+   /* if($("[name='"+vname+"']:checked").val()!=undefined){
+        alert('seleccionado:' + $("[name='a']:checked").val());
+    }else{
+        alert('sin seleccinar');
+    }*/
+    var opcion = $('#opciones').val()
+    if(opcion == 1){
+        $('#modalNuevosDocs').modal('hide');
+        $('#modalSubCarpeta').modal('show');
+        document.getElementById('footer-subCarpeta').innerHTML = `
+        <button class="btn btn-primary" onclick="crearSubCarpetas('${idCarpeta}')">Crear</button>`;
+    }
+    else if(opcion == 2){
+        $('#modalNuevosDocs').modal('hide');
+        $('#modalArchivos').modal('show');
+        document.getElementById('footer-archivos').innerHTML = `
+        <button class="btn btn-primary" onclick="crearArchivos('${idCarpeta}')">Crear</button>`;
+    }
+    else{
+        $('#modalNuevosDocs').modal('hide');
+        $('#modalProyectos').modal('show');
+        document.getElementById('footer-proyectos').innerHTML = `
+        <button class="btn btn-primary" onclick="crearProyectos('${idCarpeta}')">Crear</button>`;
+    }
+
+}
+
+function crearSubCarpetas(idCarpeta){
+    var campos = [{campo:'subCarpeta',valido:false}];
+
+    for (var i=0;i<campos.length;i++){
+        campos[i].valido = validarCampo(campos[i].campo);
+    }
+
+    for(var i=0;i<campos.length;i++){
+        if (!campos[i].valido)
+            return;
+    }
+    var parametro = {
+        subCarpeta: $('#subCarpeta').val(),
+        carpetaRaiz: idCarpeta
+    };
+   // alert(parametro);
+    $.ajax({
+        url:"/subcarpetas",
+        data:parametro,
+        method:"POST",
+        dataType:"JSON",
+        success:function(respuesta){
+           // alert(respuesta);
+            window.location = "carpetas.html"
+        },
+        error: function () {
+            alert('error');
+        },
+    });
+
+}
+
+function crearArchivos(idCarpeta){
+    var campos = [{campo:'nombreArchivo',valido:false},
+                {campo:'extension',valido:false}];
+
+    for (var i=0;i<campos.length;i++){
+        campos[i].valido = validarCampo(campos[i].campo);
+    }
+
+    for(var i=0;i<campos.length;i++){
+        if (!campos[i].valido)
+            return;
+    }
+    var parametro = {
+        nombreArchivo: $('#nombreArchivo').val(),
+        extension: $('#extension').val(),
+        carpetaRaiz: idCarpeta
+    };
+   console.log(parametro);
+    $.ajax({
+        url:"/archivos",
+        data:parametro,
+        method:"POST",
+        dataType:"JSON",
+        success:function(respuesta){
+           // alert(respuesta);
+            window.location = "carpetas.html"
+        },
+        error: function () {
+            alert('error');
+        },
+    });
+
+}
+
+function crearProyectos(idCarpeta){
+    var campos = [
+        {campo:'nombreProyecto',valido:false}
+    ];
+
+    for (var i=0;i<campos.length;i++){
+        campos[i].valido = validarCampo(campos[i].campo);
+    }
+
+    for(var i=0;i<campos.length;i++){
+        if (!campos[i].valido)
+            return;
+    }
+
+   /* informacion.push({
+        nombreProyecto:document.getElementById('nombreProyecto').value
+    });
+    generarProyectos();*/
+    var parametros = {
+        nombreProyecto: $('#nombreProyecto').val(),
+        idCarpeta: idCarpeta
+    };
+       // alert(parametros);
+     $.ajax({
+         url:'/proyectos',
+         data:parametros,
+         method:"POST",
+         dataType:"JSON",
+         success:function(respuesta){
+            // alert(respuesta);
+             window.location = "carpetas.html"
+         },
+         error: function () {
+             alert('error');
+         },
+     });
+    
+}

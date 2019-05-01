@@ -24,7 +24,9 @@ function nombreUsuario(){
         method:"get",
         dataType:"json",
         success:function(res){
-            document.getElementById('nombre-usuario').innerHTML=res[0].usuario;	
+            document.getElementById('nombre-usuario').innerHTML=res[0].usuario;
+            document.getElementById('id-usuario').innerHTML=`
+        <input id="id-loggeado" value="${res[0]._id}">`;	
         },
         error: function (e) {
             console.log(e);

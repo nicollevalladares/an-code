@@ -103,38 +103,39 @@
             </button>
           </div>
           <div class="modal-body">
-            <input class="form-control" type="text" placeholder="Nombre de la sub-carpeta">
+            <input class="form-control" type="text" id="subCarpeta" placeholder="Nombre de la sub-carpeta">
+            <div id="div-error-subCarpeta" class="mensaje-error">*Campo obligatorio</div>
           </div>
-          <div class="modal-footer">
-            <a class="btn btn-primary" href="contenido-carpeta.html">Crear</a>
+          <div id="footer-subCarpeta" class="modal-footer">
+              
           </div>
       </div>
     </div>
     </div>
 
-     <!--Modal Contenido Carpeta-->
-<div class="modal fade" id="modalContenidoCarpeta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-  <div class="modal-header">
-    <h4 class="modal-title" id="myModalLabel">Carpeta</h4>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <input class="form-control" type="text" placeholder="Nombre" id="nombre">
-    <div id="div-error-nombre" class="mensaje-error">*Campo obligatorio</div>
+    <!--Modal Contenido Carpeta-->
+    <div class="modal fade" id="modalContenidoCarpeta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Carpeta</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input class="form-control" type="text" placeholder="Nombre" id="nombre">
+        <div id="div-error-nombre" class="mensaje-error">*Campo obligatorio</div>
+        </div>
+        <div class="modal-footer"id="footer">
+          
+      </div>
     </div>
-    <div class="modal-footer"id="footer">
-      
-  </div>
-</div>
-</div>
-</div>
+    </div>
+    </div>
 
      <!--Modal Confirmacion-->
-     <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -146,14 +147,102 @@
         <div class="modal-body">
           <label>Seguro que desea realizar cambios?</label>
           <div class="modal-footer"id="botones">
+          </div>
         </div>
       </div>
       </div>
+    </div>
+
+      <!--Modal Contenido Carpeta-->
+      <div class="modal fade" id="modalNuevosDocs" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Carpeta</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+             <!-- <div class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" id="subcarpetas" name="groupOfDefaultRadios" checked>
+                  <label class="custom-control-label" for="subcarpetas">Sub Carpetas</label>
+                </div>
+                
+                <div class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" id="arhivos" name="groupOfDefaultRadios">
+                  <label class="custom-control-label" for="arhivos">Archivo</label>
+                </div>
+                
+                <div class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" id="proyectos" name="groupOfDefaultRadios">
+                  <label class="custom-control-label" for="proyectos">Proyecto</label>
+                </div>
+            </div>-->
+            <select class="form-control" id="opciones">
+              <option value=" " selected disabled>--Seleccione--</option>
+              <option value="1">Subcarpeta</option>
+              <option value="2">Archivo</option>
+              <option value="3">Proyecto</option>
+            </select>
+            <div class="modal-footer"id="footer-contenido">
+              
+          </div>
+          </div>
+        </div>
+        </div>
+    </div>
+
+    <!--Modal Archivos-->
+    <div class="modal fade" id="modalArchivos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Crea un nuevo archivo</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <input class="form-control" type="text" placeholder="Nombre Archivo" id="nombreArchivo">
+              <div id="div-error-nombreArchivo" class="mensaje-error">*Campo obligatorio</div>
+              <br>
+              <select class="form-control" id="extension">
+                  <option value=" " selected disabled>--Seleccione--</option>
+                  <option value="html">HTML</option>
+                  <option value="js">JS</option>
+                  <option value="css">CSS</option>
+                  <option value="php">PHP</option>
+                  <option value="py">Python</option>
+                </select>
+                <div id="div-error-extension" class="mensaje-error">*Campo obligatorio</div>
+            <div class="modal-footer"id="footer-archivos">
+            </div>
+          </div>
+        </div>
+        </div>
       </div>
 
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
+         <!--Modal Proyectos-->
+    <div class="modal fade" id="modalProyectos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Crea un nuevo proyecto</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input class="form-control" type="text" placeholder="Nombre proyecto" id="nombreProyecto">
+            <div id="div-error-nombreProyecto" class="mensaje-error">*Campo obligatorio</div>
+            </div>
+            <div class="modal-footer"id="footer-proyectos">
+              
+          </div>
+        </div>
+        </div>
+        </div>
 
 
 
