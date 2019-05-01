@@ -68,6 +68,7 @@ app.post("/login",function(req, res){
     .then(data=>{
         if (data.length==1){
             req.session.codigoUsuario = data[0]._id;
+            req.session.plan = data[0].plan;
             res.send({status:1,mensaje:"Usuario loggeado con éxito"});
         }else{
             res.send({status:0,mensaje:"Correo o contraseña incorrecta."});

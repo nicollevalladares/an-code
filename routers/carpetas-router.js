@@ -32,7 +32,7 @@ router.get("/:id/contenido",function(req,res){
             $lookup:{
                 from:"proyectos",
                 localField:"proyectos-carpeta", 
-                foreignField:"_id",
+                foreignField:"usuarioCreador",
                 as:"proyectos"
             }
         },
@@ -71,6 +71,36 @@ router.get("/:id/contenido",function(req,res){
 
 //Peticion para guardar una carpeta
 router.post("/", function(req, res){
+    carpeta.find({usuarioCreador:req.session.codigoUsuario})
+    .then(data=>{
+        if(req.session.plan == mongoose.Types.ObjectId("5cc7993eb56d781460c5cddf")){
+            if(data.length < 5){
+                crearCarpeta(req,res);
+            } 
+            else{
+                respuesta={status:0, mensaje:'Límite de carpetas alcanzadas, si desea crear más, cambie de plan'}
+                res.send(respuesta);
+            }
+        }
+
+        if(req.session.plan == mongoose.Types.ObjectId("5cc7994eb56d781460c5cde0")){
+            if(data.length < 10){
+                crearCarpeta(req,res);
+            } 
+            else{
+                respuesta={status:0}
+                res.send(respuesta);
+            }
+        }
+
+        if(req.session.plan == mongoose.Types.ObjectId("5cc79970b56d781460c5cde1")){
+            crearCarpeta(req,res);
+        }
+
+    });
+});
+
+function crearCarpeta(req,res){
     var carp = new carpeta({
         nombreCarpeta: req.body.nombreCarpeta,
         usuarioCreador: req.session.codigoUsuario,
@@ -78,7 +108,7 @@ router.post("/", function(req, res){
         subcarpetas:[],
         proyectos: []
     });
-
+    
     carp.save()
     .then(obj=>{
         res.send(obj);
@@ -86,8 +116,7 @@ router.post("/", function(req, res){
     .catch(error=>{
         res.send(obj);
     });
-
-});
+}
 
 
 

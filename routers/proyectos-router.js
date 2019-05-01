@@ -29,7 +29,38 @@ router.get("/:id",function(req,res){
 
 //Peticion para guardar una proyecto
 router.post("/", function(req, res){
+    proyecto.find({usuarioCreador:req.session.codigoUsuario})
+    .then(data=>{
+        if(req.session.plan == mongoose.Types.ObjectId("5cc7993eb56d781460c5cddf")){
+            if(data.length < 15){
+                crearProyecto(req,res);
+            } 
+            else{
+                respuesta={status:0, mensaje:'Límite de carpetas alcanzadas, si desea crear más, cambie de plan'}
+                res.send(respuesta);
+            }
+        }
+
+        if(req.session.plan == mongoose.Types.ObjectId("5cc7994eb56d781460c5cde0")){
+            if(data.length < 30){
+                crearProyecto(req,res);
+            } 
+            else{
+                respuesta={status:0}
+                res.send(respuesta);
+            }
+        }
+
+        if(req.session.plan == mongoose.Types.ObjectId("5cc79970b56d781460c5cde1")){
+            crearProyecto(req,res);
+        }
+
+    });
+});
+
+function crearProyecto(req,res){
     var proyect = new proyecto({
+        usuarioCreador: req.session.codigoUsuario,
         nombreProyecto: req.body.nombreProyecto,
         archivos: [],
         carpetaRaiz: req.body.idCarpeta
@@ -101,8 +132,7 @@ router.post("/", function(req, res){
     .catch(error=>{
         res.send(obj);
     });
-
-});
+}
 
 //Peticion para actualizar un proyecto
 router.put("/:id",function(req,res){

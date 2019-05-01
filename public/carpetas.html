@@ -84,13 +84,21 @@
         <div class="modal-body">
           <input class="form-control" type="text" placeholder="Nombre de la carpeta" id="nombreCarpeta">
           <div id="div-error-nombreCarpeta" class="mensaje-error">*Campo obligatorio</div>
+
+          <hr id="limite" style="display:none">
+
+          <div id="div-carpetas-maximas" style="display: none"  class="alert alert-danger">
+            Límite de carpetas alcanzadas, si desea crear más, cambie de plan
           </div>
+        </div>
+        
         <div class="modal-footer">
           <button class="btn btn-primary" onclick="crearCarpetas()">Crear</button>
         </div>
     </div>
   </div>
   </div>
+
     <!--Modal Sub Carpeta-->
     <div class="modal fade" id="modalSubCarpeta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">

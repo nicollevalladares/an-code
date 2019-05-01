@@ -124,10 +124,19 @@ function crearCarpetas(){
         dataType:"JSON",
         success:function(respuesta){
            // alert(respuesta);
-            window.location = "carpetas.html"
+            if(respuesta.status == 0){
+                document.getElementById('div-carpetas-maximas').style = 'display: block';
+                $('#div-carpetas-maximas').fadeOut(6000);
+                document.getElementById('limite').style = 'display: block';
+                $('#limite').fadeOut(6000);
+                //window.location = "carpetas.html";
+            }
+            else{
+                window.location = "carpetas.html";
+            } 
         },
         error: function () {
-            alert('error');
+            //alert('error');
         },
     });
 
