@@ -7,6 +7,7 @@ var usuariosRouter = require('./routers/usuarios-router');
 var proyectosRouter = require('./routers/proyectos-router');
 var carpetasRouter = require('./routers/carpetas-router');
 var archivosRouter = require('./routers/archivos-router');
+var tajetasRouter = require('./routers/tarjeta-router');
 var subCarpetasRouter = require('./routers/subcarpetas-router');
 var cors = require('cors'); //Cross-Origin Resource Sharing (CORS), Intercambio de recursos de origen cruzado (CORS)
 var bodyParser = require('body-parser');
@@ -55,6 +56,7 @@ app.use("/carpetas",carpetasRouter);
 app.use("/subcarpetas",subCarpetasRouter);
 app.use("/proyectos",proyectosRouter);
 app.use("/archivos",archivosRouter);
+app.use("/tarjetas",tajetasRouter);
 
 app.get('/', (req, res) => {
 	res.redirect('index.html');

@@ -69,7 +69,6 @@
               <li><span class="fa-li"><i class="fas fa-check"><strong>5</strong> proyectos máximo por carpeta.</i></span></li>
               <li><span class="fa-li"><i class="fas fa-times">10 archivos máximos dentro de una carpeta.</i></span></li>
               <li><span class="fa-li"><i class="fas fa-check">3 sub-carpetas máximo por carpeta.</i></span></li>
-              <li><span class="fa-li"><i class="fas fa-check">Cada sub-carpeta podrá tener 2 carpetas máximo.</i></span></li>
             </ul>
             <a href="/registrarse.html" class="btn btn-block btn-primary text-uppercase">Conseguir</a>
           </div>
@@ -87,9 +86,8 @@
                 <li><span class="fa-li"><i class="fas fa-check"><strong>10</strong> proyectos máximo por carpeta.</i></span></li>
                 <li><span class="fa-li"><i class="fas fa-times">15 archivos máximos dentro de una carpeta.</i></span></li>
                 <li><span class="fa-li"><i class="fas fa-check">5 sub-carpetas máximo por carpeta.</i></span></li>
-                <li><span class="fa-li"><i class="fas fa-check">Cada sub-carpeta podrá tener 4 carpetas máximo.</i></span></li>
             </ul>
-            <a style="color:white" data-toggle="modal" data-target="#modalFormulario" class="btn btn-block btn-primary text-uppercase">Comprar</a>
+            <a style="color:white" data-toggle="modal" data-target="#modalFormularioCenter" class="btn btn-block btn-primary text-uppercase">Comprar</a>
           </div>
         </div>
       </div>
@@ -105,9 +103,8 @@
                 <li><span class="fa-li"><i class="fas fa-check">Proyectos <strong>ilimitados.</strong></i></span></li>
                 <li><span class="fa-li"><i class="fas fa-times">Archivos ilimitados dentro de una carpeta.</i></span></li>
                 <li><span class="fa-li"><i class="fas fa-check">15 sub-carpetas máximo por carpeta.</i></span></li>
-                <li><span class="fa-li"><i class="fas fa-check">Cada sub-carpeta podrá tener 10 carpetas máximo.</i></span></li>
             </ul>
-            <a style="color:white"  data-toggle="modal" data-target="#modalFormulario" class="btn btn-block btn-primary text-uppercase">Comprar</a>
+            <a style="color:white"  data-toggle="modal" data-target="#modalFormulario2Center"  class="btn btn-block btn-primary text-uppercase">Comprar</a>
           </div>
         </div>
       </div>
@@ -122,43 +119,237 @@
     </div>
   </footer>
 
-     <!--Modal Formulario-->
-     <div class="modal fade" id="modalFormulario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+  <!--Modal Formulario-->
+  <div class="modal fade" id="modalFormularioCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel">Agregar Método de Pago</h4>
+            <h5 class="modal-title" id="exampleModalCenterTitle">DATOS DE TARJETA DE CRÉDITO</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+      <div class="modal-body">
+           
+<div id="area">
+    <div class="master-card">
+      <div class="card">
+        <div class="title">TARJETA DE CRÉDITO</div>
+        <div class="input-number"><span class="title-number">NÚMERO DE TARJETA</span>
+          <div class="inputs-number">
+            <input type="text" id="primer-bloque" maxlength="4" name="number-card"  placeholder="0000" required="required"/>
+            <input type="text" id="segundo-bloque" maxlength="4" name="number-card" placeholder="0000" required="required"/>
+            <input type="text"  id="tercer-bloque" maxlength="4" name="number-card" placeholder="0000" required="required"/>
+            <input type="text"  id="cuarto-bloque" maxlength="4" name="number-card" placeholder="0000" required="required"/>
+          </div>
+          <div class="selects-date selecters">
+            <div class="day-select"><span>MES</span>
+              <select id="mes">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+            <div class="year-select"><span>AÑO</span>
+              <select id="anio">
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="mark-gold">
+          <div class="round">
+            <div class="circles">
+              <div class="circle-1"> </div>
+              <div class="circle-2"> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-back">
+        <div class="tire"></div>
+        <div class="secret-area">
+          <input type="text" id="ccv" maxlength="3" name="number-card" placeholder="000" required="required"/>
+        </div>
+        <div class="chip-card"></div>
+      </div>
+    </div>
+    <div class="button-sent">
+      <button id="back">VOLTAR</button>
+      <button id="continue">CONTINUAR</button>
+      <button id="guardar" onclick="registrarTarjeta()">GUARDAR</button>
+    </div>
+  </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!--Modal Formulario-->
+  <div class="modal fade" id="modalFormulario2Center" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">DATOS DE TARJETA DE CRÉDITO</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+      <div class="modal-body">
+           
+<div id="area">
+    <div class="master-card">
+      <div class="card">
+        <div class="title">TARJETA DE CRÉDITO</div>
+        <div class="input-number"><span class="title-number">NÚMERO DE TARJETA</span>
+          <div class="inputs-number">
+            <input type="text" id="primer-bloque2" maxlength="4" name="number-card"  placeholder="0000" required="required"/>
+            <input type="text" id="segundo-bloque2" maxlength="4" name="number-card" placeholder="0000" required="required"/>
+            <input type="text"  id="tercer-bloque2" maxlength="4" name="number-card" placeholder="0000" required="required"/>
+            <input type="text"  id="cuarto-bloque2" maxlength="4" name="number-card" placeholder="0000" required="required"/>
+          </div>
+          <div class="selects-date selecters">
+            <div class="day-select"><span>MES</span>
+              <select id="mes2">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+            <div class="year-select"><span>AÑO</span>
+              <select id="anio2">
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="mark-gold">
+          <div class="round">
+            <div class="circles">
+              <div class="circle-1"> </div>
+              <div class="circle-2"> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-back">
+        <div class="tire"></div>
+        <div class="secret-area">
+          <input type="text" id="ccv2" maxlength="3" name="number-card" placeholder="000" required="required"/>
+        </div>
+        <div class="chip-card"></div>
+      </div>
+    </div>
+    <div class="button-sent">
+      <button id="back">VOLTAR</button>
+      <button id="continue">CONTINUAR</button>
+      <button id="guardar" onclick="registrarTarjeta2()">GUARDAR</button>
+    </div>
+  </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    
+   <!--Modal registro-->
+   <div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style=" background-color: rgba(172, 175, 179, 0.87); margin:auto; text-align: center; font-family: sans-serif">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Regístrate</h4>
             
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <div class="mb-3">
-              <label for="nombre-completo">Nombre Completo</label>
-                <input id="nombre-completo" type="text" class="form-control" placeholder="Ingrese su nombre completo">
-                 <div id="div-error-nombre-completo" class="mensaje-error">*Campo obligatorio</div>
-            </div>
-
-            <div class="mb-3">
-              <label for="num-tarjeta">Número de Tarjeta</label>
-                <input id="num-tarjeta" type="text" class="form-control" placeholder="XXXX-XXXX-XXXX-XXXX">
-                 <div id="div-error-num-tarjeta" class="mensaje-error">*Campo obligatorio</div>
-            </div>
-              
-            <div class="mb-3">
-              <label for="ccv">CCV</label>
-                <input id="ccv" type="text" class="form-control" placeholder="XXX">
-                 <div id="div-error-ccv" class="mensaje-error">*Campo obligatorio</div>
-            </div>
-
-            <div class="modal-footer">
-              <button style="color:white" class="btn btn-block btn-primary text-uppercase" type="button" onclick="registrarTarjeta()">
-                Guardar
-              </button>
-            </div>
+              <form class="form-signin" >
+                  <div class="form-group" >
+                    Usuario
+                      <input type="text" style="margin-left: auto; margin-right: auto" class="form-control placeholder" id="usuario" placeholder="Cree su nombre de usuario" required>
+                      <div id="div-error-usuario" class="mensaje-error" style="display:none">
+                        <p>*Campo Requerido</p>
+                    </div>
+                  </div>
+    
+                  <div class="form-group" >
+                    Nombre
+                      <input type="text" id="nombre" style="margin-left: auto; margin-right: auto" class="form-control placeholder" placeholder="Ingrese su nombre" required>
+                      <div id="div-error-nombre" class="mensaje-error" style="display:none">
+                        <p>*Campo Requerido</p>
+                    </div>
+                  </div>
+    
+                  <div class="form-group" >
+                    Apellido
+                      <input type="text" id="apellido" style="margin-left: auto; margin-right: auto" class="form-control placeholder" placeholder="Ingrese su apellido" required>
+                      <div id="div-error-apellido" class="mensaje-error" style="display:none">
+                        <p>*Campo Requerido</p>
+                    </div>
+                  </div>
+    
+                  <div class="form-group" >
+                    Correo
+                      <input type="email" id="correo" style="margin-left: auto; margin-right: auto" class="form-control placeholder" placeholder="Ingrese su correo electrónico" required>
+                      <div id="div-error-correo" class="mensaje-error" style="display:none">
+                        <p>*Campo Requerido</p>
+                    </div>
+                  </div>
+    
+                  <div class="form-group" >
+                    Contraseña
+                      <input type="password" id="password" style="margin-left: auto; margin-right: auto" class="form-control placeholder" placeholder="Cree su contraseña" required>
+                      <div id="div-error-password" class="mensaje-error" style="display:none">
+                        <p>*Campo Requerido</p>
+                    </div>
+                  </div>
+                </form>
+          <div id="footer-registro" class="modal-footer">
+          </div>
         </div>
       </div>
+    </div>
     </div>
 
   <script src="vendor/jquery/jquery.min.js"></script>

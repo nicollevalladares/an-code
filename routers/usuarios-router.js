@@ -53,7 +53,51 @@ router.post("/",function(req,res){
         usuario: req.body.usuario,
         email: req.body.correo,
         password: req.body.password,
-        plan: []
+        plan: mongoose.Types.ObjectId("5cc7993eb56d781460c5cddf")
+    });
+
+    user.save()
+    .then(obj=>{
+        res.send(obj);
+    })
+    .catch(error=>{
+        res.send(obj);
+    });
+
+    res.send("Guardar un nuevo usuario");
+});
+
+//Agregar una usuario con plan 2
+router.post("/plan2",function(req,res){
+    var user = new usuario({
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        usuario: req.body.usuario,
+        email: req.body.correo,
+        password: req.body.password,
+        plan: mongoose.Types.ObjectId("5cc7994eb56d781460c5cde0")
+    });
+
+    user.save()
+    .then(obj=>{
+        res.send(obj);
+    })
+    .catch(error=>{
+        res.send(obj);
+    });
+
+    res.send("Guardar un nuevo usuario");
+});
+
+//Agregar una usuario con plan 3
+router.post("/plan3",function(req,res){
+    var user = new usuario({
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        usuario: req.body.usuario,
+        email: req.body.correo,
+        password: req.body.password,
+        plan: mongoose.Types.ObjectId("5cc79970b56d781460c5cde1")
     });
 
     user.save()
