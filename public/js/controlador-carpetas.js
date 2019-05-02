@@ -573,3 +573,29 @@ function crearProyectos(idCarpeta){
      });
     
 }
+
+function cargarProyecto(idProyecto){
+    $.ajax({
+        url:`/proyectos/${idProyecto}`,
+        method:"GET",
+        dataType:"JSON",
+        success:function(res){
+           // alert(respuesta);
+            console.log(res);
+            //window.location = "proyectos.html"
+            document.getElementById('carpetas').innerHTML = '';
+            document.getElementById('nombre-pagina').innerHTML = `
+            PROYECTO: ${res[0].nombreProyecto}`;
+            document.getElementById('editor').style = "display: block";
+            document.getElementById('botones-proyecto').innerHTML = `
+            <button type="button" class="btn btn-proyecto" onclick="ejecutarProyecto()"><i class="fas fa-play"></i></button>
+            <button type="button" class="btn btn-proyecto" onclick="guardarProyecto('${res[0]._id}')"><i class="fas fa-save"></i></button>
+            <br>`;
+
+        },
+        error: function () {
+            alert('error');
+        },
+    });
+}
+

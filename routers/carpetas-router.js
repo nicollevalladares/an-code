@@ -42,7 +42,7 @@ router.get("/:id/proyectos",function(req,res){
             }
         },
         { 
-            $project:{nombreCarpeta:1,proyectos:{nombreProyecto:1}}
+            $project:{nombreCarpeta:1,proyectos:{nombreProyecto:1, _id:1}}
         }
     ])
     .then(data=>{
@@ -70,7 +70,7 @@ router.get("/:id/subcarpetas",function(req,res){
             }
         },
         { 
-            $project:{subcarpetas:{nombreSubCarpeta:1}}
+            $project:{subcarpetas:{nombreSubCarpeta:1, _id:1}}
         }
     ])
     .then(data=>{
@@ -98,7 +98,7 @@ router.get("/:id/archivos",function(req,res){
             }
         },
         { 
-            $project:{archivos:{nombreArchivo:1,extension:1}}
+            $project:{archivos:{nombreArchivo:1,extension:1, _id:1}}
         }
     ])
     .then(data=>{
