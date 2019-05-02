@@ -22,6 +22,7 @@ $(document).ready(function(){
         <div class="mb-3">
         <label for="email">Plan</label>
             <select id="plan-persona" class="form-control">
+            <option value="" selected disabled>--Seleccione su plan--</option>
                 <option value="Plan Gratuito">Plan Gratuito</option>
                 <option value="Plan $10">Plan $10</option>
                 <option value="Plan $20">Plan $20</option>
