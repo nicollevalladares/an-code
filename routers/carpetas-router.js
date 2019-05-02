@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var carpeta = require("../models/carpeta");
 var mongoose = require("mongoose");
+var usuario = require("../models/usuario");
 
 //Obtener el listado de todas las carpetas de dicho usuario
 router.get("/", function(req,res){
@@ -202,6 +203,54 @@ router.put("/:id",function(req,res){
 //Peticion para eliminar un carpeta
 router.delete("/:id",function(req, res){
     carpeta.remove({_id:req.params.id})
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+//Peticion para agregar colaborador a una carpeta
+router.post("/compartir", function(req, res){
+    carpeta.update(
+        { 
+            _id: req.body.idCarpeta
+        },
+        {
+            $push:{
+                colaboradores: mongoose.Types.ObjectId(req.body.idUsuario)
+            }
+        }
+    )
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(data);
+    });
+});
+
+//Obtener los colaboladores de una carpeta en particular
+router.get("/:id/usuarios",function(req,res){
+    carpeta.aggregate([
+        {
+            $lookup:{
+                from:"usuarios",
+                localField:"colaboradores", 
+                foreignField:"_id",
+                as:"usuarios"
+            }
+        },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        { 
+            $project:{nombreCarpeta:1, usuarios:{usuario:1, _id:1}}
+        }
+    ])
     .then(data=>{
         res.send(data);
     })

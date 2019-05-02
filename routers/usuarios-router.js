@@ -6,6 +6,17 @@ var mongoose = require("mongoose");
 
 //Obtener los datos del usuario loggeado
 
+router.get("/todos",function(req, res){
+    usuario.find()
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+   
+});
+
 router.get("/",function(req, res){
     usuario.find({_id:req.session.codigoUsuario})
     .then(data=>{
@@ -126,5 +137,16 @@ router.put("/:id",function(req,res){
 router.delete("/:id",function(req,res){
     res.send("Eliminar la usuario con código: " + req.params.id);
 });*/
+
+router.get("/nombre/:correo",function(req, res){
+    usuario.find({email:req.params.correo})
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+   
+});
 
 module.exports = router;

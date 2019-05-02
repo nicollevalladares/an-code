@@ -48,6 +48,9 @@ function generarCarpetas(){
                                 data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarCarpetas('${res[i]._id}')">
                                     <i class="fas fa-edit"></i>
                                 </button>
+                                <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirCarpetas('${res[i]._id}')">
+                                <i class="fas fa-share-alt"></i>
+                                </button>
                                 <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarCarpetas('${res[i]._id}')">
                                     <i class="fas fa-trash"></i>
                                 </button>
@@ -263,6 +266,9 @@ function contenidoCarpeta(idCarpeta){
                             data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarContenidoCarpetas('${res[0].proyectos[i]._id}')">
                                 <i class="fas fa-edit"></i>
                             </button>
+                            <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirProyectos('${res[0].proyectos[i]._id}')">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
                             <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarContenidoCarpetas('${res[0].proyectos[i]._id}')">
                                 <i class="fas fa-trash"></i>
                             </button>
@@ -296,6 +302,9 @@ function contenidoCarpeta(idCarpeta){
                             <button class="btn btn-info btn-circle btn-sm" 
                             data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarContenidoCarpetas('${res[0].subcarpetas[i]._id}')">
                                 <i class="fas fa-edit"></i>
+                            </button>
+                            <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirSubCarpetas('${res[0].subcarpetas[i]._id}')">
+                                <i class="fas fa-share-alt"></i>
                             </button>
                             <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarContenidoCarpetas('${res[0].subcarpetas[i]._id}')">
                                 <i class="fas fa-trash"></i>
@@ -332,6 +341,9 @@ function contenidoCarpeta(idCarpeta){
                             data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarContenidoCarpetas('${res[0].archivos[i]._id}')">
                                 <i class="fas fa-edit"></i>
                             </button>
+                            <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
                             <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarContenidoCarpetas('${res[0].archivos[i]._id}')">
                                 <i class="fas fa-trash"></i>
                             </button>
@@ -352,6 +364,9 @@ function contenidoCarpeta(idCarpeta){
                             <button class="btn btn-info btn-circle btn-sm" 
                             data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarContenidoCarpetas('${res[0].archivos[i]._id}')">
                                 <i class="fas fa-edit"></i>
+                            </button>
+                            <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
+                                <i class="fas fa-share-alt"></i>
                             </button>
                             <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarContenidoCarpetas('${res[0].archivos[i]._id}')">
                                 <i class="fas fa-trash"></i>
@@ -375,6 +390,9 @@ function contenidoCarpeta(idCarpeta){
                             data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarContenidoCarpetas('${res[0].archivos[i]._id}')">
                                 <i class="fas fa-edit"></i>
                             </button>
+                            <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
                             <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarContenidoCarpetas('${res[0].archivos[i]._id}')">
                                 <i class="fas fa-trash"></i>
                             </button>
@@ -397,6 +415,9 @@ function contenidoCarpeta(idCarpeta){
                             data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarContenidoCarpetas('${res[0].archivos[i]._id}')">
                                 <i class="fas fa-edit"></i>
                             </button>
+                            <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
                             <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarContenidoCarpetas('${res[0].archivos[i]._id}')">
                                 <i class="fas fa-trash"></i>
                             </button>
@@ -418,6 +439,9 @@ function contenidoCarpeta(idCarpeta){
                             <button class="btn btn-info btn-circle btn-sm" 
                             data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarContenidoCarpetas('${res[0].archivos[i]._id}')">
                                 <i class="fas fa-edit"></i>
+                            </button>
+                            <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
+                                <i class="fas fa-share-alt"></i>
                             </button>
                             <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarContenidoCarpetas('${res[0].archivos[i]._id}')">
                                 <i class="fas fa-trash"></i>
@@ -717,5 +741,176 @@ function guardarProyecto(idProyecto){
       });
 
   window.location = "proyectos.html";
+}
+
+function compartirCarpetas(idCarpeta){
+    document.getElementById('resultado-busqueda').innerHTML = '';
+
+    document.getElementById('busqueda').innerHTML = `
+    <input id="busqueda-correo" style="width: 80%; text-align: center; float:left" type="text" class="form-control" placeholder="Ingrese correo electrónico">
+    <button style="float: right" class="btn btn-primary" id="btn-editar" onclick="buscarCorreo('${idCarpeta}')">Buscar</button>`;
+
+    document.getElementById('footer-compartir').innerHTML = `<button class="btn btn-danger" id="btn-editar" onclick="salir()">Salir</button>`;
+
+    $.ajax({
+        url:`/carpetas/${idCarpeta}/usuarios`,
+        method:"GET",
+        dataType:"JSON",
+        success:function(res){
+            console.log(res);
+            document.getElementById('colaboladores').innerHTML =`
+            Carpeta: ${res[0].nombreCarpeta} compartida con:`;
+            for(var i=0;i<res[0].usuarios.length;i++){
+                document.getElementById('colaboladores').innerHTML += `
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        ${res[0].usuarios[i].usuario}
+                        <i style="float:right; color:red" class="fas fa-user-times"></i>
+                    </li>
+                </ul>`;
+            }
+        },
+        error: function (e) {
+        //document.getElementById("div-proyectos").innerHTML = 'Ha ocurrido un error al conectar con el servidor.';
+        },
+    });
+
+    $('#modalCompartir').modal('show');
+
+}
+
+function compartirProyectos(idProyecto){
+    document.getElementById('resultado-busqueda').innerHTML = '';
+    
+    document.getElementById('busqueda').innerHTML = `
+    <input id="busqueda-correo" style="width: 80%; text-align: center; float:left" type="text" class="form-control" placeholder="Ingrese correo electrónico">
+    <button style="float: right" class="btn btn-primary" id="btn-editar" onclick="buscarCorreoProyectos('${idProyecto}')">Buscar</button>`;
+
+    document.getElementById('footer-compartir').innerHTML = `<button class="btn btn-danger" id="btn-editar" onclick="salir()">Salir</button>`;
+
+    $.ajax({
+    url:`/proyectos/${idProyecto}/usuarios`,
+    method:"GET",
+    dataType:"JSON",
+    success:function(res){
+        console.log(res);
+        console.log(idProyecto);
+        document.getElementById('colaboladores').innerHTML =`
+        Proyecto: ${res[0].nombreProyecto} compartido con:`;
+        for(var i=0;i<res[0].usuarios.length;i++){
+            document.getElementById('colaboladores').innerHTML += `
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    ${res[0].usuarios[i].usuario}
+                    <i style="float:right; color:red" class="fas fa-user-times"></i>
+                </li>
+            </ul>`;
+        }
+    },
+    error: function (e) {
+    //document.getElementById("div-proyectos").innerHTML = 'Ha ocurrido un error al conectar con el servidor.';
+    },
+});
+
+$('#modalCompartir').modal('show');
+}
+
+function buscarCorreo(idCarpeta){
+    $.ajax({
+        url:`/user/nombre/${$('#busqueda-correo').val()}`,
+        method:"get",
+        dataType:"json",
+        success:function(res){
+           // document.getElementById("contactos").innerHTML = '';
+            for (var i=0;i<res.length;i++){
+                document.getElementById('linea').style = 'margin-top: 12%; display:block';
+                document.getElementById('resultado-busqueda').innerHTML += `
+                <tr>${res[0].email}
+                <button onclick="compartir('${idCarpeta}')" style="border:none, background-color:none; float:right" class="btn btn-circle"><i style="font-size: 20px; color: green;" class="fas fa-user-check"></i></button>
+                </tr>`;
+
+                document.getElementById('idUser').innerHTML = `
+                <input id="id-usuario" type="text" value="${res[0]._id}">`
+			}
+        },
+        error: function (e) {
+            console.log(e);
+        },
+    }); 
+}
+
+function buscarCorreoProyectos(idProyecto){
+    $.ajax({
+        url:`/user/nombre/${$('#busqueda-correo').val()}`,
+        method:"get",
+        dataType:"json",
+        success:function(res){
+           // document.getElementById("contactos").innerHTML = '';
+            for (var i=0;i<res.length;i++){
+                document.getElementById('linea').style = 'margin-top: 12%; display:block';
+                document.getElementById('resultado-busqueda').innerHTML += `
+                <tr>${res[0].email}
+                <button onclick="compartirProyecto('${idProyecto}')" style="border:none, background-color:none; float:right" class="btn btn-circle"><i style="font-size: 20px; color: green;" class="fas fa-user-check"></i></button>
+                </tr>`;
+
+                document.getElementById('idUser').innerHTML = `
+                <input id="id-usuario" type="text" value="${res[0]._id}">`
+			}
+        },
+        error: function (e) {
+            console.log(e);
+        },
+    }); 
+}
+
+
+function compartir(idCarpeta){
+    var parametros = {
+        idUsuario : $('#id-usuario').val(),
+        idCarpeta: idCarpeta
+    }
+    console.log(parametros);
+
+    $.ajax({
+        url:`carpetas/compartir`,
+        data:parametros,
+        method:"POST",
+        dataType:"JSON",
+        success:function(res){
+            console.log(res);
+            //alert('SE COMPARTIÓ');
+            //$(opcion).remove();
+            //window.location = '/carpetas.html';
+            compartirCarpetas(idCarpeta);
+        },
+        error: function (e) {
+            console.log(e);
+        },
+    }); 
+}
+
+function compartirProyecto(idProyecto){
+    var parametros = {
+        idUsuario : $('#id-usuario').val(),
+        idProyecto: idProyecto
+    }
+    console.log(parametros);
+
+    $.ajax({
+        url:`proyectos/compartir`,
+        data:parametros,
+        method:"POST",
+        dataType:"JSON",
+        success:function(res){
+            console.log(res);
+            //alert('SE COMPARTIÓ');
+            //$(opcion).remove();
+            //window.location = '/carpetas.html';
+            compartirProyectos(idProyecto);
+        },
+        error: function (e) {
+            console.log(e);
+        },
+    }); 
 }
 

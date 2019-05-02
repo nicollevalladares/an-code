@@ -6,8 +6,10 @@ var carpetaSchema = new mongoose.Schema(
         usuarioCreador : mongoose.Schema.Types.ObjectId,
         archivosCarpeta: Array,
         subcarpetasCarpeta: Array,
-        proyectosCarpeta: Array
+        proyectosCarpeta: Array,
+        colaboradores: Array
     }
 );
 
 module.exports = mongoose.model('carpetas',carpetaSchema);
+

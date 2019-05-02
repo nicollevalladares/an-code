@@ -153,25 +153,6 @@ function crearProyecto(req,res){
     });
 }
 
-//Peticion para actualizar un proyecto
-router.put("/:id",function(req,res){
-    proyecto.update(
-        {_id:req.params.id},
-        {
-            css : req.body.css,
-            html : req.body.html,
-            javascript:req.body.javascript,
-            ultimaModificacion:req.body.ultimaModificacion
-            
-        }
-    ).then(result=>{
-        res.send(result);
-    })
-    .catch(error=>{
-        res.send(error);
-    });//El primero son los filtros, el segundo son los campos
-});
-
 
 //Peticion para actualizar un proyecto
 router.put("/",function(req,res){
@@ -275,6 +256,54 @@ router.get("/:id/archivosJS",function(req,res){
         },
         { 
             $project:{archivos:{contenido:1}}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+//Peticion para agregar colaborador a un proyecto
+router.post("/compartir", function(req, res){
+    proyecto.update(
+        { 
+            _id: req.body.idProyecto
+        },
+        {
+            $push:{
+                colaboradores: mongoose.Types.ObjectId(req.body.idUsuario)
+            }
+        }
+    )
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(data);
+    });
+});
+
+//Obtener los colaboladores de un proyecto en particular
+router.get("/:id/usuarios",function(req,res){
+    proyecto.aggregate([
+        {
+            $lookup:{
+                from:"usuarios",
+                localField:"colaboradores", 
+                foreignField:"_id",
+                as:"usuarios"
+            }
+        },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        { 
+            $project:{nombreProyecto:1, usuarios:{usuario:1, _id:1}}
         }
     ])
     .then(data=>{

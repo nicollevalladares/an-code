@@ -7,7 +7,8 @@ var proyectoSchema = new mongoose.Schema(
         archivoCSS: mongoose.Schema.Types.ObjectId,
         archivoJS: mongoose.Schema.Types.ObjectId,
         usuarioCreador : mongoose.Schema.Types.ObjectId,
-        carpetaRaiz : mongoose.Schema.Types.ObjectId
+        carpetaRaiz : mongoose.Schema.Types.ObjectId,
+        colaboradores: Array
     }
 );
 
