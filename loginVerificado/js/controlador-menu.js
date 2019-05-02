@@ -107,6 +107,22 @@ function crearProyecto(){
 
 }
 
+function cerrarSesion(){
+    $.ajax({
+        url:"/logour",
+        data:parametros,
+        method:"POST",
+        dataType:"JSON",
+        success:function(respuesta){
+           // alert(respuesta);
+            window.location = "login.html"
+        },
+        error: function () {
+            alert('error');
+        },
+    });
+}
+
 
 
 

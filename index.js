@@ -97,6 +97,11 @@ app.post("/login",function(req, res){
     });
 });
 
+app.get('/logout',function(req,res){
+    req.session.destroy();
+    res.redirect("/login.html");
+});
+
 /*Verificaciones de acceso*/
 app.get('/menu.html', verificarAutenticacion, function (res, req, next) {  
     res.redirect('/menu.html');
