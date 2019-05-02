@@ -89,23 +89,6 @@ router.post("/proyecto", function (req, res) {
         archivo.contenido = req.body.contenido;
         archivo.save()
         .then(obj=>{
-            proyecto.update(
-                {
-                    _id:req.body.proyectoRaiz
-                },
-                {
-                    $push:{
-                        archivos: mongoose.Types.ObjectId(req.body.id)
-                }
-                }
-            )
-            .then(data=>{
-                res.send(data);
-            })
-            .catch(error=>{
-                res.send(error);
-            });
-    
             res.send(obj);
         })
         .catch(error=>{

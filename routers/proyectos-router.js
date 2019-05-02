@@ -62,7 +62,6 @@ function crearProyecto(req,res){
     var proyect = new proyecto({
         usuarioCreador: req.session.codigoUsuario,
         nombreProyecto: req.body.nombreProyecto,
-        archivos: [],
         carpetaRaiz: req.body.idCarpeta
     });
 
@@ -126,7 +125,27 @@ function crearProyecto(req,res){
         }
         
         res.send(idsArchivos);
-        
+
+        proyecto.update(
+            {
+                _id: mongoose.Types.ObjectId(obj._id)
+            },
+            {
+                $push:{
+                    archivoHTML: idArchivo1,
+                    archivoCSS: idArchivo2,
+                    archivoJS: idArchivo3
+            }
+            }
+        )
+        .then(resp=>{
+            res.send(resp);
+            console.log(resp);
+        })
+        .catch(error=>{
+            res.send(error);
+        });
+
     res.send(obj);
     })
     .catch(error=>{
@@ -182,6 +201,88 @@ router.delete("/:id",function(req, res){
     });
 });
 
+//Obtener los archivos HTML de un proyecto en particular
+router.get("/:id/archivosHTML",function(req,res){
+    proyecto.aggregate([
+        {
+            $lookup:{
+                from:"archivos",
+                localField:"archivoHTML", 
+                foreignField:"_id",
+                as:"archivos"
+            }
+        },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        { 
+            $project:{archivos:{contenido:1}}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
 
+//Obtener los archivos CSS de un proyecto en particular
+router.get("/:id/archivosCSS",function(req,res){
+    proyecto.aggregate([
+        {
+            $lookup:{
+                from:"archivos",
+                localField:"archivoCSS", 
+                foreignField:"_id",
+                as:"archivos"
+            }
+        },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        { 
+            $project:{archivos:{contenido:1}}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+//Obtener los archivos CSS de un proyecto en particular
+router.get("/:id/archivosJS",function(req,res){
+    proyecto.aggregate([
+        {
+            $lookup:{
+                from:"archivos",
+                localField:"archivoJS", 
+                foreignField:"_id",
+                as:"archivos"
+            }
+        },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        { 
+            $project:{archivos:{contenido:1}}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
 
 module.exports = router;
