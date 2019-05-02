@@ -32,7 +32,8 @@ app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-
+app.use(express.static("public"));
+var loginVerificado = express.static("loginVerificado");
 
 app.use(session({
 	secret: 'ancode',
@@ -58,9 +59,22 @@ app.use("/proyectos",proyectosRouter);
 app.use("/archivos",archivosRouter);
 app.use("/tarjetas",tajetasRouter);
 
+
 app.get('/', (req, res) => {
 	res.redirect('index.html');
 });
+
+app.use(
+    function(req,res,next){
+        if (req.session.codigoUsuario){
+            loginVerificado(req, res, next);
+        }
+        else{
+            return next();
+        }
+    }
+);
+
 
 //login
 app.post("/login",function(req, res){
@@ -69,6 +83,9 @@ app.post("/login",function(req, res){
         if (data.length==1){
             req.session.codigoUsuario = data[0]._id;
             req.session.plan = data[0].plan;
+
+            res.cookie("codigoUsuario", req.session.codigoUsuario);
+
             res.send({status:1,mensaje:"Usuario loggeado con éxito"});
         }else{
             res.send({status:0,mensaje:"Correo o contraseña incorrecta."});
@@ -80,8 +97,43 @@ app.post("/login",function(req, res){
     });
 });
 
+/*Verificaciones de acceso*/
+app.get('/menu.html', verificarAutenticacion, function (res, req, next) {  
+    res.redirect('/menu.html');
+});
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.get('/proyectos.html', verificarAutenticacion, function (res, req, next) {  
+    res.redirect('/proyectos.html');
+});
+
+app.get('/carpetas.html', verificarAutenticacion, function (res, req, next) {  
+    res.redirect('/carpetas.html');
+});
+
+app.get('/compartidos.html', verificarAutenticacion, function (res, req, next) {  
+    res.redirect('/compartidos.html');
+});
+
+app.get('/perfil.html', verificarAutenticacion, function (res, req, next) {  
+    res.redirect('/perfil.html');
+});
+
+app.get('/configuracion.html', verificarAutenticacion, function (res, req, next) {  
+    res.redirect('/configuracion.html');
+});
+
+function verificarAutenticacion(req, res, next) {
+    if (req.session.codigoUsuario){
+        return next();
+    }
+    else{
+        res.redirect('/error404.html');
+    }
+}
+/*Fin Verificaciones de Acceso*/
+
+
+//app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.listen(process.env.PORT || 3334, function(){

@@ -22,7 +22,7 @@ router.post("/", function(req, res){
             },
             {
                 $push:{
-                    archivos: mongoose.Types.ObjectId(obj._id)
+                    archivosCarpeta: mongoose.Types.ObjectId(obj._id)
             }
             }
         )

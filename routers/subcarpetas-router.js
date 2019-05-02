@@ -23,7 +23,7 @@ router.post("/", function(req, res){
             },
             {
                 $push:{
-                    subcarpetas: mongoose.Types.ObjectId(obj._id)
+                    subcarpetasCarpeta: mongoose.Types.ObjectId(obj._id)
             }
             }
         )

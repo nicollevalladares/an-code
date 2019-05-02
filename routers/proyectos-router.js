@@ -75,7 +75,7 @@ function crearProyecto(req,res){
             },
             {
                 $push:{
-                    proyectos: mongoose.Types.ObjectId(obj._id)
+                    proyectosCarpeta: mongoose.Types.ObjectId(obj._id)
             }
             }
         )

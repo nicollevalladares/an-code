@@ -25,19 +25,24 @@ router.get("/:id",function(req,res){
     });
 });
 
-//Obtener el contenido de una carpeta en particular
-router.get("/:id/contenido",function(req,res){
+//Obtener los proyectos de una carpeta en particular
+router.get("/:id/proyectos",function(req,res){
     carpeta.aggregate([
         {
             $lookup:{
                 from:"proyectos",
-                localField:"proyectos-carpeta", 
-                foreignField:"usuarioCreador",
+                localField:"proyectosCarpeta", 
+                foreignField:"_id",
                 as:"proyectos"
             }
         },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(req.params.id)
+            }
+        },
         { 
-            $project:{proyectos:{nombreProyecto:1}}
+            $project:{nombreCarpeta:1,proyectos:{nombreProyecto:1}}
         }
     ])
     .then(data=>{
@@ -47,6 +52,63 @@ router.get("/:id/contenido",function(req,res){
         res.send(error);
     });
 });
+
+//Obtener las subcarpetas de una carpeta en particular
+router.get("/:id/subcarpetas",function(req,res){
+    carpeta.aggregate([
+        {
+            $lookup:{
+                from:"subcarpetas",
+                localField:"subcarpetasCarpeta", 
+                foreignField:"_id",
+                as:"subcarpetas"
+            }
+        },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        { 
+            $project:{subcarpetas:{nombreSubCarpeta:1}}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+//Obtener los archivos de una carpeta en particular
+router.get("/:id/archivos",function(req,res){
+    carpeta.aggregate([
+        {
+            $lookup:{
+                from:"archivos",
+                localField:"archivosCarpeta", 
+                foreignField:"_id",
+                as:"archivos"
+            }
+        },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        { 
+            $project:{archivos:{nombreArchivo:1,extension:1}}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
 
 
 /*router.post("/nuevoProyecto",function(req,res){
@@ -104,9 +166,9 @@ function crearCarpeta(req,res){
     var carp = new carpeta({
         nombreCarpeta: req.body.nombreCarpeta,
         usuarioCreador: req.session.codigoUsuario,
-        archivos: [],
-        subcarpetas:[],
-        proyectos: []
+        archivosCarpeta: [],
+        subcarpetasCarpeta:[],
+        proyectosCarpeta: []
     });
     
     carp.save()

@@ -11,4 +11,4 @@ var subCarpetaSchema = new mongoose.Schema(
     }
 );
 
-module.exports = mongoose.model('subCarpeta',subCarpetaSchema);
+module.exports = mongoose.model('subcarpetas',subCarpetaSchema);
