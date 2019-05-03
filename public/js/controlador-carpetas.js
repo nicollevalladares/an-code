@@ -601,76 +601,10 @@ function crearProyectos(idCarpeta){
 }
 
 function cargarProyecto(idProyecto){
-    $.ajax({
-        url:`/proyectos/${idProyecto}`,
-        method:"GET",
-        dataType:"JSON",
-        success:function(res){
-           // alert(respuesta);
-            console.log(res);
-            localStorage.setItem("idHTML", res[0].archivoHTML);
-            localStorage.setItem("idCSS", res[0].archivoCSS);
-            localStorage.setItem("idJS", res[0].archivoJS);
-            //window.location = "proyectos.html"
-            document.getElementById('carpetas').innerHTML = '';
-            document.getElementById('nombre-pagina').innerHTML = `
-            PROYECTO: ${res[0].nombreProyecto}`;
-            document.getElementById('editor').style = "display: block";
-            document.getElementById('botones-proyecto').innerHTML = `
-            <button type="button" class="btn btn-proyecto" onclick="ejecutarProyecto()"><i class="fas fa-play"></i></button>
-            <button type="button" class="btn btn-proyecto" onclick="guardarProyecto('${res[0]._id}')"><i class="fas fa-save"></i></button>
-            <br>`;
-
-            $.ajax({
-                url:`/proyectos/${idProyecto}/archivosHTML`,
-                method:"GET",
-                dataType:"JSON",
-                success:function(res){
-                   // alert(respuesta);
-                    console.log(res);
-                    HTML.setValue(res[0].archivos[0].contenido);
-                },
-                error: function () {
-                    alert('error');
-                },
-            });
-
-            $.ajax({
-                url:`/proyectos/${idProyecto}/archivosCSS`,
-                method:"GET",
-                dataType:"JSON",
-                success:function(res){
-                   // alert(respuesta);
-                    console.log(res);
-                    CSS.setValue(res[0].archivos[0].contenido);
-                },
-                error: function () {
-                    alert('error');
-                },
-            });
-
-            $.ajax({
-                url:`/proyectos/${idProyecto}/archivosJS`,
-                method:"GET",
-                dataType:"JSON",
-                success:function(res){
-                   // alert(respuesta);
-                    console.log(res);
-                    JS.setValue(res[0].archivos[0].contenido);
-                },
-                error: function () {
-                    alert('error');
-                },
-            });
-
-        },
-        error: function () {
-            alert('error');
-        },
-    });
+    window.location = "nuevoproyecto.html?idProyecto="+idProyecto;
 }
 
-function guardarProyecto(idProyecto){
+/*function guardarProyecto(idProyecto){
     var html = {
       id: `${localStorage.getItem("idHTML")}`,
       contenido: HTML.getValue(),
@@ -740,7 +674,7 @@ function guardarProyecto(idProyecto){
       });
 
   window.location = "proyectos.html";
-}
+}*/
 
 function compartirCarpetas(idCarpeta){
     document.getElementById('resultado-busqueda').innerHTML = '';

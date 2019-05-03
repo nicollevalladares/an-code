@@ -111,6 +111,10 @@ app.get('/proyectos.html', verificarAutenticacion, function (res, req, next) {
     res.redirect('/proyectos.html');
 });
 
+app.get('/nuevoproyecto.html', verificarAutenticacion, function (res, req, next) {  
+    res.redirect('/nuevoproyecto.html');
+});
+
 app.get('/carpetas.html', verificarAutenticacion, function (res, req, next) {  
     res.redirect('/carpetas.html');
 });
