@@ -42,4 +42,114 @@ router.post("/", function(req, res){
 
 });
 
+//Peticion para agregar colaborador a una subcarpeta
+router.post("/compartir", function(req, res){
+    subcarpeta.update(
+        { 
+            _id: req.body.idSubCarpeta
+        },
+        {
+            $push:{
+                colaboradores: mongoose.Types.ObjectId(req.body.idUsuario)
+            }
+        }
+    )
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(data);
+    });
+});
+
+//Obtener los colaboladores de una subcarpeta en particular
+router.get("/:id/usuarios",function(req,res){
+    subcarpeta.aggregate([
+        {
+            $lookup:{
+                from:"usuarios",
+                localField:"colaboradores", 
+                foreignField:"_id",
+                as:"usuarios"
+            }
+        },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        { 
+            $project:{nombreSubCarpeta:1, usuarios:{usuario:1, _id:1}}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+//Peticion para eliminar un colaborador de una subCarpeta
+router.delete("/eliminarColaborador/:idSubCarpeta/:idUsuario",function(req, res){
+    subcarpeta.update(
+        {
+            _id: req.params.idSubCarpeta
+        },
+        {
+            $pull:{
+                colaboradores:mongoose.Types.ObjectId(req.params.idUsuario)
+            }
+            
+        }
+    ).then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+
+//Obtener una subcarpeta en particular
+router.get("/:id",function(req,res){
+    subcarpeta.find({_id:req.params.id})
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+//Peticion para actualizar una subcarpeta
+router.put("/:id",function(req,res){
+    subcarpeta.update(
+        {_id:req.body.id}, 
+        {
+            nombreSubCarpeta : req.body.subCarpeta
+            
+        }
+    ).then(result=>{
+        res.send(result);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+
+
+//Peticion para eliminar una subcarpeta
+router.delete("/:id",function(req, res){
+    subcarpeta.remove({_id:req.params.id})
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+
 module.exports = router;

@@ -155,11 +155,11 @@ function crearProyecto(req,res){
 
 
 //Peticion para actualizar un proyecto
-router.put("/",function(req,res){
+router.put("/:id",function(req,res){
     proyecto.update(
-        {_id:req.body.id},
+        {_id:req.body.id}, 
         {
-            nombre : req.body.nombre
+            nombreProyecto : req.body.nombreProyecto
             
         }
     ).then(result=>{
@@ -169,6 +169,7 @@ router.put("/",function(req,res){
         res.send(error);
     });//El primero son los filtros, el segundo son los campos
 });
+
 
 
 //Peticion para eliminar un proyecto
@@ -282,7 +283,27 @@ router.post("/compartir", function(req, res){
         res.send(data);
     })
     .catch(error=>{
+        res.send(error);
+    });
+});
+
+//Peticion para eliminar un colaborador de un proyecto
+router.delete("/eliminarColaborador/:idProyecto/:idUsuario",function(req, res){
+    proyecto.update(
+        {
+            _id: req.params.idProyecto
+        },
+        {
+            $pull:{
+                colaboradores:mongoose.Types.ObjectId(req.params.idUsuario)
+            }
+            
+        }
+    ).then(data=>{
         res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
     });
 });
 
@@ -313,5 +334,7 @@ router.get("/:id/usuarios",function(req,res){
         res.send(error);
     });
 });
+
+
 
 module.exports = router;

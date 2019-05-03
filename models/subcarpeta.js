@@ -7,7 +7,8 @@ var subCarpetaSchema = new mongoose.Schema(
         archivos: Array,
         subcarpetas: Array,
         proyectos: Array,
-        carpetaRaiz : mongoose.Schema.Types.ObjectId
+        carpetaRaiz : mongoose.Schema.Types.ObjectId,
+        colaboradores: Array
     }
 );
 
