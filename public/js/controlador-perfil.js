@@ -50,7 +50,7 @@ $(document).ready(function(){
             </div>
 
             <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Guardar</button>
+            <button class="btn btn-primary btn-lg btn-block" type="button" onclick="actualizarInformacion('${res[0]._id}')">Guardar</button>
             </form>`;	
                 },
         error: function (e) {
@@ -59,4 +59,28 @@ $(document).ready(function(){
     }); 
     
 });
+
+function actualizarInformacion(idUsuario){
+    var parametros = {
+        id: idUsuario,
+        nombre: $('#primerNombre').val(),
+        apellido: $('#primerApellido').val(),
+        usuario: $('#usuario').val(),
+        email: $('#email').val(),
+    }; 
+
+    $.ajax({
+        url:`/user/${idUsuario}`,
+        data: parametros,
+        method:"PUT",
+        dataType:"JSON",
+        success:function(respuesta){
+            alert('Actualizado');
+            window.location = "perfil.html"
+        },
+        error: function () {
+            alert('error');
+        },
+    });
+}
 

@@ -149,4 +149,39 @@ router.get("/nombre/:correo",function(req, res){
    
 });
 
+//Peticion para actualizar un usuario
+router.put("/:id",function(req,res){
+    usuario.update(
+        {_id:req.body.id}, 
+        {
+            nombre : req.body.nombre,
+            apellido : req.body.apellido,
+            usuario : req.body.usuario,
+            email : req.body.email
+            
+        }
+    ).then(result=>{
+        res.send(result);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+//Peticion para actualizar plan de un usuario
+router.put("/plan",function(req,res){
+    usuario.update(
+        {
+            _id:req.session.codigoUsuario
+        }, 
+        {
+            plan: mongoose.Types.ObjectId(req.body.idplan)
+        }
+    ).then(result=>{
+        res.send(result);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
 module.exports = router;
