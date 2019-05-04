@@ -134,7 +134,7 @@ var html = HTML.getValue();
 var css = CSS.getValue();
 var js = JS.getValue();
 
-var estructura = `<!DOCTYPE html>
+var mostrarRes = `<!DOCTYPE html>
                   <html>
                   <head>
                     <meta charset="utf-8">
@@ -157,8 +157,14 @@ var estructura = `<!DOCTYPE html>
 
                   </html>`;
 
-    var res = document.getElementById("resultado").contentWindow.document;
-    res.body.innerHTML=estructura;
+    /*var resultado = document.getElementById("resultado").contentWindow.document;
+    resultado.body.innerHTML=mostrarRes;*/
+
+    var resFrame = document.getElementById("resultado");
+    var res = resFrame.contentDocument ||  resFrame.contentWindow.document;
+    res.open();
+    res.write(mostrarRes);
+    res.close();
 }
 
 function guardarProyecto(idProyecto){

@@ -136,7 +136,20 @@ function confirmarEdicion(idProyecto){
         dataType:"JSON",
         success:function(respuesta){
             // alert(respuesta);
-            window.location = "proyectos.html"
+            //window.location = "proyectos.html"
+            $('#modalConfirmacion').modal('hide');
+            iziToast.success({
+                timeout:1800,
+                overlay: true,
+                position: 'center', 
+                displayMode: 'once',
+                title: 'OK',
+                message: 'Proyecto actualizado con éxito!',
+                onClosing: function(instance, toast, closedBy){
+                    console.info('Closed | closedBy: ' + closedBy);
+                    window.location = "proyectos.html"
+                }
+            });
         },
         error: function () {
             alert('error');
@@ -178,7 +191,19 @@ function crearProyectos(idpr){
             localStorage.setItem("idHTML", respuesta.html);
             localStorage.setItem("idCSS", respuesta.css);
             localStorage.setItem("idJS", respuesta.js);
-             window.location = "proyectos.html";
+            // window.location = "proyectos.html";
+            iziToast.success({
+                timeout:1800,
+                overlay: true,
+                position: 'center', 
+                displayMode: 'once',
+                title: 'OK',
+                message: 'Proyecto creado con éxito!',
+                onClosing: function(instance, toast, closedBy){
+                    console.info('Closed | closedBy: ' + closedBy);
+                    window.location = "proyectos.html"
+                }
+            });
          },
          error: function () {
              alert('error');
@@ -208,7 +233,19 @@ function eliminarProyectos(idProyecto){
         dataType:"JSON",
         success:function(respuesta){
            // alert(respuesta);
-            window.location = "proyectos.html"
+            //window.location = "proyectos.html"
+            iziToast.success({
+                timeout:1800,
+                overlay: true,
+                position: 'center', 
+                displayMode: 'once',
+                title: 'OK',
+                message: 'Proyecto eliminado con éxito!',
+                onClosing: function(instance, toast, closedBy){
+                    console.info('Closed | closedBy: ' + closedBy);
+                    window.location = "proyectos.html"
+                }
+            });
         },
         error: function () {
             alert('error');

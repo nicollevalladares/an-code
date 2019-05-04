@@ -58,24 +58,41 @@ router.get("/",function(req, res){
 
 //Agregar una usuario
 router.post("/",function(req,res){
-    var user = new usuario({
-        nombre: req.body.nombre,
-        apellido: req.body.apellido,
-        usuario: req.body.usuario,
-        email: req.body.correo,
-        password: req.body.password,
-        plan: mongoose.Types.ObjectId("5cc7993eb56d781460c5cddf")
-    });
-
-    user.save()
-    .then(obj=>{
-        res.send(obj);
+    usuario.find({email:req.body.correo})
+    .then(data=>{
+        if (data.length==1){
+            res.send({status:1,mensaje:"Ya existe un usuario con ese correo."});
+        }else{
+            usuario.find({usuario:req.body.usuario})
+            .then(data=>{
+            if (data.length==1){
+                res.send({status:2,mensaje:"Ya existe un usuario con ese usuario."});
+            }else{
+                var user = new usuario({
+                    nombre: req.body.nombre,
+                    apellido: req.body.apellido,
+                    usuario: req.body.usuario,
+                    email: req.body.correo,
+                    password: req.body.password,
+                    plan: mongoose.Types.ObjectId("5cc7993eb56d781460c5cddf")
+                });
+            
+                user.save()
+                .then(obj=>{
+                    res.send(obj);
+                })
+                .catch(error=>{
+                    res.send(obj);
+                });
+            
+                res.send({status:0,mensaje:"Guardar un nuevo usuario"});
+            }
+            })
+            .catch(error=>{
+                res.send(error);
+            });
+        }
     })
-    .catch(error=>{
-        res.send(obj);
-    });
-
-    res.send("Guardar un nuevo usuario");
 });
 
 //Agregar una usuario con plan 2
@@ -169,7 +186,7 @@ router.put("/:id",function(req,res){
 });
 
 //Peticion para actualizar plan de un usuario
-router.put("/plan",function(req,res){
+router.post("/plan",function(req,res){
     usuario.update(
         {
             _id:req.session.codigoUsuario

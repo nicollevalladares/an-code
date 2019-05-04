@@ -26,13 +26,35 @@ function logIn(){
         dataType:"json",
         success:function(res){
             console.log(res);
-            if (res.status == 1)
-                location.href = "menu.html";
-            else 
+            if (res.status == 1){
+                iziToast.success({
+                    timeout:1800,
+                    overlay: true,
+                    position: 'center', 
+                    displayMode: 'once',
+                    title: 'OK',
+                    message: 'Has ingresado exitósamente!',
+                    onClosing: function(instance, toast, closedBy){
+                        console.info('Closed | closedBy: ' + closedBy);
+                        window.location = "menu.html"
+                    }
+                });
+            }
+            else {
                 //alert(res.mensaje);
-                
-                $('#div-datos-incorrectos').show();
-                $('#div-datos-incorrectos').fadeOut(3000);
+                iziToast.error({
+                    timeout:1800,
+                    overlay: true,
+                    position: 'center', 
+                    displayMode: 'once',
+                    title: 'ERROR',
+                    message: 'Correo o contraseña incorrectos, verifique los campos.',
+                    onClosing: function(instance, toast, closedBy){
+                        console.info('Closed | closedBy: ' + closedBy);
+                        window.location = "login.html"
+                    }
+                });
+            }
         },
         error:function(error){
             console.error(error);

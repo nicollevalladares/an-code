@@ -128,14 +128,34 @@ function crearCarpetas(){
         success:function(respuesta){
            // alert(respuesta);
             if(respuesta.status == 0){
-                document.getElementById('div-carpetas-maximas').style = 'display: block';
+                /*document.getElementById('div-carpetas-maximas').style = 'display: block';
                 $('#div-carpetas-maximas').fadeOut(6000);
                 document.getElementById('limite').style = 'display: block';
-                $('#limite').fadeOut(6000);
+                $('#limite').fadeOut(6000);*/
                 //window.location = "carpetas.html";
+                iziToast.error({
+                    timeout:1800,
+                    overlay: true,
+                    position: 'center', 
+                    displayMode: 'once',
+                    title: 'ERROR',
+                    message: respuesta.mensaje,
+                });
             }
             else{
-                window.location = "carpetas.html";
+               // window.location = "carpetas.html";
+                iziToast.success({
+                    timeout:1800,
+                    overlay: true,
+                    position: 'center', 
+                    displayMode: 'once',
+                    title: 'OK',
+                    message: 'Carpeta creada con éxito!',
+                    onClosing: function(instance, toast, closedBy){
+                        console.info('Closed | closedBy: ' + closedBy);
+                        window.location = "menu.html"
+                    }
+                });
             } 
         },
         error: function () {
@@ -165,7 +185,7 @@ function editarCarpetas(idCarpeta){
             document.getElementById('footer').innerHTML = `<button class="btn btn-primary" id="btn-editar" onclick=guardarCambios('${res[0]._id}')>Editar</button>`;
         },
         error: function () {
-            alert('error');
+            //alert('error');
         },
     });
 }
@@ -181,7 +201,19 @@ function eliminarCarpetas(idCarpeta){
         dataType:"JSON",
         success:function(respuesta){
            // alert(respuesta);
-            window.location = "carpetas.html"
+            //window.location = "carpetas.html"
+            iziToast.success({
+                timeout:1800,
+                overlay: true,
+                position: 'center', 
+                displayMode: 'once',
+                title: 'OK',
+                message: 'Carpeta eliminada con éxito!',
+                onClosing: function(instance, toast, closedBy){
+                    console.info('Closed | closedBy: ' + closedBy);
+                    window.location = "carpetas.html"
+                }
+            });
         },
         error: function () {
             alert('error');
@@ -231,7 +263,20 @@ function confirmarEdicion(idCarpeta){
         dataType:"JSON",
         success:function(respuesta){
             // alert(respuesta);
-            window.location = "carpetas.html"
+            //window.location = "carpetas.html"
+            $('#modalConfirmacion').modal('hide');
+            iziToast.success({
+                timeout:1800,
+                overlay: true,
+                position: 'center', 
+                displayMode: 'once',
+                title: 'OK',
+                message: 'Carpeta actualizada con éxito!',
+                onClosing: function(instance, toast, closedBy){
+                    console.info('Closed | closedBy: ' + closedBy);
+                    window.location = "carpetas.html"
+                }
+            });
         },
         error: function () {
             alert('error');
@@ -1310,7 +1355,19 @@ function confirmarEdicionProyecto(idProyecto, idCarpeta){
             // alert(respuesta);
             //window.location = "proyectos.html"
             $('#modalConfirmacion').modal('hide');
-            contenidoCarpeta(idCarpeta);
+            //contenidoCarpeta(idCarpeta);
+            iziToast.success({
+                timeout:1800,
+                overlay: true,
+                position: 'center', 
+                displayMode: 'once',
+                title: 'OK',
+                message: 'Proyecto actualizado con éxito!',
+                onClosing: function(instance, toast, closedBy){
+                    console.info('Closed | closedBy: ' + closedBy);
+                    contenidoCarpeta(idCarpeta);
+                }
+            });
         },
         error: function () {
             alert('error');
@@ -1325,7 +1382,18 @@ function eliminarProyectos(idProyecto, idCarpeta){
         dataType:"JSON",
         success:function(respuesta){
            // alert(respuesta);
-           contenidoCarpeta(idCarpeta);
+           iziToast.success({
+               timeout:1800,
+               overlay: true,
+               position: 'center', 
+               displayMode: 'once',
+               title: 'OK',
+               message: 'Proyecto eliminado con éxito!',
+               onClosing: function(instance, toast, closedBy){
+                   console.info('Closed | closedBy: ' + closedBy);
+                   contenidoCarpeta(idCarpeta);
+               }
+           });
         },
         error: function () {
             alert('error');
@@ -1386,7 +1454,19 @@ function confirmarEdicionSubCarpeta(idSubCarpeta, idCarpeta){
             // alert(respuesta);
             //window.location = "proyectos.html"
             $('#modalConfirmacion').modal('hide');
-            contenidoCarpeta(idCarpeta);
+            //contenidoCarpeta(idCarpeta);
+            iziToast.success({
+                timeout:1800,
+                overlay: true,
+                position: 'center', 
+                displayMode: 'once',
+                title: 'OK',
+                message: 'Subcarpeta actualizada con éxito!',
+                onClosing: function(instance, toast, closedBy){
+                    console.info('Closed | closedBy: ' + closedBy);
+                    contenidoCarpeta(idCarpeta);
+                }
+            });
         },
         error: function () {
             alert('error');
@@ -1401,7 +1481,19 @@ function eliminarSubCarpeta(idSubCarpeta, idCarpeta){
         dataType:"JSON",
         success:function(respuesta){
            // alert(respuesta);
-           contenidoCarpeta(idCarpeta);
+           //contenidoCarpeta(idCarpeta);
+           iziToast.success({
+               timeout:1800,
+               overlay: true,
+               position: 'center', 
+               displayMode: 'once',
+               title: 'OK',
+               message: 'Subcarpeta eliminada con éxito!',
+               onClosing: function(instance, toast, closedBy){
+                   console.info('Closed | closedBy: ' + closedBy);
+                   contenidoCarpeta(idCarpeta);
+               }
+           });
         },
         error: function () {
             alert('error');
@@ -1460,9 +1552,20 @@ function confirmarEdicionArchivo(idArchivo, idCarpeta){
         dataType:"JSON",
         success:function(respuesta){
             // alert(respuesta);
-            //window.location = "proyectos.html"
-            $('#modalConfirmacion').modal('hide');
-            contenidoCarpeta(idCarpeta);
+            $('#modalConfirmacion').modal('hide'); 
+            //contenidoCarpeta(idCarpeta);
+            iziToast.success({
+                timeout:1800,
+                overlay: true,
+                position: 'center', 
+                displayMode: 'once',
+                title: 'OK',
+                message: 'Archivo actualizado con éxito!',
+                onClosing: function(instance, toast, closedBy){
+                    console.info('Closed | closedBy: ' + closedBy);
+                    contenidoCarpeta(idCarpeta);
+                }
+            });
         },
         error: function () {
             alert('error');
@@ -1477,7 +1580,19 @@ function eliminarArchivo(idArchivo, idCarpeta){
         dataType:"JSON",
         success:function(respuesta){
            // alert(respuesta);
-           contenidoCarpeta(idCarpeta);
+           //contenidoCarpeta(idCarpeta);
+           iziToast.success({
+               timeout:1800,
+               overlay: true,
+               position: 'center', 
+               displayMode: 'once',
+               title: 'OK',
+               message: 'Archivo eliminado con éxito!',
+               onClosing: function(instance, toast, closedBy){
+                   console.info('Closed | closedBy: ' + closedBy);
+                   contenidoCarpeta(idCarpeta);
+               }
+           });
         },
         error: function () {
             alert('error');

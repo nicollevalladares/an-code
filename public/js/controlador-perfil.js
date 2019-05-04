@@ -75,8 +75,20 @@ function actualizarInformacion(idUsuario){
         method:"PUT",
         dataType:"JSON",
         success:function(respuesta){
-            alert('Actualizado');
-            window.location = "perfil.html"
+            //alert('Actualizado');
+            //window.location = "perfil.html"
+            iziToast.success({
+                timeout:1800,
+                overlay: true,
+                position: 'center', 
+                displayMode: 'once',
+                title: 'OK',
+                message: 'Has actualizado tu perfil exitósamente!',
+                onClosing: function(instance, toast, closedBy){
+                    console.info('Closed | closedBy: ' + closedBy);
+                    window.location = "menu.html"
+                }
+            });
         },
         error: function () {
             alert('error');

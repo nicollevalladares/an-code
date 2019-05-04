@@ -111,11 +111,22 @@ function registrarTarjeta(){
             $.ajax({
                 url:`/user/plan`,
                 data: plan,
-                method:"PUT",
+                method:"POST",
                 dataType:"JSON",
                 success:function(respuesta){
-                    alert('Actualizado');
-                    window.location = "perfil.html"
+                   // alert('Actualizado');
+                   iziToast.success({
+                    timeout:1800,
+                    overlay: true,
+                    position: 'center', 
+                    displayMode: 'once',
+                    title: 'OK',
+                    message: 'Has cambiado tu plan exitósamente!',
+                    onClosing: function(instance, toast, closedBy){
+                        console.info('Closed | closedBy: ' + closedBy);
+                        window.location = "menu.html"
+                    }
+                });
                 },
                 error: function () {
                     alert('error');

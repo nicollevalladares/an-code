@@ -35,11 +35,48 @@ function registrarse(){
         success:function(res){
            // alert(respuesta);
            console.log(res);
-            window.location = "login.html"
+            if (res.status == 1){
+                //document.getElementById(correo).classList.add('input-error');
+               // alert(res.mensaje);
+               iziToast.error({
+                    timeout:1800,
+                    overlay: true,
+                    position: 'center', 
+                    displayMode: 'once',
+                    title: 'ERROR',
+                    message: res.mensaje,
+                });
+            }
+            else if(res.status == 2){
+                //alert(res.mensaje);
+                iziToast.error({
+                    timeout:1800,
+                    overlay: true,
+                    position: 'center', 
+                    displayMode: 'once',
+                    title: 'ERROR',
+                    message: res.mensaje,
+                });
+            }
+            else if(res.status == 0){
+                iziToast.success({
+                    timeout:1800,
+                    overlay: true,
+                    position: 'center', 
+                    displayMode: 'once',
+                    title: 'OK',
+                    message: 'Registrado exitósamente!',
+                    onClosing: function(instance, toast, closedBy){
+                        console.info('Closed | closedBy: ' + closedBy);
+                        window.location = "login.html"
+                    }
+                });
+                //window.location = "login.html"
+            }
         },
         error: function () {
            // alert('error');
-           window.location = "login.html"
+           //window.location = "login.html"
         },
     });
 

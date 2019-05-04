@@ -151,7 +151,7 @@ router.post("/", function(req, res){
                 crearCarpeta(req,res);
             } 
             else{
-                respuesta={status:0}
+                respuesta={status:0, mensaje:'Límite de carpetas alcanzadas, si desea crear más, cambie de plan'}
                 res.send(respuesta);
             }
         }
