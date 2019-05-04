@@ -28,6 +28,16 @@ router.get("/",function(req, res){
    
 });
 
+router.get("/:id/creador",function(req, res){
+    usuario.find({
+        _id:req.params.id
+    },
+    {nombre:1,apellido:1})
+    .then(data=>{
+       res.send(data);
+    });
+});
+
 /*router.get("/:id/proyectos",function(req,res){
     usuario.aggregate([
         {

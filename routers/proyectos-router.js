@@ -335,6 +335,19 @@ router.get("/:id/usuarios",function(req,res){
     });
 });
 
+//peticion para mostrar los proyectos compartidas
+router.post("/compartidos",function(req,res){
+    proyecto.find({
+        colaboradores:mongoose.Types.ObjectId(req.session.codigoUsuario)
+    },
+    {_id:1,usuarioCreador:1, nombreProyecto:1})
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
 
 
 module.exports = router;

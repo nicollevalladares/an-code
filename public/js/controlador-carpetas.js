@@ -292,6 +292,17 @@ function contenidoCarpeta(idCarpeta){
         success:function(res){
                 //window.location = "contenido-carpeta.html"
                 console.log(res);
+                document.getElementById('editor-archivo').innerHTML = `
+                <div>
+                    <div id="nombre-pagina">
+                        <h1>CARPETAS</h1>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#modalCarpeta">Nueva Carpeta</button>
+                    </div>
+                    <div class="row" id="carpetas">
+                        
+                    </div>
+
+                </div> `;
                 document.getElementById('nombre-pagina').innerHTML =`
                 <h1>CONTENIDO CARPETA: ${res[0].nombreCarpeta}</h1>
                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalNuevosDocs"><i class="fas fa-plus"></i>Nuevo</button>`;
@@ -1047,7 +1058,7 @@ function compartirArchivo(idArchivo){
     $.ajax({
         url:'archivos/compartir',
         data:parametros,
-        method:"PUT",
+        method:"POST",
         dataType:"JSON",
         success:function(res){
             console.log(res);
@@ -1066,7 +1077,7 @@ function compartirArchivo(idArchivo){
 
 function eliminarColaboradorCarpeta(idCarpeta, idUsuario){
     $.ajax({
-        url:`carpeta/eliminarColaborador/${idCarpeta}/${idUsuario}`,
+        url:`carpetas/eliminarColaborador/${idCarpeta}/${idUsuario}`,
         method:"DELETE",
         dataType:"JSON",
         success:function(res){
@@ -1109,14 +1120,14 @@ function eliminarColaboradorProyecto(idProyecto, idUsuario){
     });
 }
 
-function eliminarColaboradorSubCarpeta(idSubCarpeta){
+function eliminarColaboradorSubCarpeta(idSubCarpeta, idUsuario){
     $.ajax({
-        url:`carpeta/eliminarColaborador/${idSubCarpeta}/${idUsuario}`,
+        url:`subcarpetas/eliminarColaborador/${idSubCarpeta}/${idUsuario}`,
         method:"DELETE",
         dataType:"JSON",
         success:function(res){
             console.log(res);
-            compartirCarpetas(idSubCarpeta);
+            compartirSubCarpetas(idSubCarpeta);
         },
         error: function (e) {
             console.log(e);
@@ -1124,7 +1135,7 @@ function eliminarColaboradorSubCarpeta(idSubCarpeta){
     });
 }
 
-function eliminarColaboradorArchivo(idArchivo){
+function eliminarColaboradorArchivo(idArchivo, idUsuario){
     $.ajax({
         url:`archivos/eliminarColaborador/${idArchivo}/${idUsuario}`,
         method:"DELETE",
@@ -1145,19 +1156,15 @@ function editorArchivos(idArchivo, idCarpeta){
         method:"GET",
         dataType:"JSON",
         success:function(res){
-        document.getElementById('carpetas').innerHTML = '';
-        document.getElementById('editor').style = "display: block";
-        document.getElementById('editor').innerHTML = `
-        <h1 id="nombre-proyecto" class="nombre-proyecto">Contenido Proyecto</h1>
+        document.getElementById('editor-archivo').innerHTML = `
+        <div id="nombre-pagina"></div>
+        <h1 id="nombre-proyecto" class="nombre-proyecto">ARCHIVO: ${res[0].nombreArchivo}.${res[0].extension}</h1>
         <div id="contenido-archivo"></div>
         `;
-        document.getElementById('nombre-pagina').innerHTML = '';
         document.getElementById('contenido-archivo').innerHTML = `
         Contenido Archivo
         <div style="float:right" id="botones-archivo" class="botones"></div>
         <textarea id="contenidoArchivo" style="height: 500px;" class="form-control">${res[0].contenido}</textarea>`;
-        document.getElementById('nombre-proyecto').innerHTML = `
-        ARCHIVO: ${res[0].nombreArchivo}.${res[0].extension}`;
         document.getElementById('botones-archivo').innerHTML = `
         <a href download="${res[0].nombreArchivo}.${res[0].extension}" onclick="descargarArchivo(this)"><i class="fas fa-download"></i></a>
         <button type="button" class="btn btn-proyecto" onclick="guardarArchivo('${res[0]._id}', '${idCarpeta}')"><i class="fas fa-save"></i></button>
@@ -1279,16 +1286,13 @@ function guardarArchivo(idArchivo,idCarpeta){
     console.log(parametros);
 
     $.ajax({
-        url:`/archivos/${idArchivo}`,
+        url:`/archivos/${idArchivo}/guardar`,
         data:parametros,
-        method:"POST",
+        method:"PUT",
         dataType:"JSON",
         success:function(respuesta){
         // alert(respuesta);
             //window.location = "proyectos.html"
-            document.getElementById('editor').style = "display: none";
-            document.getElementById('nombre-pagina').innerHTML = '';
-            document.getElementById('contenido-archivo').innerHTML ='';
             contenidoCarpeta(idCarpeta);
         },
         error: function () {
@@ -1507,7 +1511,7 @@ function editarArchivos(idArchivo, idCarpeta){
         method:"GET",
         dataType:"JSON",
         success:function(res){
-            document.getElementById('nombreArchivo').value = res[0].nombreSubCarpeta;
+            document.getElementById('nombreArchivo').value = res[0].nombreArchivo;
             document.getElementById('footer-archivos').innerHTML = `<button class="btn btn-primary" id="btn-editar" onclick=guardarCambiosArchivo('${res[0]._id}','${idCarpeta}')>Editar</button>`;
         },
         error: function () {

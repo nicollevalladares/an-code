@@ -140,26 +140,25 @@ router.post("/proyecto", function (req, res) {
 });
 
 //Peticion para actualizar archivos
-router.post("/:id", function (req, res) {
-    archivo.findOne(
+router.put("/:id/guardar", function (req, res) {
+    archivo.update(
         {
             _id: req.body.id
+        },
+        {
+            contenido : req.body.contenido
+            
         }
-    )
-    .then(archivo=>{
-        archivo.contenido = req.body.contenido;
-        archivo.save()
-        .then(obj=>{
-            res.send(obj);
-        })
-        .catch(error=>{
-            res.send(obj);
-        });
+    ).then(result=>{
+        res.send(result);
+    })
+    .catch(error=>{
+        res.send(error);
     });
 });
 
 //Peticion para agregar colaborador a un arhivo
-router.put("/compartir", function(req, res){
+router.post("/compartir", function(req, res){
     archivo.update(
         { 
             _id: req.body.idArchivo
@@ -225,5 +224,22 @@ router.delete("/eliminarColaborador/:idArchivo/:idUsuario",function(req, res){
         res.send(error);
     });
 });
+
+//peticion para mostrar los archivos compartidos
+router.post("/prueba",function(req,res){
+    archivo.find({
+        colaboradores:mongoose.Types.ObjectId(req.session.codigoUsuario)
+    },
+    {
+        _id:1,usuarioCreador:1, nombreArchivo:1, extension:1
+    })
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
 
 module.exports = router;

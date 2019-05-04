@@ -261,7 +261,7 @@ router.get("/:id/usuarios",function(req,res){
 
 //Peticion para eliminar un colaborador de una carpeta
 router.delete("/eliminarColaborador/:idCarpeta/:idUsuario",function(req, res){
-    proyecto.update(
+    carpeta.update(
         {
             _id: req.params.idCarpeta
         },
@@ -272,6 +272,22 @@ router.delete("/eliminarColaborador/:idCarpeta/:idUsuario",function(req, res){
             
         }
     ).then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+//peticion para mostrar las carpetas compartidas
+router.post("/compartidas",function(req,res){
+    carpeta.find({
+        colaboradores:mongoose.Types.ObjectId(req.session.codigoUsuario)
+    },
+    {
+        _id:1,usuarioCreador:1, nombreCarpeta:1
+    })
+    .then(data=>{
         res.send(data);
     })
     .catch(error=>{
