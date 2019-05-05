@@ -211,4 +211,45 @@ router.post("/plan",function(req,res){
         res.send(error);
     });
 });
+
+//Peticion para actualizar plan de un usuario
+router.post("/psw",function(req,res){
+    usuario.find(
+        {
+            _id:req.session.codigoUsuario
+        } 
+    ).then(result=>{
+        if(req.session.password == req.body.actual){
+            if(req.body.nueva != req.body.conf){
+                res.send({status:2});
+            }else{
+                actualizarPWS(req,res);
+            }
+        }
+        
+        else if(req.session.password != req.body.actual){
+            res.send({status:0});
+        }
+
+        res.send(result);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+function actualizarPWS(req,res){
+    usuario.update(
+        {_id:req.session.codigoUsuario},
+        {
+            password: req.body.nueva
+        }
+    ).then(data=>{
+        res.send({data});
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+}
+
 module.exports = router;

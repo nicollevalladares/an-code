@@ -36,7 +36,7 @@ $(document).ready(function(){
         <button class="btn btn-primary btn-lg btn-block" type="button" onclick="cambiarPlan('${res[0]._id}')">
             Actualizar Plan
         </button>
-
+            <hr>
         <div class="mb-3">
             <label for="password">Cambio de Contraseña</label>
             <input type="password" class="form-control" id="pws-vieja" placeholder="Ingrese su contraseña actual" required>
@@ -140,6 +140,73 @@ function registrarTarjeta(){
      });
 
 
+}
+
+function cambiarContrasenia(idUsuario){
+    var parametros = {
+        actual: $('#pws-vieja').val(),
+        nueva: $('#pws-nueva').val(),
+        conf: $('#pws-nueva-conf').val(),
+    };
+
+    $.ajax({
+        url:`/user/psw`,
+        data: parametros,
+        method:"POST",
+        dataType:"JSON",
+        success:function(res){
+           // alert('Actualizado');
+           //alert(res.status);
+           console.log(res);
+            if(res.status == 0){
+                iziToast.error({
+                    timeout:1800,
+                    overlay: true,
+                    position: 'center', 
+                    displayMode: 'once',
+                    title: 'ERROR',
+                    message: 'La contraseña actual es incorrecta.',
+                    onClosing: function(instance, toast, closedBy){
+                        console.info('Closed | closedBy: ' + closedBy);
+                        window.location = "configuracion.html"
+                    }
+                });
+            }
+            
+            else if(res.status == 2){
+                iziToast.error({
+                    timeout:1800,
+                    overlay: true,
+                    position: 'center', 
+                    displayMode: 'once',
+                    title: 'ERROR',
+                    message: 'La contraseña nueva y la confirmación no son iguales!.',
+                    onClosing: function(instance, toast, closedBy){
+                        console.info('Closed | closedBy: ' + closedBy);
+                        window.location = "configuracion.html"
+                    }
+                });
+            }
+            else{
+                iziToast.success({
+                    timeout:1800,
+                    overlay: true,
+                    position: 'center', 
+                    displayMode: 'once',
+                    title: 'OK',
+                    message: 'Has cambiado tu contraseña exitósamente!',
+                    onClosing: function(instance, toast, closedBy){
+                        console.info('Closed | closedBy: ' + closedBy);
+                        window.location = "menu.html"
+                    }
+                });
+            }
+           
+        },
+        error: function () {
+            alert('error');
+        },
+    });
 }
 
 

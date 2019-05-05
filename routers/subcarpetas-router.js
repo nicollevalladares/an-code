@@ -206,7 +206,41 @@ router.get("/:id/archivos",function(req,res){
     });
 });
 
+//peticion para mostrar las carpetas compartidas
+router.post("/compartidas",function(req,res){
+    subcarpeta.find({
+        colaboradores:mongoose.Types.ObjectId(req.session.codigoUsuario)
+    },
+    {
+        _id:1,usuarioCreador:1, nombreSubCarpeta:1
+    })
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
 
+//Peticion para eliminar un colaborador de una carpeta
+router.delete("/eliminarColaboracion/:idSubCarpeta",function(req, res){
+    subcarpeta.update(
+        {
+            _id: req.params.idSubCarpeta
+        },
+        {
+            $pull:{
+                colaboradores:mongoose.Types.ObjectId(req.session.codigoUsuario)
+            }
+            
+        }
+    ).then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
 
 
 module.exports = router;

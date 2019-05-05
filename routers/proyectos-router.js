@@ -478,5 +478,25 @@ router.post("/compartidos",function(req,res){
     });
 });
 
+//Peticion para eliminar un colaborador de un proyecto
+router.delete("/eliminarColaboracion/:idProyecto",function(req, res){
+    proyecto.update(
+        {
+            _id: req.params.idProyecto
+        },
+        {
+            $pull:{
+                colaboradores:mongoose.Types.ObjectId(req.session.codigoUsuario)
+            }
+            
+        }
+    ).then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
 
 module.exports = router;

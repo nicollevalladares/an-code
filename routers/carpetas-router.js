@@ -295,5 +295,25 @@ router.post("/compartidas",function(req,res){
     });
 });
 
+//Peticion para eliminar un colaborador de una carpeta
+router.delete("/eliminarColaboracion/:idCarpeta",function(req, res){
+    carpeta.update(
+        {
+            _id: req.params.idCarpeta
+        },
+        {
+            $pull:{
+                colaboradores:mongoose.Types.ObjectId(req.session.codigoUsuario)
+            }
+            
+        }
+    ).then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
 
 module.exports = router;

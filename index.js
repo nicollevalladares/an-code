@@ -83,7 +83,7 @@ app.post("/login",function(req, res){
         if (data.length==1){
             req.session.codigoUsuario = data[0]._id;
             req.session.plan = data[0].plan;
-
+            req.session.password = data[0].password;
             res.cookie("codigoUsuario", req.session.codigoUsuario);
 
             res.send({status:1,mensaje:"Usuario loggeado con éxito"});

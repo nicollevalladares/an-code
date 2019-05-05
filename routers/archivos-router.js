@@ -280,5 +280,24 @@ router.post("/prueba",function(req,res){
     });
 });
 
+//Peticion para eliminar un colaborador de una carpeta
+router.delete("/eliminarColaboracion/:idArchivo",function(req, res){
+    archivo.update(
+        {
+            _id: req.params.idArchivo
+        },
+        {
+            $pull:{
+                colaboradores:mongoose.Types.ObjectId(req.session.codigoUsuario)
+            }
+            
+        }
+    ).then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
 
 module.exports = router;
