@@ -191,6 +191,7 @@ function cambiarContrasenia(idUsuario){
                 iziToast.success({
                     timeout:1800,
                     overlay: true,
+                    
                     position: 'center', 
                     displayMode: 'once',
                     title: 'OK',
