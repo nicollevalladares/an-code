@@ -153,6 +153,7 @@ app.post("/login_facebook",function(req, res){
         res.send(error);
     });
 });
+
 //login con facebook
 app.post("/login_fb",function(req, res){
     usuario.find({idFB:req.body.idFB})
@@ -165,7 +166,7 @@ app.post("/login_fb",function(req, res){
                     {
                         nombre : req.body.nombre,
                         apellido : req.body.apellido,
-                        usuario: nombre_usuario,
+                        usuario: req.body.nombre + req.body.apellido,
                         email : req.body.email,
                        
                     }
@@ -182,8 +183,8 @@ app.post("/login_fb",function(req, res){
             var u = new usuario({
                 idFB :req.body.idFB,
                 nombre : req.body.nombre,
-                apellido : req.body.nombre + req.body.apellido,
-                usuario: nombre_usuario,
+                apellido : req.body.apellido,
+                usuario: req.body.nombre + req.body.apellido,
                 email : req.body.email,
                 plan: mongoose.Types.ObjectId("5cc7993eb56d781460c5cddf")
         });

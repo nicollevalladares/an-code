@@ -75,7 +75,7 @@ window.fbAsyncInit = function() {
       cookie     : true,
                          
       xfbml      : true,  
-      version    : 'v3.2'
+      version    : 'v3.3'
     });
   };
 
@@ -107,12 +107,7 @@ function logInFB(){
                       dataType:"json",
                       success:function(respuesta){
                           console.log(respuesta.status);
-                          if(respuesta.status==2){
-                          location.href ="menu.html";
-                          }else{
-                             //alert('error');
-                             //location.href ="menu.html";
-                          }
+                             location.href ="menu.html";
                       },
                       error: function (e) {
                           console.log(e);
