@@ -189,6 +189,7 @@ function crearProyectos(idpr){
          method:"POST",
          dataType:"JSON",
          success:function(respuesta){
+             $('#modalContenidoProyecto').modal('hide');
             // alert(respuesta);
             localStorage.setItem("idHTML", respuesta.html);
             localStorage.setItem("idCSS", respuesta.css);

@@ -80,8 +80,9 @@ $(document).ready(function(){
                         </div>
                     </div>
                 </div>`;
-                }
                 generarNombreCreadorSubCarpeta(res[i].usuarioCreador,i);
+                }
+                
             }
                 
             }   ,
@@ -741,3 +742,142 @@ function eliminarArchivoCompartido(idArchivo){
         },
     });
 }
+
+
+function cargarSubCarpeta(idSubCarpeta){
+    $.ajax({
+        url:`/subcarpetas/${idSubCarpeta}/proyectos`,
+        method:"GET",
+        dataType:"JSON",
+        success:function(res){
+                //window.location = "contenido-carpeta.html"
+            console.log(res);
+            document.getElementById('pagina-compartidos').innerHTML = `
+            <div>
+                <div id="nombre-pagina"> 
+
+                </div>
+                <div class="row" id="carpetas">
+                    
+                </div>
+
+            </div> `;
+            document.getElementById('nombre-pagina').innerHTML =`
+                <h1>CONTENIDO CARPETA: ${res[0].nombreSubCarpeta}</h1>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalNuevosDocs"><i class="fas fa-plus"></i>Nuevo</button>`;
+            document.getElementById('footer-contenido-subcarpeta').innerHTML = `<button class="btn btn-primary" onclick=nuevoContenidoSubcarpeta('${idSubCarpeta}')>Crear</button>`;
+            document.getElementById('carpetas').innerHTML = '';
+            for(var i=0;i<res[0].proyectos.length;i++){
+                document.getElementById('carpetas').innerHTML += 
+                `<div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                    <div class="card-body">
+                    
+                    <div class="d-flex justify-content-between align-items-center"> 
+                        <button type="button" class="btn btn-proyecto" onclick="cargarProyecto('${res[0].proyectos[i]._id}')">
+                            <i class="far fa-file-alt"></i><br>
+                            ${res[0].proyectos[i].nombreProyecto}
+                        </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>`;
+            }
+
+            $.ajax({
+                url:`/subcarpetas/${idSubCarpeta}/archivos`,
+                method:"GET",
+                dataType:"JSON",
+                success:function(res){
+                        //window.location = "contenido-carpeta.html"
+                        console.log(res);
+                        for(var i=0;i<res[0].archivos.length;i++){
+                            if(res[0].archivos[i].extension == "html"){
+                                document.getElementById('carpetas').innerHTML += `
+                                <div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                <div class="card-body">
+                                
+                                <div class="d-flex justify-content-between align-items-center"> 
+                                    <button type="button" class="btn btn-proyecto" onclick="editorArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                        <i class="fab fa-html5"></i><br>
+                                        ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
+                                    </button>
+                                </div>
+                                </div>
+                            </div>`;
+                            }
+                            else if(res[0].archivos[i].extension == 'css'){
+                                document.getElementById('carpetas').innerHTML += `
+                                <div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                <div class="card-body">
+                                
+                                <div class="d-flex justify-content-between align-items-center"> 
+                                    <button type="button" class="btn btn-proyecto" onclick="editorArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                        <i class="fab fa-css3-alt"></i><br>
+                                        ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
+                                    </button>
+                                </div>
+                                </div>
+                            </div>`;
+                            }
+        
+                            else if(res[0].archivos[i].extension == 'js'){
+                                document.getElementById('carpetas').innerHTML += `
+                                <div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                <div class="card-body">
+                                
+                                <div class="d-flex justify-content-between align-items-center"> 
+                                    <button type="button" class="btn btn-proyecto" onclick="editorArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                        <i class="fab fa-js-square"></i><br>
+                                        ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
+                                    </button>
+                                </div>
+                                </div>
+                            </div>`;
+                            }
+        
+                            else if(res[0].archivos[i].extension == 'py'){
+                                document.getElementById('carpetas').innerHTML += `
+                                <div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                <div class="card-body">
+                                
+                                <div class="d-flex justify-content-between align-items-center"> 
+                                    <button type="button" class="btn btn-proyecto" onclick="editorArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                        <i style="font-size: 70px; color:#273c7c" class="fab fa-python"></i><br>
+                                        ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
+                                    </button>
+                                </div>
+                                </div>
+                            </div>`;
+                            }
+        
+                            else if(res[0].archivos[i].extension == 'php'){
+                                document.getElementById('carpetas').innerHTML += `
+                                <div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                <div class="card-body">
+                                
+                                <div class="d-flex justify-content-between align-items-center"> 
+                                    <button type="button" class="btn btn-proyecto" onclick="editorArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                        <i style="font-size: 70px; color:purple" class="fab fa-php"></i><br>
+                                        ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
+                                    </button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>`;
+                            }
+                        }
+                },
+                error: function (e) {
+                //document.getElementById("div-proyectos").innerHTML = 'Ha ocurrido un error al conectar con el servidor.';
+                },
+            });
+        },
+        error: function (e) {
+        //document.getElementById("div-proyectos").innerHTML = 'Ha ocurrido un error al conectar con el servidor.';
+        },
+    });
+}
+
+
+
+

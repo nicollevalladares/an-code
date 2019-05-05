@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 
 var esquema = new mongoose.Schema(
     {
-       
+        idFB: String,
         nombre : String,
         apellido : String,
         usuario : String,

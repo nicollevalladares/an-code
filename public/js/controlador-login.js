@@ -62,6 +62,69 @@ function logIn(){
     });
 }
 
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '2234395893307279',
+      cookie     : true,
+                         
+      xfbml      : true,  
+      version    : 'v3.2'
+    });
+  };
+
+  
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+function logInFB(){
+    FB.login(function(response) {
+        if (response.status=="connected"){
+           FB.api('/me?fields=id,name,first_name,last_name,email', function(datosUsuario) {
+
+            var parametros = {
+                    idFB: datosUsuario.id,
+                    nombre: datosUsuario.first_name,
+                    apellido: datosUsuario.last_name,
+                    email: datosUsuario.email
+            };
+            
+            $.ajax({
+                      url:"/login_fb",
+                      method:"POST",
+                      data:parametros,
+                      dataType:"json",
+                      success:function(respuesta){
+                          console.log(respuesta.status);
+                          if(respuesta.status==2){
+                          location.href ="menu.html";
+                          }else{
+                             //alert('error');
+                             //location.href ="menu.html";
+                          }
+                      },
+                      error: function (e) {
+                          console.log(e);
+                      },
+              });
+                       
+         });
+        }
+  
+      }, {scope: 'public_profile,email'});
+}
+
 function validarCampo(campo){
     if (document.getElementById(campo).value ==''){   
         document.getElementById(campo).classList.add('input-error');

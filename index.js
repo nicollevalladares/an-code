@@ -97,6 +97,113 @@ app.post("/login",function(req, res){
     });
 });
 
+//login con facebook
+app.post("/login_facebook",function(req, res){
+    usuario.find({idFacebook:req.body.idFacebook})
+    .then(data=>{
+        if (data.length==1){
+            req.session.codigoUsuario = data[0]._id;
+            //Actualizar los datos
+                usuario.update(
+                    {_id:data[0]._id},
+                    {
+                        nombre : req.body.nombre,
+                        apellido : req.body.apellido,
+                        usuario: nombre_usuario,
+                        correo : req.body.correo,
+                       // foto: req.body.foto+"&height="+req.body.height+"&width="+req.body.width+"&ext="+req.body.ext+"&hash="+req.body.hash,
+                        
+                    }
+                ).then(result=>{
+                
+                })
+                .catch(error=>{
+                    res.send(error);
+                });
+            
+            res.send({status:1,mensaje:"Usuario autenticado con éxito"});
+
+        }else{
+          var sufix=Math.round(Math.random() * 101);
+           var nombre_usuario= req.body.apellido+ sufix.toString();
+            var u = new usuario({
+                idFacebook :req.body.idFacebook,
+                nombre : req.body.nombre,
+                apellido : req.body.apellido,
+                usuario: nombre_usuario,
+                correo : req.body.correo,
+                foto: req.body.foto+"&height="+req.body.height+"&width="+req.body.width+"&ext="+req.body.ext+"&hash="+req.body.hash,
+                plan:{
+                    _id:'5cbcac9f448c4738a8a00a07',
+                    nombre:"Plan Gratuito"
+                }
+        });
+    
+        u.save()
+        .then(obj=>{
+            req.session.codigoUsuario = obj._id;
+            res.send({status:1,mensaje:"Usuario autenticado con éxito"});
+        })
+        .catch(e=>{
+            res.send(e);
+        });
+      }//fin insertar
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+//login con facebook
+app.post("/login_fb",function(req, res){
+    usuario.find({idFB:req.body.idFB})
+    .then(data=>{
+        if (data.length==1){
+            req.session.codigoUsuario = data[0]._id;
+            //Actualizar los datos
+                usuario.update(
+                    {_id:data[0]._id},
+                    {
+                        nombre : req.body.nombre,
+                        apellido : req.body.apellido,
+                        usuario: nombre_usuario,
+                        email : req.body.email,
+                       
+                    }
+                ).then(result=>{
+                
+                })
+                .catch(error=>{
+                    res.send(error);
+                });
+            
+            res.send({status:2,mensaje:"Usuario autenticado con éxito"});
+
+        }else{
+            var u = new usuario({
+                idFB :req.body.idFB,
+                nombre : req.body.nombre,
+                apellido : req.body.nombre + req.body.apellido,
+                usuario: nombre_usuario,
+                email : req.body.email,
+                plan: mongoose.Types.ObjectId("5cc7993eb56d781460c5cddf")
+        });
+    
+        u.save()
+        .then(obj=>{
+            req.session.codigoUsuario = obj._id;
+            res.send({status:1,mensaje:"Usuario autenticado con éxito"});
+        })
+        .catch(e=>{
+            res.send(e);
+        });
+      }//fin insertar
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+
 app.get('/logout',function(req,res){
     req.session.destroy();
     res.redirect("/login.html");
