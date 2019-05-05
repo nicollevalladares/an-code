@@ -27,9 +27,11 @@ $(document).ready(function(){
                                         ${res[i].nombreCarpeta} <Br>
                                         Creador: <span id='nombre-${res[i].usuarioCreador}-${i}'></span>
                                     </button>
-                                    <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarCarpetaCompartida('${res[i]._id}')">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                    <div style="width:300px; margin-top:-115px">
+                                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarCarpetaCompartida('${res[i]._id}')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>`;
@@ -70,9 +72,11 @@ $(document).ready(function(){
                                 ${res[i].nombreProyecto} <Br>
                                 Creador: <span id='nombre-${res[i].usuarioCreador}-${i}-proyecto'></span>
                             </button>
-                            <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarProyectosCompartidos('${res[i]._id}')">
-                                <i class="fas fa-trash"></i>
-                            </button>
+                            <div style="width:300px; margin-top:-115px">
+                                <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarProyectosCompartidos('${res[i]._id}')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>`;
@@ -113,9 +117,11 @@ $(document).ready(function(){
                             ${res[i].nombreArchivo}.${res[i].extension} <br>
                             Creador: <span id='nombre-${res[i].usuarioCreador}-${i}-archivo'></span>
                         </button>
-                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivosCompartidos('${res[i]._id}')">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                        <div style="width:300px; margin-top:-115px">
+                            <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivosCompartidos('${res[i]._id}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
                     </div>
                     </div>
                 </div>`;
@@ -132,16 +138,11 @@ $(document).ready(function(){
                             ${res[i].nombreArchivo}.${res[i].extension} <br>
                             Creador: <span id='nombre-${res[i].usuarioCreador}-${i}-archivo'></span>
                         </button>
-                        <button class="btn btn-info btn-circle btn-sm" 
-                        data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[i]._id}', '${idCarpeta}')">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[i]._id}')">
-                            <i class="fas fa-share-alt"></i>
-                        </button>
-                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivosCompartidos('${res[i]._id}', '${idCarpeta}')">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                        <div style="width:300px; margin-top:-115px">
+                            <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivosCompartidos('${res[i]._id}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
                     </div>
                     </div>
                 </div>`;
@@ -158,16 +159,11 @@ $(document).ready(function(){
                             ${res[i].nombreArchivo}.${res[i].extension} <br>
                             Creador: <span id='nombre-${res[i].usuarioCreador}-${i}-archivo'></span>
                         </button>
-                        <button class="btn btn-info btn-circle btn-sm" 
-                        data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[i]._id}', '${idCarpeta}')">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[i]._id}')">
-                            <i class="fas fa-share-alt"></i>
-                        </button>
-                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivosCompartidos('${res[i]._id}', '${idCarpeta}')">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                        <div style="width:300px; margin-top:-115px">
+                            <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivosCompartidos('${res[i]._id}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
                     </div>
                     </div>
                 </div>`;
@@ -184,16 +180,11 @@ $(document).ready(function(){
                             ${res[i].nombreArchivo}.${res[i].extension} <br>
                             Creador: <span id='nombre-${res[i].usuarioCreador}-${i}-archivo'></span>
                         </button>
-                        <button class="btn btn-info btn-circle btn-sm" 
-                        data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[i]._id}', '${idCarpeta}')">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[i]._id}')">
-                            <i class="fas fa-share-alt"></i>
-                        </button>
-                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivosCompartidos('${res[i]._id}', '${idCarpeta}')">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                        <div style="width:300px; margin-top:-115px">
+                            <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivosCompartidos('${res[i]._id}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
                     </div>
                     </div>
                 </div>`;
@@ -210,16 +201,11 @@ $(document).ready(function(){
                             ${res[i].nombreArchivo}.${res[i].extension} <br>
                             Creador: <span id='nombre-${res[i].usuarioCreador}-${i}-archivo'></span>
                         </button>
-                        <button class="btn btn-info btn-circle btn-sm" 
-                        data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[i]._id}', '${idCarpeta}')">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[i]._id}')">
-                            <i class="fas fa-share-alt"></i>
-                        </button>
-                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivosCompartidos('${res[i]._id}', '${idCarpeta}')">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                        <div style="width:300px; margin-top:-115px">
+                            <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivosCompartidos('${res[i]._id}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
                     </div>
                     </div>
                 </div>`;
@@ -270,4 +256,167 @@ function generarNombreCreadorArchivo(idCreador, i){
 
 function cargarProyecto(idProyecto){
     window.location = "nuevoproyecto.html?idProyecto="+idProyecto;
+}
+
+function editorArchivos(idArchivo){
+    window.location = "editor.html?idArchivo=" + idArchivo;
+}
+
+function contenidoCarpeta(idCarpeta){
+    $.ajax({
+        url:`/carpetas/${idCarpeta}/proyectos`,
+        method:"GET",
+        dataType:"JSON",
+        success:function(res){
+                //window.location = "contenido-carpeta.html"
+                console.log(res);
+                document.getElementById('pagina-compartidos').innerHTML = `
+                <div>
+                    <div id="nombre-pagina">
+                        <h1>CARPETAS</h1>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#modalCarpeta">Nueva Carpeta</button>
+                    </div>
+                    <div class="row" id="carpetas">
+                        
+                    </div>
+
+                </div> `;
+                document.getElementById('nombre-pagina').innerHTML =`
+                <h1>CONTENIDO CARPETA: ${res[0].nombreCarpeta}</h1>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalNuevosDocs"><i class="fas fa-plus"></i>Nuevo</button>`;
+                document.getElementById('carpetas').innerHTML = '';
+                for(var i=0;i<res[0].proyectos.length;i++){
+                    document.getElementById('carpetas').innerHTML += 
+                    `<div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="card-body">
+                        
+                        <div class="d-flex justify-content-between align-items-center"> 
+                            <button type="button" class="btn btn-proyecto" onclick="cargarProyecto('${res[0].proyectos[i]._id}')">
+                                <i class="far fa-file-alt"></i><br>
+                                ${res[0].proyectos[i].nombreProyecto}
+                            </button>
+                        </div>
+                        </div>
+                    </div>`;
+                }
+
+                $.ajax({
+                    url:`/carpetas/${idCarpeta}/subcarpetas`,
+                    method:"GET",
+                    dataType:"JSON",
+                    success:function(res){
+                            //window.location = "contenido-carpeta.html"
+                            console.log(res);
+                            for(var i=0;i<res[0].subcarpetas.length;i++){
+                                document.getElementById('carpetas').innerHTML += 
+                                `<div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                    <div class="card-body">
+                                    
+                                    <div class="d-flex justify-content-between align-items-center"> 
+                                        <button type="button" class="btn btn-proyecto" onclick="cargarSubCarpeta('${res[0].subcarpetas[i]._id}')">
+                                            <i class="fas fa-folder-open"></i><br>
+                                            ${res[0].subcarpetas[i].nombreSubCarpeta}
+                                        </button>
+                                    </div>
+                                    </div>
+                                </div>`;
+                            }
+
+                            $.ajax({
+                                url:`/carpetas/${idCarpeta}/archivos`,
+                                method:"GET",
+                                dataType:"JSON",
+                                success:function(res){
+                                        //window.location = "contenido-carpeta.html"
+                                        console.log(res);
+                                        for(var i=0;i<res[0].archivos.length;i++){
+                                            if(res[0].archivos[i].extension == "html"){
+                                                document.getElementById('carpetas').innerHTML += `
+                                                <div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                                <div class="card-body">
+                                                
+                                                <div class="d-flex justify-content-between align-items-center"> 
+                                                    <button type="button" class="btn btn-proyecto" onclick="editorArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
+                                                        <i class="fab fa-html5"></i><br>
+                                                        ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
+                                                    </button>
+                                                </div>
+                                                </div>
+                                            </div>`;
+                                            }
+                                            else if(res[0].archivos[i].extension == 'css'){
+                                                document.getElementById('carpetas').innerHTML += `
+                                                <div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                                <div class="card-body">
+                                                
+                                                <div class="d-flex justify-content-between align-items-center"> 
+                                                    <button type="button" class="btn btn-proyecto" onclick="editorArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
+                                                        <i class="fab fa-css3-alt"></i><br>
+                                                        ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
+                                                    </button>
+                                                </div>
+                                                </div>
+                                            </div>`;
+                                            }
+                        
+                                            else if(res[0].archivos[i].extension == 'js'){
+                                                document.getElementById('carpetas').innerHTML += `
+                                                <div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                                <div class="card-body">
+                                                
+                                                <div class="d-flex justify-content-between align-items-center"> 
+                                                    <button type="button" class="btn btn-proyecto" onclick="editorArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
+                                                        <i class="fab fa-js-square"></i><br>
+                                                        ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
+                                                    </button>
+                                                </div>
+                                                </div>
+                                            </div>`;
+                                            }
+                        
+                                            else if(res[0].archivos[i].extension == 'py'){
+                                                document.getElementById('carpetas').innerHTML += `
+                                                <div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                                <div class="card-body">
+                                                
+                                                <div class="d-flex justify-content-between align-items-center"> 
+                                                    <button type="button" class="btn btn-proyecto" onclick="editorArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
+                                                        <i style="font-size: 70px; color:#273c7c" class="fab fa-python"></i><br>
+                                                        ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
+                                                    </button>
+                                                </div>
+                                                </div>
+                                            </div>`;
+                                            }
+                        
+                                            else if(res[0].archivos[i].extension == 'php'){
+                                                document.getElementById('carpetas').innerHTML += `
+                                                <div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                                <div class="card-body">
+                                                
+                                                <div class="d-flex justify-content-between align-items-center"> 
+                                                    <button type="button" class="btn btn-proyecto" onclick="editorArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
+                                                        <i style="font-size: 70px; color:purple" class="fab fa-php"></i><br>
+                                                        ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
+                                                    </button>
+                                                </div>
+                                                </div>
+                                            </div>`;
+                                            }
+                                        }
+                                },
+                                error: function (e) {
+                                //document.getElementById("div-proyectos").innerHTML = 'Ha ocurrido un error al conectar con el servidor.';
+                                },
+                            });
+                    },
+                    error: function (e) {
+                    //document.getElementById("div-proyectos").innerHTML = 'Ha ocurrido un error al conectar con el servidor.';
+                    },
+                });
+        },
+        error: function (e) {
+        //document.getElementById("div-proyectos").innerHTML = 'Ha ocurrido un error al conectar con el servidor.';
+        },
+    });
 }

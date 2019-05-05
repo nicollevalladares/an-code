@@ -44,16 +44,18 @@ function generarCarpetas(){
                                     <i class="fas fa-folder-open"></i><br>
                                     ${res[i].nombreCarpeta}
                                 </button>
-                                <button class="btn btn-info btn-circle btn-sm" 
-                                data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarCarpetas('${res[i]._id}')">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirCarpetas('${res[i]._id}')">
-                                <i class="fas fa-share-alt"></i>
-                                </button>
-                                <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarCarpetas('${res[i]._id}')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
+                                <div style="width:300px; margin-top:-50px">
+                                    <button class="btn btn-info btn-circle btn-sm" 
+                                    data-toggle="modal" data-target="#modalContenidoCarpeta" onclick="editarCarpetas('${res[i]._id}')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirCarpetas('${res[i]._id}')">
+                                    <i class="fas fa-share-alt"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarCarpetas('${res[i]._id}')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>`;
@@ -318,16 +320,18 @@ function contenidoCarpeta(idCarpeta){
                                 <i class="far fa-file-alt"></i><br>
                                 ${res[0].proyectos[i].nombreProyecto}
                             </button>
-                            <button class="btn btn-info btn-circle btn-sm" 
-                            data-toggle="modal" data-target="#modalProyectos" onclick="editarProyectos('${res[0].proyectos[i]._id}', '${idCarpeta}')">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirProyectos('${res[0].proyectos[i]._id}')">
-                                <i class="fas fa-share-alt"></i>
-                            </button>
-                            <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarProyectos('${res[0].proyectos[i]._id}', '${idCarpeta}')">
-                                <i class="fas fa-trash"></i>
-                            </button>
+                            <div style="width:300px; margin-top:-50px">
+                                <button class="btn btn-info btn-circle btn-sm" 
+                                data-toggle="modal" data-target="#modalProyectos" onclick="editarProyectos('${res[0].proyectos[i]._id}', '${idCarpeta}')">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirProyectos('${res[0].proyectos[i]._id}')">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                                <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarProyectos('${res[0].proyectos[i]._id}', '${idCarpeta}')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
                         </div>
                         </div>
                     </div>`;
@@ -350,16 +354,18 @@ function contenidoCarpeta(idCarpeta){
                                             <i class="fas fa-folder-open"></i><br>
                                             ${res[0].subcarpetas[i].nombreSubCarpeta}
                                         </button>
-                                        <button class="btn btn-info btn-circle btn-sm" 
-                                        data-toggle="modal" data-target="#modalSubCarpeta" onclick="editarSubCarpeta('${res[0].subcarpetas[i]._id}', '${idCarpeta}')">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirSubCarpetas('${res[0].subcarpetas[i]._id}')">
-                                            <i class="fas fa-share-alt"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarSubCarpeta('${res[0].subcarpetas[i]._id}', '${idCarpeta}')">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
+                                        <div style="width:300px; margin-top:-50px">
+                                            <button class="btn btn-info btn-circle btn-sm" 
+                                            data-toggle="modal" data-target="#modalSubCarpeta" onclick="editarSubCarpeta('${res[0].subcarpetas[i]._id}', '${idCarpeta}')">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirSubCarpetas('${res[0].subcarpetas[i]._id}')">
+                                                <i class="fas fa-share-alt"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarSubCarpeta('${res[0].subcarpetas[i]._id}', '${idCarpeta}')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                     </div>
                                 </div>`;
@@ -383,16 +389,18 @@ function contenidoCarpeta(idCarpeta){
                                                         <i class="fab fa-html5"></i><br>
                                                         ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
                                                     </button>
-                                                    <button class="btn btn-info btn-circle btn-sm" 
-                                                    data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
-                                                        <i class="fas fa-share-alt"></i>
-                                                    </button>
-                                                    <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
+                                                     <div style="width:300px; margin-top:-50px">
+                                                        <button class="btn btn-info btn-circle btn-sm" 
+                                                        data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
+                                                            <i class="fas fa-share-alt"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                                 </div>
                                             </div>`;
@@ -407,16 +415,18 @@ function contenidoCarpeta(idCarpeta){
                                                         <i class="fab fa-css3-alt"></i><br>
                                                         ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
                                                     </button>
-                                                    <button class="btn btn-info btn-circle btn-sm" 
-                                                    data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
-                                                        <i class="fas fa-share-alt"></i>
-                                                    </button>
-                                                    <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
+                                                     <div style="width:300px; margin-top:-50px">
+                                                        <button class="btn btn-info btn-circle btn-sm" 
+                                                        data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
+                                                            <i class="fas fa-share-alt"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                                 </div>
                                             </div>`;
@@ -432,16 +442,18 @@ function contenidoCarpeta(idCarpeta){
                                                         <i class="fab fa-js-square"></i><br>
                                                         ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
                                                     </button>
-                                                    <button class="btn btn-info btn-circle btn-sm" 
-                                                    data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
-                                                        <i class="fas fa-share-alt"></i>
-                                                    </button>
-                                                    <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
+                                                     <div style="width:300px; margin-top:-50px">
+                                                        <button class="btn btn-info btn-circle btn-sm" 
+                                                        data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
+                                                            <i class="fas fa-share-alt"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                                 </div>
                                             </div>`;
@@ -457,16 +469,18 @@ function contenidoCarpeta(idCarpeta){
                                                         <i style="font-size: 70px; color:#273c7c" class="fab fa-python"></i><br>
                                                         ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
                                                     </button>
-                                                    <button class="btn btn-info btn-circle btn-sm" 
-                                                    data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
-                                                        <i class="fas fa-share-alt"></i>
-                                                    </button>
-                                                    <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
+                                                     <div style="width:300px; margin-top:-50px">
+                                                        <button class="btn btn-info btn-circle btn-sm" 
+                                                        data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
+                                                            <i class="fas fa-share-alt"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                                 </div>
                                             </div>`;
@@ -482,16 +496,18 @@ function contenidoCarpeta(idCarpeta){
                                                         <i style="font-size: 70px; color:purple" class="fab fa-php"></i><br>
                                                         ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
                                                     </button>
-                                                    <button class="btn btn-info btn-circle btn-sm" 
-                                                    data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
-                                                        <i class="fas fa-share-alt"></i>
-                                                    </button>
-                                                    <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
+                                                     <div style="width:300px; margin-top:-50px">
+                                                        <button class="btn btn-info btn-circle btn-sm" 
+                                                        data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
+                                                            <i class="fas fa-share-alt"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivos('${res[0].archivos[i]._id}', '${idCarpeta}')">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                                 </div>
                                             </div>`;
@@ -540,6 +556,22 @@ function nuevoContenido(idCarpeta){
         <button class="btn btn-primary" onclick="crearProyectos('${idCarpeta}')">Crear</button>`;
     }
 
+}
+
+function nuevoContenidoSubcarpeta(idSubCarpeta){
+    var opcion = $('#opciones-subcarpeta').val()
+    if(opcion == 1){
+        $('#modalNuevosDocsSubcarpeta').modal('hide');
+        $('#modalArchivos').modal('show');
+        document.getElementById('footer-archivos').innerHTML = `
+        <button class="btn btn-primary" onclick="crearArchivosSubCarpeta('${idSubCarpeta}')">Crear</button>`;
+    }
+    else{
+        $('#modalNuevosDocsSubcarpeta').modal('hide');
+        $('#modalProyectos').modal('show');
+        document.getElementById('footer-proyectos').innerHTML = `
+        <button class="btn btn-primary" onclick="crearProyectosSubCarpeta('${idSubCarpeta}')">Crear</button>`;
+    }
 }
 
 function crearSubCarpetas(idCarpeta){
@@ -612,6 +644,43 @@ function crearArchivos(idCarpeta){
 
 }
 
+function crearArchivosSubCarpeta(idSubCarpeta){
+    var campos = [{campo:'nombreArchivo',valido:false},
+    {campo:'extension',valido:false}];
+
+    for (var i=0;i<campos.length;i++){
+        campos[i].valido = validarCampo(campos[i].campo);
+    }
+
+    for(var i=0;i<campos.length;i++){
+        if (!campos[i].valido)
+        return;
+    }
+
+    var parametro = {
+        nombreArchivo: $('#nombreArchivo').val(),
+        extension: $('#extension').val(),
+        carpetaRaiz: idSubCarpeta
+    };
+
+    console.log(parametro);
+    $.ajax({
+        url:"/archivos/subcarpetas",
+        data:parametro,
+        method:"POST",
+        dataType:"JSON",
+        success:function(respuesta){
+            // alert(respuesta);
+            //window.location = "carpetas.html"
+            $('#modalArchivos').modal('hide');
+            cargarSubCarpeta(idSubCarpeta);
+        },
+        error: function () {
+            alert('error');
+        },
+    });
+}
+
 function crearProyectos(idCarpeta){
     var campos = [
         {campo:'nombreProyecto',valido:false}
@@ -648,6 +717,45 @@ function crearProyectos(idCarpeta){
             localStorage.setItem("idCSS", respuesta.css);
             localStorage.setItem("idJS", respuesta.js);
             contenidoCarpeta(idCarpeta);
+         },
+         error: function () {
+             alert('error');
+         },
+     });
+    
+}
+
+function crearProyectosSubCarpeta(idSubCarpeta){
+    var campos = [
+        {campo:'nombreProyecto',valido:false}
+    ];
+
+    for (var i=0;i<campos.length;i++){
+        campos[i].valido = validarCampo(campos[i].campo);
+    }
+
+    for(var i=0;i<campos.length;i++){
+        if (!campos[i].valido)
+            return;
+    }
+
+    var parametros = {
+        nombreProyecto: $('#nombreProyecto').val(),
+        idSubCarpeta: idSubCarpeta
+    };
+       // alert(parametros);
+     $.ajax({
+         url:'/proyectos/subcarpeta',
+         data:parametros,
+         method:"POST",
+         dataType:"JSON",
+         success:function(respuesta){
+            $('#modalProyectos').modal('hide');
+            localStorage.setItem("idHTML", respuesta.html);
+            localStorage.setItem("idCSS", respuesta.css);
+            localStorage.setItem("idJS", respuesta.js);
+            cargarSubCarpeta(idSubCarpeta);
+            
          },
          error: function () {
              alert('error');
@@ -1150,8 +1258,9 @@ function eliminarColaboradorArchivo(idArchivo, idUsuario){
     });
 }
 
-function editorArchivos(idArchivo, idCarpeta){
-    $.ajax({
+function editorArchivos(idArchivo){
+    window.location = "editor.html?idArchivo=" + idArchivo;
+    /*$.ajax({
         url:`/archivos/${idArchivo}`,
         method:"GET",
         dataType:"JSON",
@@ -1170,7 +1279,7 @@ function editorArchivos(idArchivo, idCarpeta){
         <button type="button" class="btn btn-proyecto" onclick="guardarArchivo('${res[0]._id}', '${idCarpeta}')"><i class="fas fa-save"></i></button>
         <br>`;
 
-        /*$.ajax({
+        $.ajax({
             url:`/proyectos/${idProyecto}/archivosHTML`,
             method:"GET",
             dataType:"JSON",
@@ -1182,12 +1291,12 @@ function editorArchivos(idArchivo, idCarpeta){
             error: function () {
                 alert('error');
             },
-        });*/
+        });
         },
         error: function () {
             alert('error');
         },
-    });
+    });*/
 }
 
 /*function descargarArchivo(contenidoEnBlob, nombreArchivo) {
@@ -1604,6 +1713,208 @@ function eliminarArchivo(idArchivo, idCarpeta){
     });
 }
 
+function cargarSubCarpeta(idSubCarpeta){
+    $.ajax({
+        url:`/subcarpetas/${idSubCarpeta}/proyectos`,
+        method:"GET",
+        dataType:"JSON",
+        success:function(res){
+                //window.location = "contenido-carpeta.html"
+            console.log(res);
+            document.getElementById('editor-archivo').innerHTML = `
+                <div>
+                    <div id="nombre-pagina">
+                    </div>
+                    <div class="row" id="carpetas">
+                        
+                    </div>
+
+                </div> `;
+                document.getElementById('nombre-pagina').innerHTML =`
+                <h1>CONTENIDO SUBCARPETA: ${res[0].nombreSubCarpeta}</h1>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalNuevosDocsSubcarpeta"><i class="fas fa-plus"></i>Nuevo</button>`;
+            document.getElementById('footer-contenido-subcarpeta').innerHTML = `<button class="btn btn-primary" onclick=nuevoContenidoSubcarpeta('${idSubCarpeta}')>Crear</button>`;
+            document.getElementById('carpetas').innerHTML = '';
+            for(var i=0;i<res[0].proyectos.length;i++){
+                document.getElementById('carpetas').innerHTML += 
+                `<div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                    <div class="card-body">
+                    
+                    <div class="d-flex justify-content-between align-items-center"> 
+                        <button type="button" class="btn btn-proyecto" onclick="cargarProyecto('${res[0].proyectos[i]._id}')">
+                            <i class="far fa-file-alt"></i><br>
+                            ${res[0].proyectos[i].nombreProyecto}
+                        </button>
+                        <div style="width:300px; margin-top:-50px">
+                            <button class="btn btn-info btn-circle btn-sm" 
+                            data-toggle="modal" data-target="#modalProyectos" onclick="editarProyectos('${res[0].proyectos[i]._id}', '${idSubCarpeta}')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirProyectos('${res[0].proyectos[i]._id}')">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                            <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarProyectos('${res[0].proyectos[i]._id}', '${idSubCarpeta}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>`;
+            }
+
+            $.ajax({
+                url:`/subcarpetas/${idSubCarpeta}/archivos`,
+                method:"GET",
+                dataType:"JSON",
+                success:function(res){
+                        //window.location = "contenido-carpeta.html"
+                        console.log(res);
+                        for(var i=0;i<res[0].archivos.length;i++){
+                            if(res[0].archivos[i].extension == "html"){
+                                document.getElementById('carpetas').innerHTML += `
+                                <div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                <div class="card-body">
+                                
+                                <div class="d-flex justify-content-between align-items-center"> 
+                                    <button type="button" class="btn btn-proyecto" onclick="editorArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                        <i class="fab fa-html5"></i><br>
+                                        ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
+                                    </button>
+                                        <div style="width:300px; margin-top:-50px">
+                                        <button class="btn btn-info btn-circle btn-sm" 
+                                        data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
+                                            <i class="fas fa-share-alt"></i>
+                                        </button>
+                                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>`;
+                            }
+                            else if(res[0].archivos[i].extension == 'css'){
+                                document.getElementById('carpetas').innerHTML += `
+                                <div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                <div class="card-body">
+                                
+                                <div class="d-flex justify-content-between align-items-center"> 
+                                    <button type="button" class="btn btn-proyecto" onclick="editorArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                        <i class="fab fa-css3-alt"></i><br>
+                                        ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
+                                    </button>
+                                        <div style="width:300px; margin-top:-50px">
+                                        <button class="btn btn-info btn-circle btn-sm" 
+                                        data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
+                                            <i class="fas fa-share-alt"></i>
+                                        </button>
+                                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>`;
+                            }
+        
+                            else if(res[0].archivos[i].extension == 'js'){
+                                document.getElementById('carpetas').innerHTML += `
+                                <div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                <div class="card-body">
+                                
+                                <div class="d-flex justify-content-between align-items-center"> 
+                                    <button type="button" class="btn btn-proyecto" onclick="editorArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                        <i class="fab fa-js-square"></i><br>
+                                        ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
+                                    </button>
+                                        <div style="width:300px; margin-top:-50px">
+                                        <button class="btn btn-info btn-circle btn-sm" 
+                                        data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
+                                            <i class="fas fa-share-alt"></i>
+                                        </button>
+                                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>`;
+                            }
+        
+                            else if(res[0].archivos[i].extension == 'py'){
+                                document.getElementById('carpetas').innerHTML += `
+                                <div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                <div class="card-body">
+                                
+                                <div class="d-flex justify-content-between align-items-center"> 
+                                    <button type="button" class="btn btn-proyecto" onclick="editorArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                        <i style="font-size: 70px; color:#273c7c" class="fab fa-python"></i><br>
+                                        ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
+                                    </button>
+                                        <div style="width:300px; margin-top:-50px">
+                                        <button class="btn btn-info btn-circle btn-sm" 
+                                        data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
+                                            <i class="fas fa-share-alt"></i>
+                                        </button>
+                                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>`;
+                            }
+        
+                            else if(res[0].archivos[i].extension == 'php'){
+                                document.getElementById('carpetas').innerHTML += `
+                                <div class="py-3 col-lg-4 col-md-6 col-sm-12">
+                                <div class="card-body">
+                                
+                                <div class="d-flex justify-content-between align-items-center"> 
+                                    <button type="button" class="btn btn-proyecto" onclick="editorArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                        <i style="font-size: 70px; color:purple" class="fab fa-php"></i><br>
+                                        ${res[0].archivos[i].nombreArchivo}.${res[0].archivos[i].extension}
+                                    </button>
+                                        <div style="width:300px; margin-top:-50px">
+                                        <button class="btn btn-info btn-circle btn-sm" 
+                                        data-toggle="modal" data-target="#modalArchivos" onclick="editarArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirArchivos('${res[0].archivos[i]._id}')">
+                                            <i class="fas fa-share-alt"></i>
+                                        </button>
+                                        <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarArchivos('${res[0].archivos[i]._id}', '${idSubCarpeta}')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>`;
+                            }
+                        }
+                },
+                error: function (e) {
+                //document.getElementById("div-proyectos").innerHTML = 'Ha ocurrido un error al conectar con el servidor.';
+                },
+            });
+        },
+        error: function (e) {
+        //document.getElementById("div-proyectos").innerHTML = 'Ha ocurrido un error al conectar con el servidor.';
+        },
+    });
+}
 
 
 

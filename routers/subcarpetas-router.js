@@ -9,9 +9,8 @@ router.post("/", function(req, res){
     var subcarp = new subcarpeta({
         nombreSubCarpeta: req.body.subCarpeta,
         usuarioCreador: req.session.codigoUsuario,
-        archivos: [],
-        subcarpetas:[],
-        proyectos: [],
+        archivosSubcarpeta: [],
+        proyectosSubcarpeta:[],
         carpetaRaiz: req.body.carpetaRaiz
     });
 
@@ -150,6 +149,64 @@ router.delete("/:id",function(req, res){
         res.send(error);
     });
 });
+
+//Obtener los proyectos de una subcarpeta en particular
+router.get("/:id/proyectos",function(req,res){
+    subcarpeta.aggregate([
+        {
+            $lookup:{
+                from:"proyectos",
+                localField:"proyectosSubcarpeta", 
+                foreignField:"_id",
+                as:"proyectos"
+            }
+        },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        { 
+            $project:{nombreSubCarpeta:1, proyectos:{nombreProyecto:1, _id:1}}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+//Obtener los archivos de una subcarpeta en particular
+router.get("/:id/archivos",function(req,res){
+    subcarpeta.aggregate([
+        {
+            $lookup:{
+                from:"archivos",
+                localField:"archivosSubcarpeta", 
+                foreignField:"_id",
+                as:"archivos"
+            }
+        },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        { 
+            $project:{archivos:{nombreArchivo:1,extension:1, _id:1}}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+
 
 
 module.exports = router;

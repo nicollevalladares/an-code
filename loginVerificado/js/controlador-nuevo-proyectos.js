@@ -192,6 +192,18 @@ function guardarProyecto(idProyecto){
     
        solicitud.onsuccess = function(evento){
            console.log("Se agrego el proyecto con éxito");
+           iziToast.success({
+            timeout:1800,
+            overlay: true,
+            position: 'center', 
+            displayMode: 'once',
+            title: 'OK',
+            message: 'Proyecto actualizado en modo offline con éxito!',
+            onClosing: function(instance, toast, closedBy){
+                console.info('Closed | closedBy: ' + closedBy);
+                //window.location = "menu.html"
+            }
+        });
            //actualizarTabla();
        }
     }else{
@@ -262,7 +274,19 @@ function guardarProyecto(idProyecto){
             },
         });
     
-        window.location = "proyectos.html";
+       // window.location = "proyectos.html";
+       iziToast.success({
+        timeout:1800,
+        overlay: true,
+        position: 'center', 
+        displayMode: 'once',
+        title: 'OK',
+        message: 'Proyecto actualizado con éxito!',
+        onClosing: function(instance, toast, closedBy){
+            console.info('Closed | closedBy: ' + closedBy);
+            window.location = "menu.html"
+        }
+    });
         }
     }
 
@@ -274,13 +298,37 @@ function obtenerId(name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-var internet=true;
+var internet = true;
+var comprobacion = false;
 document.addEventListener('keyup',function(){
 if(!navigator.onLine) {
     console.log('sin internet');
     //modal
-    crearIndexeddDB();
-    internet=false;
+    if(!comprobacion){
+        $.confirm({
+            title: '<i style="color: #f9e246; font-size: 100px;" class="fas fa-exclamation-triangle"></i>',
+            theme: 'supervan',
+            content: 'Has perdido la conexión! Desea seguir trabajando en modo offline?',
+            buttons: {
+                si: function () {
+                   // $.alert('Confirmed!');
+                   comprobacion = true;
+                },
+                no: function () {
+                    //$.alert('Canceled!');
+                    window.location="menu.html";
+                }
+            }
+        });
+        crearIndexeddDB();
+        internet=false;
+    }
+    
+    
+    if(comprobacion == true){
+        crearIndexeddDB();
+        internet=false;
+    }
 }else{
     internet=true;
 }

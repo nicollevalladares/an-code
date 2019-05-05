@@ -4,9 +4,8 @@ var subCarpetaSchema = new mongoose.Schema(
     {
         nombreSubCarpeta : String,
         usuarioCreador : mongoose.Schema.Types.ObjectId,
-        archivos: Array,
-        subcarpetas: Array,
-        proyectos: Array,
+        archivosSubcarpeta: Array,
+        proyectosSubcarpeta: Array,
         carpetaRaiz : mongoose.Schema.Types.ObjectId,
         colaboradores: Array
     }

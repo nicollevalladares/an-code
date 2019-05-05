@@ -53,16 +53,18 @@ function generarProyectos(){
                                 <i class="far fa-file-alt"></i><br>
                                 ${res[i].nombreProyecto}
                             </button>
-                            <button class="btn btn-info btn-circle btn-sm" 
-                            data-toggle="modal" data-target="#modalContenidoProyecto" onclick="editarProyectos('${res[i]._id}')">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirProyectos('${res[i]._id}')">
-                                <i class="fas fa-share-alt"></i>
-                            </button>
-                            <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarProyectos('${res[i]._id}')">
-                                <i class="fas fa-trash"></i>
-                            </button>
+                            <div style="width:300px; margin-top:-50px">
+                                <button class="btn btn-info btn-circle btn-sm" 
+                                data-toggle="modal" data-target="#modalContenidoProyecto" onclick="editarProyectos('${res[i]._id}')">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button style="margin-right: 1%;" class="btn btn-success btn-circle btn-sm" onclick="compartirProyectos('${res[i]._id}')">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                                <button class="btn btn-danger btn-circle btn-sm" onclick="eliminarProyectos('${res[i]._id}')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
                         </div>
                         </div>
                     </div>`;

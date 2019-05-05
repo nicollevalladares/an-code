@@ -204,6 +204,30 @@
         </div>
     </div>
 
+          <!--Modal Contenido SubCarpeta-->
+          <div class="modal fade" id="modalNuevosDocsSubcarpeta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="myModalLabel">Sub Carpeta</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <select class="form-control" id="opciones-subcarpeta">
+                    <option value=" " selected disabled>--Seleccione--</option>
+                    <option value="1">Archivo</option>
+                    <option value="2">Proyecto</option>
+                  </select>
+                  <div class="modal-footer"id="footer-contenido-subcarpeta">
+                    
+                </div>
+                </div>
+              </div>
+              </div>
+          </div>
+
     <!--Modal Archivos-->
     <div class="modal fade" id="modalArchivos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -357,7 +381,6 @@
   <link rel="stylesheet" href="codemirror/theme/idea.css">
   <link rel="stylesheet" href="codemirror/theme/darcula.css">
   <link rel="stylesheet" href="codemirror/theme/zenburn.css">
-  <script src="js/controlador-proyectos.js"></script>
 
   <script src="js/bootbox.min.js"></script>
   <script src="js/bootbox.all.min.js"></script>

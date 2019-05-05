@@ -131,6 +131,10 @@ app.get('/configuracion.html', verificarAutenticacion, function (res, req, next)
     res.redirect('/configuracion.html');
 });
 
+app.get('/editor.html', verificarAutenticacion, function (res, req, next) {  
+    res.redirect('/editor.html');
+});
+
 function verificarAutenticacion(req, res, next) {
     if (req.session.codigoUsuario){
         return next();

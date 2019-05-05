@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var archivo = require("../models/archivo");
 var carpeta = require("../models/carpeta");
+var subcarpeta = require("../models/subcarpeta");
 var proyecto = require("../models/proyecto");
 var mongoose = require("mongoose");
 
@@ -82,6 +83,44 @@ router.post("/", function(req, res){
     });
 
 });
+
+//Peticion para guardar un archivo
+router.post("/subcarpetas", function(req, res){
+    var arch = new archivo({
+        nombreArchivo: req.body.nombreArchivo,
+        extension: req.body.extension,
+        usuarioCreador: req.session.codigoUsuario,
+        carpetaRaiz: req.body.carpetaRaiz,
+        contenido: " "
+    });
+
+    arch.save()
+    .then(obj=>{
+        subcarpeta.update(
+            {
+                _id:req.body.carpetaRaiz
+            },
+            {
+                $push:{
+                    archivosSubcarpeta: mongoose.Types.ObjectId(obj._id)
+            }
+            }
+        )
+        .then(data=>{
+            res.send(data);
+        })
+        .catch(error=>{
+            res.send(error);
+        });
+
+        res.send(obj);
+    })
+    .catch(error=>{
+        res.send(obj);
+    });
+
+});
+
 
 //Peticion para guardar archivos de un proyecto 
 /*router.post("/proyecto", function(req, res){

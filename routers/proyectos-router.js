@@ -4,6 +4,7 @@ var proyecto = require("../models/proyecto");
 var carpeta = require("../models/carpeta");
 var mongoose = require("mongoose");
 var archivo = require("../models/archivo");
+var subcarpeta = require("../models/subcarpeta");
 
 //Obtener el listado de todos los proyectos
 router.get("/", function(req,res){
@@ -57,6 +58,38 @@ router.post("/", function(req, res){
 
     });
 });
+
+//Peticion para guardar una proyecto
+router.post("/subcarpeta", function(req, res){
+    proyecto.find({usuarioCreador:req.session.codigoUsuario})
+    .then(data=>{
+        if(req.session.plan == mongoose.Types.ObjectId("5cc7993eb56d781460c5cddf")){
+            if(data.length < 15){
+                crearProyectoSubCarpeta(req,res);
+            } 
+            else{
+                respuesta={status:0, mensaje:'Límite de carpetas alcanzadas, si desea crear más, cambie de plan'}
+                res.send(respuesta);
+            }
+        }
+
+        if(req.session.plan == mongoose.Types.ObjectId("5cc7994eb56d781460c5cde0")){
+            if(data.length < 30){
+                crearProyectoSubCarpeta(req,res);
+            } 
+            else{
+                respuesta={status:0}
+                res.send(respuesta);
+            }
+        }
+
+        if(req.session.plan == mongoose.Types.ObjectId("5cc79970b56d781460c5cde1")){
+            crearProyectoSubCarpeta(req,res);
+        }
+
+    });
+});
+
 
 function crearProyecto(req,res){
     var proyect = new proyecto({
@@ -152,6 +185,102 @@ function crearProyecto(req,res){
         res.send(obj);
     });
 }
+
+function crearProyectoSubCarpeta(req,res){
+    var proyect = new proyecto({
+        usuarioCreador: req.session.codigoUsuario,
+        nombreProyecto: req.body.nombreProyecto,
+        carpetaRaiz: req.body.idSubCarpeta
+    });
+
+    proyect.save()
+    .then(obj=>{
+
+        subcarpeta.update(
+            {
+                _id:req.body.idSubCarpeta
+            },
+            {
+                $push:{
+                    proyectosSubcarpeta: mongoose.Types.ObjectId(obj._id)
+            }
+            }
+        )
+        .then(data=>{
+            res.send(data);
+            console.log(data);
+        })
+        .catch(error=>{
+            res.send(error);
+        });
+
+        var idArchivo1 = mongoose.Types.ObjectId();
+        var idArchivo2 = mongoose.Types.ObjectId();
+        var idArchivo3 = mongoose.Types.ObjectId();
+
+        var arch1 = new archivo({
+            _id: idArchivo1,
+            nombreArchivo: 'archivo1',
+            extension: 'html',
+            usuarioCreador: req.session.codigoUsuario,
+            proyectoRaiz: mongoose.Types.ObjectId(obj._id)
+        });
+
+        var arch2 = new archivo({
+            _id: idArchivo2,
+            nombreArchivo: 'archivo2',
+            extension: 'css',
+            usuarioCreador: req.session.codigoUsuario,
+            proyectoRaiz: mongoose.Types.ObjectId(obj._id)
+        });
+
+        var arch3 = new archivo({
+            _id: idArchivo3,
+            nombreArchivo: 'archivo3',
+            extension: 'js',
+            usuarioCreador: req.session.codigoUsuario,
+            proyectoRaiz: mongoose.Types.ObjectId(obj._id)
+        });
+
+        arch1.save();
+        arch2.save();
+        arch3.save();
+
+        idsArchivos = {
+            html: idArchivo1,
+            css: idArchivo2,
+            js: idArchivo3
+        }
+        
+        res.send(idsArchivos);
+
+        proyecto.update(
+            {
+                _id: mongoose.Types.ObjectId(obj._id)
+            },
+            {
+                $push:{
+                    archivoHTML: idArchivo1,
+                    archivoCSS: idArchivo2,
+                    archivoJS: idArchivo3
+            }
+            }
+        )
+        .then(resp=>{
+            res.send(resp);
+            console.log(resp);
+        })
+        .catch(error=>{
+            res.send(error);
+        });
+
+    res.send(obj);
+    })
+    .catch(error=>{
+        res.send(obj);
+    });
+}
+
 
 
 //Peticion para actualizar un proyecto
